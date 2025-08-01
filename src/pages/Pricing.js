@@ -1,0 +1,292 @@
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import { Check, Star, Zap, Crown } from 'lucide-react';
+
+const Pricing = () => {
+  const [isAnnual, setIsAnnual] = useState(true);
+
+  const plans = [
+    {
+      name: 'Starter',
+      icon: Star,
+      price: isAnnual ? 29 : 39,
+      description: 'Perfect for small businesses and startups',
+      features: [
+        '5 Premium Templates',
+        'Basic Support',
+        'Responsive Design',
+        'SEO Optimized',
+        'Basic Analytics',
+        'Email Support',
+      ],
+      popular: false,
+      color: 'text-blue-600',
+      bgColor: 'bg-blue-100',
+    },
+    {
+      name: 'Professional',
+      icon: Zap,
+      price: isAnnual ? 79 : 99,
+      description: 'Ideal for growing businesses and agencies',
+      features: [
+        '15 Premium Templates',
+        'Priority Support',
+        'Advanced Customization',
+        'Performance Optimization',
+        'Advanced Analytics',
+        'Priority Email Support',
+        'Custom Branding',
+        'API Access',
+      ],
+      popular: true,
+      color: 'text-yellow-600',
+      bgColor: 'bg-yellow-100',
+    },
+    {
+      name: 'Enterprise',
+      icon: Crown,
+      price: isAnnual ? 199 : 249,
+      description: 'For large teams and enterprise solutions',
+      features: [
+        'Unlimited Templates',
+        '24/7 Phone Support',
+        'White-label Solutions',
+        'Custom Development',
+        'Advanced Security',
+        'Dedicated Account Manager',
+        'Custom Integrations',
+        'SLA Guarantee',
+      ],
+      popular: false,
+      color: 'text-purple-600',
+      bgColor: 'bg-purple-100',
+    },
+  ];
+
+  return (
+    <div className="pt-16 lg:pt-20">
+      {' '}
+      {/* Hero Section */}{' '}
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
+        <div className="container-custom">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center max-w-4xl mx-auto"
+          >
+            <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 mb-6">
+              Simple,{' '}
+              <span className="block gradient-text">
+                {' '}
+                Transparent Pricing{' '}
+              </span>{' '}
+            </h1>{' '}
+            <p className="text-xl text-gray-600 mb-8">
+              Choose the perfect plan for your business.All plans include our
+              premium templates and support.{' '}
+            </p>
+            {/* Billing Toggle */}{' '}
+            <div className="flex items-center justify-center space-x-4 mb-12">
+              <span
+                className={`text-sm font-medium ${!isAnnual ? 'text-gray-900' : 'text-gray-500'}`}
+              >
+                Monthly{' '}
+              </span>{' '}
+              <button
+                onClick={() => setIsAnnual(!isAnnual)}
+                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                  isAnnual ? 'bg-primary-600' : 'bg-gray-200'
+                }`}
+              >
+                <span
+                  className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                    isAnnual ? 'translate-x-6' : 'translate-x-1'
+                  }`}
+                />{' '}
+              </button>{' '}
+              <span
+                className={`text-sm font-medium ${isAnnual ? 'text-gray-900' : 'text-gray-500'}`}
+              >
+                Annual{' '}
+                <span className="ml-1 text-primary-600 font-bold">
+                  {' '}
+                  (Save 25 % ){' '}
+                </span>{' '}
+              </span>{' '}
+            </div>{' '}
+          </motion.div>{' '}
+        </div>{' '}
+      </section>
+      {/* Pricing Cards */}{' '}
+      <section className="py-20 bg-white">
+        <div className="container-custom">
+          <div className="grid lg:grid-cols-3 gap-8">
+            {' '}
+            {plans.map((plan, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className={`relative ${plan.popular ? 'lg:-mt-8 lg:mb-8' : ''}`}
+              >
+                {plan.popular && (
+                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                    <span className="bg-gradient-to-r from-primary-600 to-secondary-600 text-white px-4 py-2 rounded-full text-sm font-medium">
+                      Most Popular{' '}
+                    </span>{' '}
+                  </div>
+                )}
+                <div
+                  className={`card p-8 h-full ${plan.popular ? 'border-2 border-primary-500 shadow-2xl' : ''}`}
+                >
+                  <div className="text-center mb-8">
+                    <div
+                      className={`inline-flex items-center justify-center w-16 h-16 rounded-full ${plan.bgColor} mb-6`}
+                    >
+                      <plan.icon size={32} className={plan.color} />{' '}
+                    </div>{' '}
+                    <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                      {' '}
+                      {plan.name}{' '}
+                    </h3>{' '}
+                    <p className="text-gray-600 mb-6"> {plan.description} </p>{' '}
+                    <div className="mb-6">
+                      <span className="text-4xl font-bold text-gray-900">
+                        {' '}
+                        $ {plan.price}{' '}
+                      </span>{' '}
+                      <span className="text-gray-600"> /month</span>
+                    </div>{' '}
+                  </div>
+                  <ul className="space-y-4 mb-8">
+                    {' '}
+                    {plan.features.map((feature, featureIndex) => (
+                      <li key={featureIndex} className="flex items-center">
+                        <Check
+                          size={20}
+                          className="text-green-500 mr-3 flex-shrink-0"
+                        />
+                        <span className="text-gray-700"> {feature} </span>{' '}
+                      </li>
+                    ))}{' '}
+                  </ul>
+                  <button
+                    className={`w-full py-3 px-6 rounded-lg font-medium transition-all duration-300 ${
+                      plan.popular
+                        ? 'bg-gradient-to-r from-primary-600 to-secondary-600 text-white hover:shadow-lg transform hover:scale-105'
+                        : 'bg-gray-100 text-gray-900 hover:bg-gray-200'
+                    }`}
+                  >
+                    {' '}
+                    {plan.popular ? 'Get Started' : 'Choose Plan'}{' '}
+                  </button>{' '}
+                </div>{' '}
+              </motion.div>
+            ))}{' '}
+          </div>{' '}
+        </div>{' '}
+      </section>
+      {/* FAQ Section */}{' '}
+      <section className="py-20 bg-gray-50">
+        <div className="container-custom">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
+              Frequently Asked Questions{' '}
+            </h2>{' '}
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Everything you need to know about our pricing and plans{' '}
+            </p>{' '}
+          </motion.div>
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {' '}
+            {[
+              {
+                question: 'Can I change my plan anytime?',
+                answer:
+                  'Yes, you can upgrade or downgrade your plan at any time. Changes will be prorated.',
+              },
+              {
+                question: 'Is there a free trial?',
+                answer:
+                  'Yes, we offer a 14-day free trial on all plans with no credit card required.',
+              },
+              {
+                question: 'What payment methods do you accept?',
+                answer:
+                  'We accept all major credit cards, PayPal, and bank transfers for annual plans.',
+              },
+              {
+                question: 'Do you offer refunds?',
+                answer:
+                  "Yes, we offer a 30-day money-back guarantee if you're not satisfied.",
+              },
+              {
+                question: 'Can I cancel anytime?',
+                answer:
+                  'Absolutely! You can cancel your subscription at any time with no penalties.',
+              },
+              {
+                question: 'Is support included?',
+                answer:
+                  'Yes, all plans include support. Higher plans include priority support and phone support.',
+              },
+            ].map((faq, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-white rounded-lg p-6 shadow-sm"
+              >
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                  {' '}
+                  {faq.question}{' '}
+                </h3>{' '}
+                <p className="text-gray-600"> {faq.answer} </p>{' '}
+              </motion.div>
+            ))}{' '}
+          </div>{' '}
+        </div>{' '}
+      </section>
+      {/* CTA Section */}{' '}
+      <section className="py-20 bg-gradient-to-r from-primary-600 to-secondary-600">
+        <div className="container-custom text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">
+              Ready to Get Started ?
+            </h2>{' '}
+            <p className="text-xl text-primary-100 mb-8 max-w-2xl mx-auto">
+              Join thousands of developers and businesses using our premium
+              templates{' '}
+            </p>{' '}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button className="bg-white text-primary-600 hover:bg-gray-100 font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105">
+                Start Free Trial{' '}
+              </button>{' '}
+              <button className="border-2 border-white text-white hover:bg-white hover:text-primary-600 font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105">
+                Contact Sales{' '}
+              </button>{' '}
+            </div>{' '}
+          </motion.div>{' '}
+        </div>{' '}
+      </section>{' '}
+    </div>
+  );
+};
+
+export default Pricing;
