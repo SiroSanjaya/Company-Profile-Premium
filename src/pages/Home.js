@@ -1,17 +1,3 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import {
-  ArrowRight,
-  CheckCircle,
-  Star,
-  Users,
-  Zap,
-  Shield,
-  Globe,
-  Play,
-  Quote,
-} from 'lucide-react';
 import HeroSection from '../components/sections/HeroSection';
 import FeaturesSection from '../components/sections/FeaturesSection';
 import TestimonialsSection from '../components/sections/TestimonialsSection';

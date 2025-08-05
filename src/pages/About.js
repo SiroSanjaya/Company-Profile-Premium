@@ -1,6 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Users, Target, Award, Heart } from 'lucide-react';
+import PortfolioShowcase from '../components/PortfolioShowcase';
+import TeamSection from '../components/TeamSection';
 
 const About = () => {
   const values = [
@@ -276,6 +278,10 @@ const About = () => {
           </div>{' '}
         </div>{' '}
       </section>{' '}
+      {/* Portfolio Showcase */}
+      <PortfolioShowcase />
+      {/* Enhanced Team Section */}
+      <TeamSection />
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Check, Star, Zap, Crown } from 'lucide-react';
+import PricingCalculator from '../components/PricingCalculator';
 
 const Pricing = () => {
   const [isAnnual, setIsAnnual] = useState(false);
@@ -308,6 +309,9 @@ const Pricing = () => {
           </motion.div>
         </div>
       </section>
+
+      {/* Pricing Calculator */}
+      <PricingCalculator />
     </div>
   );
 };

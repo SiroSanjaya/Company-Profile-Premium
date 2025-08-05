@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { Mail, Phone, MapPin, Clock, Send, CheckCircle } from 'lucide-react';
+import FAQSection from '../components/FAQSection';
 
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -358,6 +359,9 @@ const Contact = () => {
           </div>
         </div>
       </section>
+
+      {/* FAQ Section */}
+      <FAQSection />
     </div>
   );
 };
