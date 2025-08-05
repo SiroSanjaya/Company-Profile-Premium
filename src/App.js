@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import Navbar from './components/Navbar';
@@ -9,6 +8,9 @@ import Services from './pages/Services';
 import Contact from './pages/Contact';
 import Pricing from './pages/Pricing';
 import Blog from './pages/Blog';
+import BlogDetail from './pages/BlogDetail';
+import Documentation from './pages/Documentation';
+import ServiceDetail from './pages/ServiceDetail';
 
 function App() {
   return (
@@ -17,14 +19,17 @@ function App() {
         <Navbar />
         <main>
           <Routes>
-            <Route path="/" element={<Home />} />{' '}
-            <Route path="/about" element={<About />} />{' '}
-            <Route path="/services" element={<Services />} />{' '}
-            <Route path="/pricing" element={<Pricing />} />{' '}
-            <Route path="/blog" element={<Blog />} />{' '}
-            <Route path="/contact" element={<Contact />} />{' '}
-          </Routes>{' '}
-        </main>{' '}
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/pricing" element={<Pricing />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:id" element={<BlogDetail />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/documentation" element={<Documentation />} />
+            <Route path="/service/:serviceId" element={<ServiceDetail />} />
+          </Routes>
+        </main>
         <Footer />
         <Toaster
           position="top-right"
@@ -35,8 +40,8 @@ function App() {
               color: '#fff',
             },
           }}
-        />{' '}
-      </div>{' '}
+        />
+      </div>
     </Router>
   );
 }

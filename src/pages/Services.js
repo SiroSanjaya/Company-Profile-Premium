@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import {
   Code,
@@ -11,6 +10,34 @@ import {
 } from 'lucide-react';
 
 const Services = () => {
+  const handleLearnMore = serviceTitle => {
+    // Map service titles to service IDs
+    const serviceIdMap = {
+      'Custom Development': 'custom-development',
+      'UI/UX Design': 'ui-ux-design',
+      'Mobile Optimization': 'mobile-optimization',
+      'Performance Optimization': 'performance-optimization',
+      'Security Implementation': 'security-implementation',
+      'SEO Optimization': 'seo-optimization',
+    };
+
+    const serviceId = serviceIdMap[serviceTitle];
+    if (serviceId) {
+      window.location.href = `/service/${serviceId}`;
+    } else {
+      // Fallback to contact page if service not found
+      window.location.href = `/contact?service=${encodeURIComponent(serviceTitle)}`;
+    }
+  };
+
+  const handleGetFreeQuote = () => {
+    window.location.href = '/contact?type=quote';
+  };
+
+  const handleScheduleCall = () => {
+    window.location.href = '/contact?type=call';
+  };
+
   const services = [
     {
       icon: Code,
@@ -161,13 +188,16 @@ const Services = () => {
                     </li>
                   ))}{' '}
                 </ul>
-                <div className="flex items-center text-primary-600 font-medium group-hover:text-primary-700 transition-colors">
+                <button
+                  onClick={() => handleLearnMore(service.title)}
+                  className="flex items-center text-primary-600 font-medium group-hover:text-primary-700 transition-colors cursor-pointer"
+                >
                   <span> Learn more </span>{' '}
                   <ArrowRight
                     size={16}
                     className="ml-2 group-hover:translate-x-1 transition-transform"
                   />
-                </div>{' '}
+                </button>{' '}
               </motion.div>
             ))}{' '}
           </div>{' '}
@@ -253,10 +283,16 @@ const Services = () => {
               Let 's discuss how we can help you achieve your goals{' '}
             </p>{' '}
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-white text-primary-600 hover:bg-gray-100 font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105">
+              <button
+                onClick={handleGetFreeQuote}
+                className="bg-white text-primary-600 hover:bg-gray-100 font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105"
+              >
                 Get Free Quote{' '}
               </button>{' '}
-              <button className="border-2 border-white text-white hover:bg-white hover:text-primary-600 font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105">
+              <button
+                onClick={handleScheduleCall}
+                className="border-2 border-white text-white hover:bg-white hover:text-primary-600 font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105"
+              >
                 Schedule Call{' '}
               </button>{' '}
             </div>{' '}
