@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useState } from 'react';
 import {
   Linkedin,
   Github,
@@ -11,6 +12,137 @@ import {
   Star,
 } from 'lucide-react';
 
+const TeamMemberCard = ({ member, index }) => {
+  const [imageError, setImageError] = useState(false);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: index * 0.1 }}
+      viewport={{ once: true }}
+      className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300"
+    >
+      {/* Member Image */}
+      <div className="relative">
+        <img
+          src={imageError ? member.fallbackImage || member.image : member.image}
+          alt={member.name}
+          className="w-full h-64 object-cover"
+          onError={() => setImageError(true)}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+        <div className="absolute bottom-4 left-4 text-white">
+          <h3 className="text-xl font-bold">{member.name}</h3>
+          <p className="text-primary-200">{member.position}</p>
+        </div>
+      </div>
+
+      {/* Member Info */}
+      <div className="p-6">
+        <p className="text-gray-600 mb-4 leading-relaxed">{member.bio}</p>
+
+        {/* Skills */}
+        <div className="mb-4">
+          <h4 className="text-sm font-semibold text-gray-900 mb-2">Skills</h4>
+          <div className="flex flex-wrap gap-2">
+            {member.skills.map(skill => (
+              <span
+                key={skill}
+                className="px-3 py-1 bg-primary-100 text-primary-700 text-sm rounded-full"
+              >
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Stats */}
+        <div className="grid grid-cols-3 gap-4 mb-4 text-center">
+          <div>
+            <div className="text-lg font-bold text-gray-900">
+              {member.experience}
+            </div>
+            <div className="text-xs text-gray-600">Experience</div>
+          </div>
+          <div>
+            <div className="text-lg font-bold text-gray-900">
+              {member.projects}
+            </div>
+            <div className="text-xs text-gray-600">Projects</div>
+          </div>
+          <div>
+            <div className="text-lg font-bold text-primary-600">
+              {member.rating}
+            </div>
+            <div className="text-xs text-gray-600">Rating</div>
+          </div>
+        </div>
+
+        {/* Achievements */}
+        <div className="mb-4">
+          <h4 className="text-sm font-semibold text-gray-900 mb-2">
+            Achievements
+          </h4>
+          <ul className="space-y-1">
+            {member.achievements.map(achievement => (
+              <li
+                key={achievement}
+                className="text-sm text-gray-600 flex items-center"
+              >
+                <Award size={14} className="text-primary-600 mr-2" />
+                {achievement}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Social Links */}
+        <div className="flex gap-3">
+          {member.social.linkedin && (
+            <a
+              href={member.social.linkedin}
+              className="p-2 bg-gray-100 text-gray-600 rounded-full hover:bg-primary-100 hover:text-primary-600 transition-colors"
+            >
+              <Linkedin size={18} />
+            </a>
+          )}
+          {member.social.github && (
+            <a
+              href={member.social.github}
+              className="p-2 bg-gray-100 text-gray-600 rounded-full hover:bg-primary-100 hover:text-primary-600 transition-colors"
+            >
+              <Github size={18} />
+            </a>
+          )}
+          {member.social.twitter && (
+            <a
+              href={member.social.twitter}
+              className="p-2 bg-gray-100 text-gray-600 rounded-full hover:bg-primary-100 hover:text-primary-600 transition-colors"
+            >
+              <Twitter size={18} />
+            </a>
+          )}
+          {member.social.website && (
+            <a
+              href={member.social.website}
+              className="p-2 bg-gray-100 text-gray-600 rounded-full hover:bg-primary-100 hover:text-primary-600 transition-colors"
+            >
+              <Globe size={18} />
+            </a>
+          )}
+          <a
+            href={`mailto:${member.name.toLowerCase().replace(' ', '.')}@company.com`}
+            className="p-2 bg-gray-100 text-gray-600 rounded-full hover:bg-primary-100 hover:text-primary-600 transition-colors"
+          >
+            <Mail size={18} />
+          </a>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
 const TeamSection = () => {
   const teamMembers = [
     {
@@ -19,6 +151,8 @@ const TeamSection = () => {
       position: 'Lead Developer & CTO',
       image:
         'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=400&fit=crop&crop=face',
+      fallbackImage:
+        'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop&crop=face',
       bio: 'Full-stack developer with 8+ years of experience in React, Node.js, and cloud architecture. Passionate about creating scalable, user-centric solutions.',
       skills: ['React', 'Node.js', 'AWS', 'TypeScript', 'Python'],
       experience: '8+ years',
@@ -42,6 +176,8 @@ const TeamSection = () => {
       position: 'UI/UX Design Lead',
       image:
         'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face',
+      fallbackImage:
+        'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face',
       bio: 'Creative designer with expertise in user experience, interface design, and design systems. Focused on creating intuitive and beautiful digital experiences.',
       skills: [
         'Figma',
@@ -71,6 +207,8 @@ const TeamSection = () => {
       position: 'Senior Frontend Developer',
       image:
         'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&crop=face',
+      fallbackImage:
+        'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=400&fit=crop&crop=face',
       bio: 'Frontend specialist with deep knowledge of modern JavaScript frameworks and performance optimization. Committed to writing clean, maintainable code.',
       skills: ['React', 'Vue.js', 'TypeScript', 'Performance', 'Testing'],
       experience: '5+ years',
@@ -94,6 +232,8 @@ const TeamSection = () => {
       position: 'Backend & DevOps Engineer',
       image:
         'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face',
+      fallbackImage:
+        'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face',
       bio: 'Backend developer and DevOps engineer with expertise in scalable architecture, cloud infrastructure, and system optimization.',
       skills: ['Python', 'Docker', 'Kubernetes', 'AWS', 'PostgreSQL'],
       experience: '7+ years',
@@ -117,6 +257,8 @@ const TeamSection = () => {
       position: 'Project Manager',
       image:
         'https://images.unsplash.com/photo-1487412720507-e7dc3764c712?w=400&h=400&fit=crop&crop=face',
+      fallbackImage:
+        'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&crop=face',
       bio: 'Experienced project manager with a track record of delivering complex projects on time and within budget. Expert in agile methodologies.',
       skills: [
         'Agile',
@@ -145,6 +287,8 @@ const TeamSection = () => {
       position: 'SEO & Digital Marketing Specialist',
       image:
         'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&crop=face',
+      fallbackImage:
+        'https://images.unsplash.com/photo-1487412720507-e7dc3764c712?w=400&h=400&fit=crop&crop=face',
       bio: 'Digital marketing expert specializing in SEO, content strategy, and growth hacking. Helps businesses increase their online visibility and conversions.',
       skills: [
         'SEO',
@@ -226,134 +370,7 @@ const TeamSection = () => {
         {/* Team Members Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {teamMembers.map((member, index) => (
-            <motion.div
-              key={member.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300"
-            >
-              {/* Member Image */}
-              <div className="relative">
-                <img
-                  src={member.image}
-                  alt={member.name}
-                  className="w-full h-64 object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                <div className="absolute bottom-4 left-4 text-white">
-                  <h3 className="text-xl font-bold">{member.name}</h3>
-                  <p className="text-primary-200">{member.position}</p>
-                </div>
-              </div>
-
-              {/* Member Info */}
-              <div className="p-6">
-                <p className="text-gray-600 mb-4 leading-relaxed">
-                  {member.bio}
-                </p>
-
-                {/* Skills */}
-                <div className="mb-4">
-                  <h4 className="text-sm font-semibold text-gray-900 mb-2">
-                    Skills
-                  </h4>
-                  <div className="flex flex-wrap gap-2">
-                    {member.skills.map(skill => (
-                      <span
-                        key={skill}
-                        className="px-3 py-1 bg-primary-100 text-primary-700 text-sm rounded-full"
-                      >
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Stats */}
-                <div className="grid grid-cols-3 gap-4 mb-4 text-center">
-                  <div>
-                    <div className="text-lg font-bold text-gray-900">
-                      {member.experience}
-                    </div>
-                    <div className="text-xs text-gray-600">Experience</div>
-                  </div>
-                  <div>
-                    <div className="text-lg font-bold text-gray-900">
-                      {member.projects}
-                    </div>
-                    <div className="text-xs text-gray-600">Projects</div>
-                  </div>
-                  <div>
-                    <div className="text-lg font-bold text-primary-600">
-                      {member.rating}
-                    </div>
-                    <div className="text-xs text-gray-600">Rating</div>
-                  </div>
-                </div>
-
-                {/* Achievements */}
-                <div className="mb-4">
-                  <h4 className="text-sm font-semibold text-gray-900 mb-2">
-                    Achievements
-                  </h4>
-                  <ul className="space-y-1">
-                    {member.achievements.map(achievement => (
-                      <li
-                        key={achievement}
-                        className="text-sm text-gray-600 flex items-center"
-                      >
-                        <Award size={14} className="text-primary-600 mr-2" />
-                        {achievement}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Social Links */}
-                <div className="flex gap-3">
-                  {member.social.linkedin && (
-                    <a
-                      href={member.social.linkedin}
-                      className="p-2 bg-gray-100 text-gray-600 rounded-full hover:bg-primary-100 hover:text-primary-600 transition-colors"
-                    >
-                      <Linkedin size={18} />
-                    </a>
-                  )}
-                  {member.social.github && (
-                    <a
-                      href={member.social.github}
-                      className="p-2 bg-gray-100 text-gray-600 rounded-full hover:bg-primary-100 hover:text-primary-600 transition-colors"
-                    >
-                      <Github size={18} />
-                    </a>
-                  )}
-                  {member.social.twitter && (
-                    <a
-                      href={member.social.twitter}
-                      className="p-2 bg-gray-100 text-gray-600 rounded-full hover:bg-primary-100 hover:text-primary-600 transition-colors"
-                    >
-                      <Twitter size={18} />
-                    </a>
-                  )}
-                  {member.social.website && (
-                    <a
-                      href={member.social.website}
-                      className="p-2 bg-gray-100 text-gray-600 rounded-full hover:bg-primary-100 hover:text-primary-600 transition-colors"
-                    >
-                      <Globe size={18} />
-                    </a>
-                  )}
-                  <a
-                    href={`mailto:${member.name.toLowerCase().replace(' ', '.')}@company.com`}
-                    className="p-2 bg-gray-100 text-gray-600 rounded-full hover:bg-primary-100 hover:text-primary-600 transition-colors"
-                  >
-                    <Mail size={18} />
-                  </a>
-                </div>
-              </div>
-            </motion.div>
+            <TeamMemberCard key={member.id} member={member} index={index} />
           ))}
         </div>
 
