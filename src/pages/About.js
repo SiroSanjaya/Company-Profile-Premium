@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { Users, Target, Award, Heart } from 'lucide-react';
 import PortfolioShowcase from '../components/PortfolioShowcase';
