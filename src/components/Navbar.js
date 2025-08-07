@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -22,9 +22,17 @@ const Navbar = () => {
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
     { name: 'Services', path: '/services' },
+    { name: 'Features', path: '/features' },
     { name: 'Pricing', path: '/pricing' },
     { name: 'Blog', path: '/blog' },
     { name: 'Contact', path: '/contact' },
+  ];
+
+  const documentationItems = [
+    { name: 'Documentation', path: '/docs' },
+    { name: 'API Reference', path: '/api-reference' },
+    { name: 'Help Center', path: '/help-center' },
+    { name: 'Status', path: '/status' },
   ];
 
   const isActive = path => location.pathname === path;
@@ -73,6 +81,48 @@ const Navbar = () => {
                 )}{' '}
               </Link>
             ))}{' '}
+            {/* Documentation Dropdown */}
+            <div className="relative">
+              <button
+                onMouseEnter={() => setIsDropdownOpen(true)}
+                onMouseLeave={() => setIsDropdownOpen(false)}
+                className={`relative font-medium transition-colors duration-200 flex items-center space-x-1 ${
+                  documentationItems.some(item => isActive(item.path))
+                    ? 'text-primary-600'
+                    : 'text-gray-700 hover:text-primary-600'
+                }`}
+              >
+                <span>Documentation</span>
+                <ChevronDown className="w-4 h-4" />
+              </button>
+
+              <AnimatePresence>
+                {isDropdownOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    onMouseEnter={() => setIsDropdownOpen(true)}
+                    onMouseLeave={() => setIsDropdownOpen(false)}
+                    className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50"
+                  >
+                    {documentationItems.map(item => (
+                      <Link
+                        key={item.name}
+                        to={item.path}
+                        className={`block px-4 py-2 text-sm transition-colors duration-200 ${
+                          isActive(item.path)
+                            ? 'text-primary-600 bg-primary-50'
+                            : 'text-gray-700 hover:text-primary-600 hover:bg-gray-50'
+                        }`}
+                      >
+                        {item.name}
+                      </Link>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
           </div>
           {/* CTA Buttons */}{' '}
           <div className="hidden lg:flex items-center space-x-4">
@@ -118,6 +168,26 @@ const Navbar = () => {
                     {item.name}{' '}
                   </Link>
                 ))}{' '}
+                {/* Documentation Section in Mobile Menu */}
+                <div className="border-t border-gray-200 pt-4">
+                  <div className="px-4 py-2 text-sm font-semibold text-gray-500 uppercase tracking-wide">
+                    Documentation
+                  </div>
+                  {documentationItems.map(item => (
+                    <Link
+                      key={item.name}
+                      to={item.path}
+                      onClick={() => setIsOpen(false)}
+                      className={`block px-4 py-2 text-lg font-medium transition-colors duration-200 ${
+                        isActive(item.path)
+                          ? 'text-primary-600 bg-primary-50'
+                          : 'text-gray-700 hover:text-primary-600 hover:bg-gray-50'
+                      }`}
+                    >
+                      {item.name}{' '}
+                    </Link>
+                  ))}
+                </div>
                 <div className="px-4 pt-4 space-y-3">
                   <Link
                     to="/contact"

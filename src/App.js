@@ -11,6 +11,10 @@ import Blog from './pages/Blog';
 import BlogDetail from './pages/BlogDetail';
 import Documentation from './pages/Documentation';
 import ServiceDetail from './pages/ServiceDetail';
+import HelpCenter from './pages/HelpCenter';
+import Features from './pages/Features';
+import ApiReference from './pages/ApiReference';
+import Status from './pages/Status';
 
 function App() {
   return (
@@ -26,8 +30,12 @@ function App() {
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:id" element={<BlogDetail />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/documentation" element={<Documentation />} />
+            <Route path="/docs" element={<Documentation />} />
             <Route path="/service/:serviceId" element={<ServiceDetail />} />
+            <Route path="/help-center" element={<HelpCenter />} />
+            <Route path="/features" element={<Features />} />
+            <Route path="/api-reference" element={<ApiReference />} />
+            <Route path="/status" element={<Status />} />
           </Routes>
         </main>
         <Footer />
