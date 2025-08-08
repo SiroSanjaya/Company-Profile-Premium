@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Copy, Check, Search } from 'lucide-react';
 
@@ -240,7 +241,14 @@ curl_close($ch);
   );
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+      <Helmet>
+        <title>API Reference – Premium React Template</title>
+        <meta
+          name="description"
+          content="Complete documentation for our RESTful API endpoints with code examples and error codes."
+        />
+      </Helmet>
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-green-600 to-blue-600 text-white py-20">
         <div className="container mx-auto px-4">
@@ -274,24 +282,36 @@ curl_close($ch);
       </section>
 
       {/* Quick Stats */}
-      <section className="py-8 bg-white border-b">
+      <section className="py-8 bg-white dark:bg-gray-800 border-b dark:border-gray-700">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-6 text-center">
             <div>
-              <div className="text-2xl font-bold text-gray-900">4</div>
-              <div className="text-gray-600">HTTP Methods</div>
+              <div className="text-2xl font-bold text-gray-900 dark:text-white">
+                4
+              </div>
+              <div className="text-gray-600 dark:text-gray-400">
+                HTTP Methods
+              </div>
             </div>
             <div>
-              <div className="text-2xl font-bold text-gray-900">15+</div>
-              <div className="text-gray-600">Endpoints</div>
+              <div className="text-2xl font-bold text-gray-900 dark:text-white">
+                15+
+              </div>
+              <div className="text-gray-600 dark:text-gray-400">Endpoints</div>
             </div>
             <div>
-              <div className="text-2xl font-bold text-gray-900">99.9%</div>
-              <div className="text-gray-600">Uptime</div>
+              <div className="text-2xl font-bold text-gray-900 dark:text-white">
+                99.9%
+              </div>
+              <div className="text-gray-600 dark:text-gray-400">Uptime</div>
             </div>
             <div>
-              <div className="text-2xl font-bold text-gray-900">&lt;100ms</div>
-              <div className="text-gray-600">Response Time</div>
+              <div className="text-2xl font-bold text-gray-900 dark:text-white">
+                &lt;100ms
+              </div>
+              <div className="text-gray-600 dark:text-gray-400">
+                Response Time
+              </div>
             </div>
           </div>
         </div>
@@ -303,8 +323,8 @@ curl_close($ch);
           <div className="grid lg:grid-cols-4 gap-8">
             {/* Sidebar */}
             <div className="lg:col-span-1">
-              <div className="bg-white rounded-lg shadow-md p-6 sticky top-4">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">
+              <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 sticky top-4">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
                   Quick Navigation
                 </h3>
                 <nav className="space-y-2">
@@ -315,8 +335,8 @@ curl_close($ch);
                         onClick={() => setActiveTab(tab)}
                         className={`w-full text-left px-3 py-2 rounded-md text-sm transition-colors ${
                           activeTab === tab
-                            ? 'bg-blue-100 text-blue-700'
-                            : 'text-gray-600 hover:bg-gray-100'
+                            ? 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300'
+                            : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'
                         }`}
                       >
                         {tab.charAt(0).toUpperCase() + tab.slice(1)}
@@ -334,9 +354,9 @@ curl_close($ch);
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="bg-white rounded-lg shadow-md p-6 mb-8"
+                  className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-8"
                 >
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">
+                  <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
                     Authentication
                   </h2>
                   <p className="text-gray-600 mb-6">

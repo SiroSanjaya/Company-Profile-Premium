@@ -1,232 +1,420 @@
-import { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, HelpCircle } from 'lucide-react';
+import { useInView } from 'react-intersection-observer';
+import {
+  ChevronDown,
+  Search,
+  HelpCircle,
+  MessageCircle,
+  Phone,
+  Mail,
+  Clock,
+} from 'lucide-react';
 
 const FAQSection = () => {
-  const [openFaq, setOpenFaq] = useState(null);
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
 
-  const faqs = [
+  const [searchTerm, setSearchTerm] = useState('');
+  const [activeCategory, setActiveCategory] = useState('all');
+  const [expandedItems, setExpandedItems] = useState(new Set());
+
+  const faqData = [
     {
       id: 1,
-      question: 'What services do you offer?',
+      question: 'What makes this template premium?',
       answer:
-        'We offer comprehensive web development services including custom development, UI/UX design, mobile optimization, performance optimization, security implementation, and SEO optimization. Each service is tailored to meet your specific business needs and goals.',
-      category: 'services',
+        "Our premium template includes advanced animations, interactive components, comprehensive documentation, priority support, and regular updates. It's built with modern best practices and optimized for performance.",
+      category: 'general',
+      tags: ['premium', 'features', 'quality'],
     },
     {
       id: 2,
-      question: 'How long does a typical project take?',
+      question: 'How do I customize the template?',
       answer:
-        'Project timelines vary depending on complexity and scope. Small projects (1-5 pages) typically take 2-4 weeks, medium projects (6-15 pages) take 4-8 weeks, and large projects (16+ pages) can take 8-16 weeks. We always provide detailed timelines during the planning phase.',
-      category: 'timeline',
+        'The template is fully customizable through our intuitive configuration system. You can modify colors, fonts, layouts, and components using our built-in theme editor or by editing the source code directly.',
+      category: 'customization',
+      tags: ['customization', 'theming', 'configuration'],
     },
     {
       id: 3,
-      question: 'What is your pricing structure?',
+      question: 'What browsers are supported?',
       answer:
-        'Our pricing is transparent and based on project requirements. We offer fixed-price quotes for well-defined projects and hourly rates for ongoing work. We provide detailed estimates after understanding your specific needs and can work within various budget ranges.',
-      category: 'pricing',
+        'Our template supports all modern browsers including Chrome, Firefox, Safari, and Edge. We ensure cross-browser compatibility and responsive design for all devices.',
+      category: 'technical',
+      tags: ['browsers', 'compatibility', 'responsive'],
     },
     {
       id: 4,
-      question: 'Do you provide ongoing support and maintenance?',
+      question: 'Do you provide documentation?',
       answer:
-        'Yes, we offer comprehensive support and maintenance packages. This includes regular updates, security patches, performance monitoring, and technical support. We also provide training for your team to manage the system effectively.',
+        'Yes! We provide comprehensive documentation including setup guides, component documentation, customization tutorials, and video tutorials to help you get started quickly.',
       category: 'support',
+      tags: ['documentation', 'guides', 'tutorials'],
     },
     {
       id: 5,
-      question: 'Can you work with existing systems and integrations?',
+      question: 'Can I use this for commercial projects?',
       answer:
-        'Absolutely! We have extensive experience working with existing systems, APIs, and third-party integrations. We can integrate with your current tech stack, migrate data, and ensure seamless compatibility with your existing workflows.',
-      category: 'technical',
+        'Absolutely! Our premium license allows you to use this template for unlimited commercial projects. You can create multiple websites for yourself or your clients.',
+      category: 'licensing',
+      tags: ['commercial', 'license', 'usage'],
     },
     {
       id: 6,
-      question: 'What technologies do you use?',
+      question: 'How often do you release updates?',
       answer:
-        'We use modern, industry-standard technologies including React, Node.js, Python, PHP, and various databases. We choose the best technology stack for each project based on requirements, scalability needs, and client preferences.',
-      category: 'technical',
+        'We release regular updates with new features, bug fixes, and performance improvements. Premium users get priority access to all updates and new components.',
+      category: 'updates',
+      tags: ['updates', 'features', 'improvements'],
     },
     {
       id: 7,
-      question: 'How do you ensure project quality and testing?',
+      question: 'What support options are available?',
       answer:
-        'We follow rigorous quality assurance processes including code reviews, automated testing, manual testing, and user acceptance testing. We also implement continuous integration/deployment (CI/CD) practices to maintain high code quality throughout development.',
-      category: 'quality',
+        'Premium users get priority email support, live chat support during business hours, and access to our exclusive community forum. We typically respond within 24 hours.',
+      category: 'support',
+      tags: ['support', 'help', 'assistance'],
     },
     {
       id: 8,
-      question: 'Do you provide hosting and domain services?',
+      question: 'Is the code well-documented?',
       answer:
-        'Yes, we offer comprehensive hosting solutions including cloud hosting, dedicated servers, and managed hosting services. We can also help with domain registration, SSL certificates, and ongoing server management.',
-      category: 'hosting',
+        'Yes! All code is thoroughly documented with inline comments, JSDoc annotations, and clear naming conventions. This makes it easy to understand and modify.',
+      category: 'technical',
+      tags: ['code', 'documentation', 'comments'],
     },
     {
       id: 9,
-      question: 'What happens after the project is completed?',
+      question: 'Can I integrate with third-party services?',
       answer:
-        'After project completion, we provide comprehensive documentation, training sessions for your team, and ongoing support. We also offer maintenance packages to ensure your system continues to perform optimally.',
-      category: 'post-launch',
+        'The template includes built-in integrations for popular services like payment gateways, analytics, and social media. You can also easily add custom integrations.',
+      category: 'integrations',
+      tags: ['integrations', 'services', 'third-party'],
     },
     {
       id: 10,
-      question: 'Can you help with SEO and digital marketing?',
+      question: 'What performance optimizations are included?',
       answer:
-        'Yes, we offer comprehensive SEO services including keyword research, on-page optimization, technical SEO, and content strategy. We also provide digital marketing services to help drive traffic and conversions.',
-      category: 'marketing',
+        'We include lazy loading, code splitting, image optimization, caching strategies, and other performance best practices to ensure fast loading times.',
+      category: 'technical',
+      tags: ['performance', 'optimization', 'speed'],
     },
     {
       id: 11,
-      question: 'How do you handle project communication and updates?',
+      question: 'Do you provide design assets?',
       answer:
-        'We maintain transparent communication throughout the project using tools like Slack, email, and regular video calls. We provide weekly progress reports, milestone updates, and are always available for questions or concerns.',
-      category: 'communication',
+        'Yes! Premium users get access to all design assets including Figma files, icon sets, color palettes, and typography guidelines.',
+      category: 'design',
+      tags: ['design', 'assets', 'figma'],
     },
     {
       id: 12,
-      question: 'What if I need changes after the project is launched?',
+      question: 'Can I resell the template?',
       answer:
-        'We understand that business needs evolve. We offer flexible change management processes and can accommodate post-launch modifications. We also provide retainer services for ongoing development and updates.',
-      category: 'post-launch',
+        'Our license allows you to create unlimited projects for yourself or clients, but does not permit reselling the template itself. Please refer to our license terms for details.',
+      category: 'licensing',
+      tags: ['resell', 'license', 'terms'],
     },
   ];
 
   const categories = [
-    { id: 'all', name: 'All Questions' },
-    { id: 'services', name: 'Services' },
-    { id: 'pricing', name: 'Pricing' },
-    { id: 'technical', name: 'Technical' },
-    { id: 'timeline', name: 'Timeline' },
-    { id: 'support', name: 'Support' },
-    { id: 'quality', name: 'Quality' },
-    { id: 'communication', name: 'Communication' },
+    { id: 'all', label: 'All Questions', count: faqData.length },
+    {
+      id: 'general',
+      label: 'General',
+      count: faqData.filter(faq => faq.category === 'general').length,
+    },
+    {
+      id: 'technical',
+      label: 'Technical',
+      count: faqData.filter(faq => faq.category === 'technical').length,
+    },
+    {
+      id: 'support',
+      label: 'Support',
+      count: faqData.filter(faq => faq.category === 'support').length,
+    },
+    {
+      id: 'customization',
+      label: 'Customization',
+      count: faqData.filter(faq => faq.category === 'customization').length,
+    },
+    {
+      id: 'licensing',
+      label: 'Licensing',
+      count: faqData.filter(faq => faq.category === 'licensing').length,
+    },
+    {
+      id: 'updates',
+      label: 'Updates',
+      count: faqData.filter(faq => faq.category === 'updates').length,
+    },
+    {
+      id: 'integrations',
+      label: 'Integrations',
+      count: faqData.filter(faq => faq.category === 'integrations').length,
+    },
+    {
+      id: 'design',
+      label: 'Design',
+      count: faqData.filter(faq => faq.category === 'design').length,
+    },
   ];
 
-  const [selectedCategory, setSelectedCategory] = useState('all');
+  const filteredFAQs = useMemo(() => {
+    let filtered = faqData;
 
-  const filteredFaqs =
-    selectedCategory === 'all'
-      ? faqs
-      : faqs.filter(faq => faq.category === selectedCategory);
+    // Filter by category
+    if (activeCategory !== 'all') {
+      filtered = filtered.filter(faq => faq.category === activeCategory);
+    }
+
+    // Filter by search term
+    if (searchTerm) {
+      const searchLower = searchTerm.toLowerCase();
+      filtered = filtered.filter(
+        faq =>
+          faq.question.toLowerCase().includes(searchLower) ||
+          faq.answer.toLowerCase().includes(searchLower) ||
+          faq.tags.some(tag => tag.toLowerCase().includes(searchLower))
+      );
+    }
+
+    return filtered;
+  }, [searchTerm, activeCategory]);
+
+  const toggleItem = id => {
+    setExpandedItems(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(id)) {
+        newSet.delete(id);
+      } else {
+        newSet.add(id);
+      }
+      return newSet;
+    });
+  };
+
+  const containerVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
+  };
 
   return (
-    <div className="py-20 bg-gray-50">
-      <div className="container-custom">
+    <section className="py-20 bg-white dark:bg-gray-900">
+      <div className="container mx-auto px-4">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
+          ref={ref}
+          variants={containerVariants}
+          initial="hidden"
+          animate={inView ? 'visible' : 'hidden'}
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-100 rounded-full mb-6">
-            <HelpCircle size={32} className="text-primary-600" />
-          </div>
-          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
+          <motion.div
+            variants={itemVariants}
+            className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-full mb-6"
+          >
+            <HelpCircle className="w-8 h-8 text-blue-600 dark:text-blue-400" />
+          </motion.div>
+          <motion.h2
+            variants={itemVariants}
+            className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6"
+          >
             Frequently Asked Questions
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Find answers to common questions about our services, process, and
-            what to expect when working with us.
-          </p>
+          </motion.h2>
+          <motion.p
+            variants={itemVariants}
+            className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
+          >
+            Find answers to common questions about our premium template. Can't
+            find what you're looking for? Contact our support team.
+          </motion.p>
         </motion.div>
 
-        {/* Category Filter */}
+        {/* Search and Filter */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="flex flex-wrap justify-center gap-4 mb-12"
+          variants={containerVariants}
+          initial="hidden"
+          animate={inView ? 'visible' : 'hidden'}
+          className="max-w-4xl mx-auto mb-12"
         >
-          {categories.map(category => (
-            <button
-              key={category.id}
-              onClick={() => setSelectedCategory(category.id)}
-              className={`px-6 py-3 rounded-full font-medium transition-all ${
-                selectedCategory === category.id
-                  ? 'bg-primary-600 text-white shadow-lg'
-                  : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
-              }`}
-            >
-              {category.name}
-            </button>
-          ))}
+          {/* Search Bar */}
+          <motion.div variants={itemVariants} className="relative mb-8">
+            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <input
+              type="text"
+              placeholder="Search questions, answers, or tags..."
+              value={searchTerm}
+              onChange={e => setSearchTerm(e.target.value)}
+              className="w-full pl-12 pr-4 py-4 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+          </motion.div>
+
+          {/* Category Filters */}
+          <motion.div
+            variants={itemVariants}
+            className="flex flex-wrap justify-center gap-3"
+          >
+            {categories.map(category => (
+              <motion.button
+                key={category.id}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setActiveCategory(category.id)}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                  activeCategory === category.id
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
+                }`}
+              >
+                {category.label} ({category.count})
+              </motion.button>
+            ))}
+          </motion.div>
         </motion.div>
 
         {/* FAQ Items */}
-        <div className="max-w-4xl mx-auto">
-          <AnimatePresence mode="wait">
-            {filteredFaqs.map(faq => (
-              <motion.div
-                key={faq.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.5 }}
-                className="bg-white rounded-lg shadow-sm border border-gray-200 mb-4 overflow-hidden"
-              >
-                <button
-                  onClick={() => setOpenFaq(openFaq === faq.id ? null : faq.id)}
-                  className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors"
-                >
-                  <h3 className="text-lg font-semibold text-gray-900 pr-4">
-                    {faq.question}
-                  </h3>
-                  <ChevronDown
-                    size={20}
-                    className={`text-gray-500 transition-transform ${
-                      openFaq === faq.id ? 'rotate-180' : ''
-                    }`}
-                  />
-                </button>
-                <AnimatePresence>
-                  {openFaq === faq.id && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="overflow-hidden"
-                    >
-                      <div className="px-6 pb-4 text-gray-600 leading-relaxed">
-                        {faq.answer}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </div>
-
-        {/* Contact CTA */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mt-16"
+          variants={containerVariants}
+          initial="hidden"
+          animate={inView ? 'visible' : 'hidden'}
+          className="max-w-4xl mx-auto"
         >
-          <div className="bg-gradient-to-r from-primary-600 to-secondary-600 rounded-lg p-8 text-white">
-            <h3 className="text-2xl font-bold mb-4">Still Have Questions?</h3>
-            <p className="text-primary-100 mb-6 max-w-2xl mx-auto">
-              Can't find the answer you're looking for? Our team is here to
-              help. Get in touch with us and we'll respond within 24 hours.
+          <AnimatePresence mode="wait">
+            {filteredFAQs.length === 0 ? (
+              <motion.div
+                key="no-results"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="text-center py-12"
+              >
+                <HelpCircle className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                  No questions found
+                </h3>
+                <p className="text-gray-600 dark:text-gray-300">
+                  Try adjusting your search terms or browse all categories.
+                </p>
+              </motion.div>
+            ) : (
+              <div className="space-y-4">
+                {filteredFAQs.map(faq => (
+                  <motion.div
+                    key={faq.id}
+                    variants={itemVariants}
+                    layout
+                    className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden"
+                  >
+                    <button
+                      onClick={() => toggleItem(faq.id)}
+                      className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                    >
+                      <div className="flex-1">
+                        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                          {faq.question}
+                        </h3>
+                        <div className="flex flex-wrap gap-2">
+                          {faq.tags.map(tag => (
+                            <span
+                              key={tag}
+                              className="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs rounded-full"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                      <motion.div
+                        animate={{
+                          rotate: expandedItems.has(faq.id) ? 180 : 0,
+                        }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <ChevronDown className="w-5 h-5 text-gray-500" />
+                      </motion.div>
+                    </button>
+
+                    <AnimatePresence>
+                      {expandedItems.has(faq.id) && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.3 }}
+                          className="overflow-hidden"
+                        >
+                          <div className="px-6 pb-4">
+                            <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                              {faq.answer}
+                            </p>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </motion.div>
+                ))}
+              </div>
+            )}
+          </AnimatePresence>
+        </motion.div>
+
+        {/* Contact Support */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate={inView ? 'visible' : 'hidden'}
+          className="mt-16 text-center"
+        >
+          <motion.div
+            variants={itemVariants}
+            className="bg-gradient-to-r from-blue-600 to-indigo-700 rounded-2xl p-8 text-white"
+          >
+            <h3 className="text-2xl font-bold mb-4">Still have questions?</h3>
+            <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
+              Our support team is here to help you get the most out of our
+              premium template. We're available 24/7 to answer your questions
+              and provide assistance.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-white text-primary-600 hover:bg-gray-100 font-bold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105">
-                Contact Us
-              </button>
-              <button className="border-2 border-white text-white hover:bg-white hover:text-primary-600 font-bold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105">
-                Schedule a Call
-              </button>
+            <div className="flex flex-wrap justify-center gap-6">
+              <motion.a
+                href="#contact"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="flex items-center px-6 py-3 bg-white text-blue-600 rounded-lg font-semibold hover:bg-gray-50 transition-colors"
+              >
+                <MessageCircle className="w-5 h-5 mr-2" />
+                Live Chat
+              </motion.a>
+              <motion.a
+                href="mailto:support@example.com"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="flex items-center px-6 py-3 border border-white text-white rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors"
+              >
+                <Mail className="w-5 h-5 mr-2" />
+                Email Support
+              </motion.a>
             </div>
-          </div>
+          </motion.div>
         </motion.div>
       </div>
-    </div>
+    </section>
   );
 };
 

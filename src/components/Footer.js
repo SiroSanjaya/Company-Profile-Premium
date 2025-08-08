@@ -18,7 +18,7 @@ const Footer = () => {
       { name: 'Features', href: '/features' },
       { name: 'Pricing', href: '/pricing' },
       { name: 'Documentation', href: '/docs' },
-      { name: 'API Reference', href: '/api' },
+      { name: 'API Reference', href: '/api-reference' },
     ],
     company: [
       { name: 'About Us', href: '/about' },
@@ -27,7 +27,7 @@ const Footer = () => {
       { name: 'Press', href: '/press' },
     ],
     support: [
-      { name: 'Help Center', href: '/help' },
+      { name: 'Help Center', href: '/help-center' },
       { name: 'Contact Us', href: '/contact' },
       { name: 'Status', href: '/status' },
       { name: 'Community', href: '/community' },

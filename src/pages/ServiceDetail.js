@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useParams, Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import {
   Code,
   Palette,
@@ -346,6 +347,10 @@ const ServiceDetail = () => {
 
   return (
     <div className="pt-16 lg:pt-20">
+      <Helmet>
+        <title>{`${service.title} – Service Detail`}</title>
+        <meta name="description" content={service.description} />
+      </Helmet>
       {/* Hero Section */}
       <section
         className={`py-20 bg-gradient-to-br ${service.gradient} text-white`}
@@ -402,7 +407,7 @@ const ServiceDetail = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-gray-900">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -411,10 +416,10 @@ const ServiceDetail = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-6">
               What We Offer
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
               Comprehensive solutions tailored to your specific needs
             </p>
           </motion.div>
@@ -434,10 +439,10 @@ const ServiceDetail = () => {
                 >
                   <service.icon size={28} className={service.color} />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
                   {feature}
                 </h3>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
                   Professional implementation of {feature.toLowerCase()} to
                   ensure your project meets the highest standards.
                 </p>

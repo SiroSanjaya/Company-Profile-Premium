@@ -60,7 +60,7 @@ const TestimonialsSection = () => {
   ];
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-white dark:bg-gray-900">
       <div className="container-custom">
         {' '}
         {/* Section Header */}{' '}
@@ -71,11 +71,11 @@ const TestimonialsSection = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6">
             What Our Customers{' '}
             <span className="block gradient-text"> Say About Us </span>{' '}
           </h2>{' '}
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
             Join thousands of satisfied customers who trust our premium
             templates{' '}
           </p>{' '}
@@ -90,7 +90,7 @@ const TestimonialsSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="card p-6 relative"
+              className="card p-6 relative dark:bg-gray-800"
             >
               {/* Quote Icon */}{' '}
               <div className="absolute -top-3 -left-3 w-8 h-8 bg-primary-600 rounded-full flex items-center justify-center">
@@ -108,22 +108,23 @@ const TestimonialsSection = () => {
                 ))}{' '}
               </div>
               {/* Content */}{' '}
-              <p className="text-gray-700 mb-6 leading-relaxed">
+              <p className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
                 "{testimonial.content}"{' '}
               </p>
               {/* Author */}{' '}
               <div className="flex items-center">
                 <img
+                  loading="lazy"
                   src={testimonial.avatar}
                   alt={testimonial.name}
                   className="w-12 h-12 rounded-full object-cover mr-4"
                 />
                 <div>
-                  <div className="font-semibold text-gray-900">
+                  <div className="font-semibold text-gray-900 dark:text-white">
                     {' '}
                     {testimonial.name}{' '}
                   </div>{' '}
-                  <div className="text-sm text-gray-600">
+                  <div className="text-sm text-gray-600 dark:text-gray-400">
                     {' '}
                     {testimonial.role}{' '}
                   </div>{' '}

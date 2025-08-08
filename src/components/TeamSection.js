@@ -1,407 +1,372 @@
+import React from 'react';
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useInView } from 'react-intersection-observer';
 import {
-  Linkedin,
   Github,
+  Linkedin,
   Twitter,
   Mail,
   Globe,
   Award,
   Users,
   Clock,
-  Star,
 } from 'lucide-react';
 
-const TeamMemberCard = ({ member, index }) => {
-  const [imageError, setImageError] = useState(false);
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
-      viewport={{ once: true }}
-      className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300"
-    >
-      {/* Member Image */}
-      <div className="relative">
-        <img
-          src={imageError ? member.fallbackImage || member.image : member.image}
-          alt={member.name}
-          className="w-full h-64 object-cover"
-          onError={() => setImageError(true)}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-        <div className="absolute bottom-4 left-4 text-white">
-          <h3 className="text-xl font-bold">{member.name}</h3>
-          <p className="text-primary-200">{member.position}</p>
-        </div>
-      </div>
-
-      {/* Member Info */}
-      <div className="p-6">
-        <p className="text-gray-600 mb-4 leading-relaxed">{member.bio}</p>
-
-        {/* Skills */}
-        <div className="mb-4">
-          <h4 className="text-sm font-semibold text-gray-900 mb-2">Skills</h4>
-          <div className="flex flex-wrap gap-2">
-            {member.skills.map(skill => (
-              <span
-                key={skill}
-                className="px-3 py-1 bg-primary-100 text-primary-700 text-sm rounded-full"
-              >
-                {skill}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {/* Stats */}
-        <div className="grid grid-cols-3 gap-4 mb-4 text-center">
-          <div>
-            <div className="text-lg font-bold text-gray-900">
-              {member.experience}
-            </div>
-            <div className="text-xs text-gray-600">Experience</div>
-          </div>
-          <div>
-            <div className="text-lg font-bold text-gray-900">
-              {member.projects}
-            </div>
-            <div className="text-xs text-gray-600">Projects</div>
-          </div>
-          <div>
-            <div className="text-lg font-bold text-primary-600">
-              {member.rating}
-            </div>
-            <div className="text-xs text-gray-600">Rating</div>
-          </div>
-        </div>
-
-        {/* Achievements */}
-        <div className="mb-4">
-          <h4 className="text-sm font-semibold text-gray-900 mb-2">
-            Achievements
-          </h4>
-          <ul className="space-y-1">
-            {member.achievements.map(achievement => (
-              <li
-                key={achievement}
-                className="text-sm text-gray-600 flex items-center"
-              >
-                <Award size={14} className="text-primary-600 mr-2" />
-                {achievement}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Social Links */}
-        <div className="flex gap-3">
-          {member.social.linkedin && (
-            <a
-              href={member.social.linkedin}
-              className="p-2 bg-gray-100 text-gray-600 rounded-full hover:bg-primary-100 hover:text-primary-600 transition-colors"
-            >
-              <Linkedin size={18} />
-            </a>
-          )}
-          {member.social.github && (
-            <a
-              href={member.social.github}
-              className="p-2 bg-gray-100 text-gray-600 rounded-full hover:bg-primary-100 hover:text-primary-600 transition-colors"
-            >
-              <Github size={18} />
-            </a>
-          )}
-          {member.social.twitter && (
-            <a
-              href={member.social.twitter}
-              className="p-2 bg-gray-100 text-gray-600 rounded-full hover:bg-primary-100 hover:text-primary-600 transition-colors"
-            >
-              <Twitter size={18} />
-            </a>
-          )}
-          {member.social.website && (
-            <a
-              href={member.social.website}
-              className="p-2 bg-gray-100 text-gray-600 rounded-full hover:bg-primary-100 hover:text-primary-600 transition-colors"
-            >
-              <Globe size={18} />
-            </a>
-          )}
-          <a
-            href={`mailto:${member.name.toLowerCase().replace(' ', '.')}@company.com`}
-            className="p-2 bg-gray-100 text-gray-600 rounded-full hover:bg-primary-100 hover:text-primary-600 transition-colors"
-          >
-            <Mail size={18} />
-          </a>
-        </div>
-      </div>
-    </motion.div>
-  );
-};
-
 const TeamSection = () => {
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
   const teamMembers = [
     {
       id: 1,
       name: 'Sarah Johnson',
-      position: 'Lead Developer & CTO',
+      role: 'Lead Developer',
       image:
         'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=400&fit=crop&crop=face',
-      fallbackImage:
-        'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop&crop=face',
-      bio: 'Full-stack developer with 8+ years of experience in React, Node.js, and cloud architecture. Passionate about creating scalable, user-centric solutions.',
-      skills: ['React', 'Node.js', 'AWS', 'TypeScript', 'Python'],
+      bio: 'Full-stack developer with 8+ years of experience in React, Node.js, and cloud technologies. Passionate about creating scalable, user-friendly applications.',
+      skills: ['React', 'Node.js', 'TypeScript', 'AWS'],
       experience: '8+ years',
-      projects: '50+',
-      rating: '4.9/5',
+      projects: 50,
       social: {
-        linkedin: '#',
         github: '#',
+        linkedin: '#',
         twitter: '#',
         website: '#',
+        email: 'sarah@example.com',
       },
-      achievements: [
-        'AWS Certified Solutions Architect',
-        'React Advanced Conference Speaker',
-        'Open Source Contributor',
-      ],
+      featured: true,
     },
     {
       id: 2,
       name: 'Michael Chen',
-      position: 'UI/UX Design Lead',
+      role: 'UI/UX Designer',
       image:
         'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face',
-      fallbackImage:
-        'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face',
-      bio: 'Creative designer with expertise in user experience, interface design, and design systems. Focused on creating intuitive and beautiful digital experiences.',
-      skills: [
-        'Figma',
-        'Adobe Creative Suite',
-        'Prototyping',
-        'Design Systems',
-        'User Research',
-      ],
+      bio: 'Creative designer focused on user experience and interface design. Specializes in creating intuitive, beautiful, and accessible digital experiences.',
+      skills: ['Figma', 'Adobe Creative Suite', 'Prototyping', 'User Research'],
       experience: '6+ years',
-      projects: '35+',
-      rating: '4.8/5',
+      projects: 35,
       social: {
+        github: '#',
         linkedin: '#',
-        behance: '#',
-        dribbble: '#',
+        twitter: '#',
         website: '#',
+        email: 'michael@example.com',
       },
-      achievements: [
-        'Adobe Certified Expert',
-        'Design Award Winner',
-        'UX Conference Speaker',
-      ],
+      featured: false,
     },
     {
       id: 3,
       name: 'Emily Rodriguez',
-      position: 'Senior Frontend Developer',
+      role: 'Product Manager',
       image:
         'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&crop=face',
-      fallbackImage:
-        'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=400&fit=crop&crop=face',
-      bio: 'Frontend specialist with deep knowledge of modern JavaScript frameworks and performance optimization. Committed to writing clean, maintainable code.',
-      skills: ['React', 'Vue.js', 'TypeScript', 'Performance', 'Testing'],
-      experience: '5+ years',
-      projects: '40+',
-      rating: '4.9/5',
+      bio: 'Strategic product manager with expertise in agile methodologies and user-centered design. Drives product vision and ensures successful delivery.',
+      skills: ['Agile', 'Product Strategy', 'User Research', 'Analytics'],
+      experience: '7+ years',
+      projects: 25,
       social: {
-        linkedin: '#',
         github: '#',
+        linkedin: '#',
         twitter: '#',
         website: '#',
+        email: 'emily@example.com',
       },
-      achievements: [
-        'Google Developer Expert',
-        'Performance Optimization Specialist',
-        'Tech Community Leader',
-      ],
+      featured: true,
     },
     {
       id: 4,
       name: 'David Kim',
-      position: 'Backend & DevOps Engineer',
+      role: 'DevOps Engineer',
       image:
         'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face',
-      fallbackImage:
-        'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face',
-      bio: 'Backend developer and DevOps engineer with expertise in scalable architecture, cloud infrastructure, and system optimization.',
-      skills: ['Python', 'Docker', 'Kubernetes', 'AWS', 'PostgreSQL'],
-      experience: '7+ years',
-      projects: '45+',
-      rating: '4.8/5',
+      bio: 'DevOps specialist with deep knowledge of cloud infrastructure, CI/CD pipelines, and system architecture. Ensures reliable and scalable deployments.',
+      skills: ['Docker', 'Kubernetes', 'AWS', 'Jenkins'],
+      experience: '5+ years',
+      projects: 40,
       social: {
-        linkedin: '#',
         github: '#',
+        linkedin: '#',
         twitter: '#',
         website: '#',
+        email: 'david@example.com',
       },
-      achievements: [
-        'Kubernetes Certified Administrator',
-        'AWS Solutions Architect',
-        'DevOps Conference Speaker',
-      ],
+      featured: false,
     },
     {
       id: 5,
-      name: 'Lisa Wang',
-      position: 'Project Manager',
+      name: 'Lisa Thompson',
+      role: 'Frontend Developer',
       image:
-        'https://images.unsplash.com/photo-1487412720507-e7dc3764c712?w=400&h=400&fit=crop&crop=face',
-      fallbackImage:
-        'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&crop=face',
-      bio: 'Experienced project manager with a track record of delivering complex projects on time and within budget. Expert in agile methodologies.',
-      skills: [
-        'Agile',
-        'Scrum',
-        'Risk Management',
-        'Client Relations',
-        'Team Leadership',
-      ],
-      experience: '9+ years',
-      projects: '60+',
-      rating: '4.9/5',
+        'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=400&fit=crop&crop=face',
+      bio: 'Frontend specialist with expertise in modern JavaScript frameworks and performance optimization. Creates fast, responsive, and accessible web applications.',
+      skills: ['React', 'Vue.js', 'CSS3', 'Performance'],
+      experience: '4+ years',
+      projects: 30,
       social: {
+        github: '#',
         linkedin: '#',
         twitter: '#',
         website: '#',
+        email: 'lisa@example.com',
       },
-      achievements: [
-        'PMP Certified',
-        'Scrum Master Certified',
-        'Project Management Award',
-      ],
+      featured: false,
     },
     {
       id: 6,
-      name: 'Alex Thompson',
-      position: 'SEO & Digital Marketing Specialist',
+      name: 'Alex Morgan',
+      role: 'Backend Developer',
       image:
         'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&crop=face',
-      fallbackImage:
-        'https://images.unsplash.com/photo-1487412720507-e7dc3764c712?w=400&h=400&fit=crop&crop=face',
-      bio: 'Digital marketing expert specializing in SEO, content strategy, and growth hacking. Helps businesses increase their online visibility and conversions.',
-      skills: [
-        'SEO',
-        'Content Strategy',
-        'Google Analytics',
-        'Growth Hacking',
-        'PPC',
-      ],
-      experience: '4+ years',
-      projects: '30+',
-      rating: '4.7/5',
+      bio: 'Backend developer specializing in scalable APIs and database design. Expert in Python, Java, and microservices architecture.',
+      skills: ['Python', 'Java', 'PostgreSQL', 'Microservices'],
+      experience: '6+ years',
+      projects: 45,
       social: {
+        github: '#',
         linkedin: '#',
         twitter: '#',
         website: '#',
+        email: 'alex@example.com',
       },
-      achievements: [
-        'Google Analytics Certified',
-        'SEO Expert Certification',
-        'Digital Marketing Award',
-      ],
+      featured: true,
     },
   ];
 
   const stats = [
-    { icon: Users, label: 'Team Members', value: '6' },
-    { icon: Clock, label: 'Combined Experience', value: '39+ years' },
-    { icon: Star, label: 'Average Rating', value: '4.8/5' },
-    { icon: Award, label: 'Projects Completed', value: '260+' },
+    { icon: Award, label: 'Awards Won', value: '15+' },
+    { icon: Users, label: 'Happy Clients', value: '200+' },
+    { icon: Clock, label: 'Years Experience', value: '8+' },
+    { icon: Globe, label: 'Countries Served', value: '25+' },
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, scale: 0.9 },
+    visible: { opacity: 1, scale: 1 },
+  };
+
   return (
-    <div className="py-20 bg-white">
-      <div className="container-custom">
+    <section className="py-20 bg-gray-50 dark:bg-gray-900">
+      <div className="container mx-auto px-4">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
+          ref={ref}
+          variants={containerVariants}
+          initial="hidden"
+          animate={inView ? 'visible' : 'hidden'}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
-            Meet Our Expert Team
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Our talented team of developers, designers, and strategists work
-            together to deliver exceptional digital solutions.
-          </p>
+          <motion.h2
+            variants={itemVariants}
+            className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6"
+          >
+            Meet Our Team
+          </motion.h2>
+          <motion.p
+            variants={itemVariants}
+            className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
+          >
+            Our talented team of experts is dedicated to creating exceptional
+            digital experiences. Each member brings unique skills and
+            perspectives to deliver outstanding results.
+          </motion.p>
         </motion.div>
 
         {/* Team Stats */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
+          variants={containerVariants}
+          initial="hidden"
+          animate={inView ? 'visible' : 'hidden'}
           className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16"
         >
-          {stats.map((stat, index) => (
+          {stats.map((stat, index) => {
+            const Icon = stat.icon;
+            return (
+              <motion.div
+                key={index}
+                variants={itemVariants}
+                className="text-center"
+              >
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-full mb-4">
+                  <Icon className="w-8 h-8 text-blue-600 dark:text-blue-400" />
+                </div>
+                <div className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+                  {stat.value}
+                </div>
+                <div className="text-gray-600 dark:text-gray-300">
+                  {stat.label}
+                </div>
+              </motion.div>
+            );
+          })}
+        </motion.div>
+
+        {/* Team Members Grid */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate={inView ? 'visible' : 'hidden'}
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
+          {teamMembers.map(member => (
             <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="text-center"
+              key={member.id}
+              variants={cardVariants}
+              whileHover={{ y: -10 }}
+              className="group bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300"
             >
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-100 rounded-full mb-4">
-                <stat.icon size={32} className="text-primary-600" />
+              <div className="relative overflow-hidden">
+                <img
+                  src={member.image}
+                  alt={member.name}
+                  className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                {member.featured && (
+                  <div className="absolute top-4 left-4 bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                    Featured
+                  </div>
+                )}
+                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 flex items-center justify-center">
+                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex gap-3">
+                    {Object.entries(member.social).map(([platform, url]) => {
+                      if (platform === 'email') return null;
+                      const Icon =
+                        platform === 'github'
+                          ? Github
+                          : platform === 'linkedin'
+                            ? Linkedin
+                            : platform === 'twitter'
+                              ? Twitter
+                              : Globe;
+                      return (
+                        <motion.a
+                          key={platform}
+                          href={url}
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.9 }}
+                          className="bg-white text-gray-900 p-3 rounded-full hover:bg-gray-100 transition-colors"
+                        >
+                          <Icon className="w-5 h-5" />
+                        </motion.a>
+                      );
+                    })}
+                    <motion.a
+                      href={`mailto:${member.social.email}`}
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                      className="bg-white text-gray-900 p-3 rounded-full hover:bg-gray-100 transition-colors"
+                    >
+                      <Mail className="w-5 h-5" />
+                    </motion.a>
+                  </div>
+                </div>
               </div>
-              <div className="text-3xl font-bold text-gray-900 mb-2">
-                {stat.value}
+
+              <div className="p-6">
+                <div className="flex items-center justify-between mb-4">
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                      {member.name}
+                    </h3>
+                    <p className="text-blue-600 dark:text-blue-400 font-medium">
+                      {member.role}
+                    </p>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-sm text-gray-500 dark:text-gray-400">
+                      {member.experience}
+                    </div>
+                    <div className="text-sm text-gray-500 dark:text-gray-400">
+                      {member.projects} projects
+                    </div>
+                  </div>
+                </div>
+
+                <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">
+                  {member.bio}
+                </p>
+
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {member.skills.map(skill => (
+                    <span
+                      key={skill}
+                      className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-sm rounded-full"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-gray-500 dark:text-gray-400">
+                    {member.experience} experience
+                  </span>
+                  <div className="flex gap-2">
+                    <a
+                      href={member.social.linkedin}
+                      className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300"
+                    >
+                      <Linkedin className="w-4 h-4" />
+                    </a>
+                    <a
+                      href={member.social.github}
+                      className="text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200"
+                    >
+                      <Github className="w-4 h-4" />
+                    </a>
+                  </div>
+                </div>
               </div>
-              <div className="text-gray-600">{stat.label}</div>
             </motion.div>
           ))}
         </motion.div>
 
-        {/* Team Members Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {teamMembers.map((member, index) => (
-            <TeamMemberCard key={member.id} member={member} index={index} />
-          ))}
-        </div>
-
-        {/* Team CTA */}
+        {/* Join Team CTA */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mt-16"
+          variants={containerVariants}
+          initial="hidden"
+          animate={inView ? 'visible' : 'hidden'}
+          className="mt-16 text-center"
         >
-          <div className="bg-gradient-to-r from-primary-600 to-secondary-600 rounded-lg p-8 text-white">
-            <h3 className="text-2xl font-bold mb-4">
-              Ready to Work with Our Team?
-            </h3>
-            <p className="text-primary-100 mb-6 max-w-2xl mx-auto">
-              Let's discuss your project and see how our expert team can help
-              you achieve your goals.
+          <motion.div
+            variants={itemVariants}
+            className="bg-gradient-to-r from-blue-600 to-indigo-700 rounded-2xl p-8 text-white"
+          >
+            <h3 className="text-2xl font-bold mb-4">Join Our Team</h3>
+            <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
+              We're always looking for talented individuals who are passionate
+              about creating exceptional digital experiences. Check out our
+              current openings.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-white text-primary-600 hover:bg-gray-100 font-bold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105">
-                Start Your Project
-              </button>
-              <button className="border-2 border-white text-white hover:bg-white hover:text-primary-600 font-bold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105">
-                Meet the Team
-              </button>
-            </div>
-          </div>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-white text-blue-600 font-bold py-3 px-8 rounded-lg hover:bg-gray-50 transition-colors"
+            >
+              View Open Positions
+            </motion.button>
+          </motion.div>
         </motion.div>
       </div>
-    </div>
+    </section>
   );
 };
 

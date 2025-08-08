@@ -16,9 +16,11 @@ This document provides detailed information about all the main components in the
 ## 💰 Pricing Calculator
 
 ### Overview
+
 Interactive pricing calculator that allows users to select services, project size, timeline, and complexity to get real-time cost estimates.
 
 ### Features
+
 - **Service Selection**: Choose from 6 different services
 - **Project Size**: Small, Medium, Large, Enterprise
 - **Timeline**: Normal, Fast, Urgent
@@ -27,14 +29,16 @@ Interactive pricing calculator that allows users to select services, project siz
 - **Timeline Estimation**: Project duration calculation
 
 ### Usage
+
 ```jsx
 import PricingCalculator from '../components/PricingCalculator';
 
 // In your page component
-<PricingCalculator />
+<PricingCalculator />;
 ```
 
 ### Customization
+
 ```javascript
 // Update services in PricingCalculator.js
 const services = [
@@ -60,9 +64,11 @@ const sizeMultipliers = {
 ## 🎨 Portfolio Showcase
 
 ### Overview
+
 Professional portfolio gallery with filtering capabilities and detailed project modals.
 
 ### Features
+
 - **Category Filtering**: Filter by project type
 - **Project Modals**: Detailed project information
 - **Technology Tags**: Display used technologies
@@ -70,14 +76,16 @@ Professional portfolio gallery with filtering capabilities and detailed project 
 - **Responsive Grid**: Adaptive layout
 
 ### Usage
+
 ```jsx
 import PortfolioShowcase from '../components/PortfolioShowcase';
 
 // In your page component
-<PortfolioShowcase />
+<PortfolioShowcase />;
 ```
 
 ### Customization
+
 ```javascript
 // Update projects in PortfolioShowcase.js
 const projects = [
@@ -106,23 +114,27 @@ const projects = [
 ## ❓ FAQ Section
 
 ### Overview
+
 Comprehensive FAQ system with category filtering and expandable questions.
 
 ### Features
+
 - **Category Filtering**: Filter questions by topic
 - **Expandable Questions**: Smooth animations
 - **12 Common Questions**: Covering all aspects
 - **Contact CTA**: Call-to-action for more questions
 
 ### Usage
+
 ```jsx
 import FAQSection from '../components/FAQSection';
 
 // In your page component
-<FAQSection />
+<FAQSection />;
 ```
 
 ### Customization
+
 ```javascript
 // Update FAQs in FAQSection.js
 const faqs = [
@@ -148,9 +160,11 @@ const categories = [
 ## 👥 Team Section
 
 ### Overview
+
 Professional team showcase with detailed member profiles, skills, and achievements.
 
 ### Features
+
 - **Member Profiles**: Detailed information for each team member
 - **Skills Display**: Technology and expertise tags
 - **Achievements**: Professional accomplishments
@@ -159,14 +173,16 @@ Professional team showcase with detailed member profiles, skills, and achievemen
 - **Statistics**: Experience, projects, ratings
 
 ### Usage
+
 ```jsx
 import TeamSection from '../components/TeamSection';
 
 // In your page component
-<TeamSection />
+<TeamSection />;
 ```
 
 ### Customization
+
 ```javascript
 // Update team members in TeamSection.js
 const teamMembers = [
@@ -201,9 +217,11 @@ const teamMembers = [
 ## 🛠️ Service Detail
 
 ### Overview
+
 Comprehensive service detail pages with features, benefits, and process information.
 
 ### Features
+
 - **Service Information**: Detailed service descriptions
 - **Features List**: Key service features
 - **Benefits**: Service advantages
@@ -211,15 +229,17 @@ Comprehensive service detail pages with features, benefits, and process informat
 - **CTA Links**: Contact and quote buttons
 
 ### Usage
+
 ```jsx
 // Route in App.js
-<Route path="/service/:serviceId" element={<ServiceDetail />} />
+<Route path="/service/:serviceId" element={<ServiceDetail />} />;
 
 // Navigation from Services page
 navigate(`/service/${serviceId}`);
 ```
 
 ### Customization
+
 ```javascript
 // Update services in ServiceDetail.js
 const services = [
@@ -251,9 +271,11 @@ const services = [
 ## 📞 Contact Form
 
 ### Overview
+
 Advanced contact form with validation, URL parameter handling, and toast notifications.
 
 ### Features
+
 - **Form Validation**: React Hook Form integration
 - **URL Parameters**: Dynamic form based on URL
 - **Toast Notifications**: Success/error messages
@@ -261,6 +283,7 @@ Advanced contact form with validation, URL parameter handling, and toast notific
 - **Service Integration**: Pre-filled based on service
 
 ### Usage
+
 ```jsx
 // Basic usage
 <Contact />
@@ -270,6 +293,7 @@ Advanced contact form with validation, URL parameter handling, and toast notific
 ```
 
 ### Customization
+
 ```javascript
 // Update contact information in Contact.js
 const contactInfo = [
@@ -277,7 +301,7 @@ const contactInfo = [
     type: 'email',
     title: 'Email Us',
     info: 'hello@company.com',
-    description: 'We\'ll respond within 24 hours',
+    description: "We'll respond within 24 hours",
     icon: Mail,
   },
   // Add more contact methods...
@@ -289,6 +313,7 @@ const contactInfo = [
 ## 🎨 Styling Components
 
 ### Color Scheme
+
 ```javascript
 // Primary colors (blue)
 primary: {
@@ -307,6 +332,7 @@ secondary: {
 ```
 
 ### Typography
+
 ```css
 /* Headings */
 font-family: 'Poppins', sans-serif;
@@ -318,6 +344,7 @@ font-weight: 400;
 ```
 
 ### Animations
+
 ```jsx
 // Framer Motion animations
 <motion.div
@@ -335,6 +362,7 @@ font-weight: 400;
 ## 🔧 Development Tips
 
 ### Adding New Components
+
 1. Create component in `src/components/`
 2. Import required dependencies
 3. Add proper TypeScript types (if using TS)
@@ -343,6 +371,7 @@ font-weight: 400;
 6. Test on different devices
 
 ### Best Practices
+
 - Use semantic HTML
 - Implement proper accessibility
 - Add loading states
@@ -351,6 +380,7 @@ font-weight: 400;
 - Test user interactions
 
 ### Performance Optimization
+
 - Lazy load components
 - Optimize images
 - Minimize bundle size
@@ -362,18 +392,23 @@ font-weight: 400;
 ## 📱 Responsive Design
 
 ### Breakpoints
+
 ```css
 /* Mobile */
-@media (max-width: 767px) { }
+@media (max-width: 767px) {
+}
 
 /* Tablet */
-@media (min-width: 768px) and (max-width: 1023px) { }
+@media (min-width: 768px) and (max-width: 1023px) {
+}
 
 /* Desktop */
-@media (min-width: 1024px) { }
+@media (min-width: 1024px) {
+}
 ```
 
 ### Grid Systems
+
 ```jsx
 // Responsive grid
 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -386,6 +421,7 @@ font-weight: 400;
 ## 🚀 Deployment
 
 ### Build Process
+
 ```bash
 # Install dependencies
 npm install
@@ -399,6 +435,7 @@ serve -s build
 ```
 
 ### Environment Variables
+
 ```env
 REACT_APP_SITE_NAME=Company Profile Premium
 REACT_APP_CONTACT_EMAIL=hello@company.com
@@ -410,6 +447,7 @@ REACT_APP_ANALYTICS_ID=GA_TRACKING_ID
 ## 🤝 Support
 
 For questions about components:
+
 1. Check this documentation
 2. Review component source code
 3. Open GitHub issue
@@ -417,4 +455,4 @@ For questions about components:
 
 ---
 
-*This documentation is maintained and updated regularly.* 
+_This documentation is maintained and updated regularly._

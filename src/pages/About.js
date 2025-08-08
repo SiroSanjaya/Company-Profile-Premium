@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Helmet } from 'react-helmet-async';
 import { Users, Target, Award, Heart } from 'lucide-react';
 import PortfolioShowcase from '../components/PortfolioShowcase';
 import TeamSection from '../components/TeamSection';
@@ -41,7 +42,7 @@ const About = () => {
       name: 'Sarah Johnson',
       role: 'CEO & Founder',
       image:
-        'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=300&h=300&fit=crop&crop=face',
+        'https://i.pinimg.com/236x/da/fd/f2/dafdf25168edcb2f0e1d8702797946cc.jpg',
       bio: 'Former Google engineer with 10+ years of experience in web development.',
     },
     {
@@ -69,9 +70,15 @@ const About = () => {
 
   return (
     <div className="pt-16 lg:pt-20">
-      {' '}
+      <Helmet>
+        <title>About – Premium React Template</title>
+        <meta
+          name="description"
+          content="We create beautiful, functional React.js templates with a focus on performance and customization."
+        />
+      </Helmet>
       {/* Hero Section */}{' '}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -79,14 +86,14 @@ const About = () => {
             transition={{ duration: 0.8 }}
             className="text-center max-w-4xl mx-auto"
           >
-            <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 mb-6">
+            <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6">
               About{' '}
               <span className="block gradient-text">
                 {' '}
                 Premium Template{' '}
               </span>{' '}
             </h1>{' '}
-            <p className="text-xl text-gray-600 mb-8">
+            <p className="text-xl text-gray-600 dark:text-gray-400 mb-8">
               We 're a team of passionate developers and designers dedicated to
               creating the most beautiful and functional React.js templates in
               the market.{' '}
@@ -97,35 +104,47 @@ const About = () => {
                   {' '}
                   5 +{' '}
                 </div>{' '}
-                <div className="text-gray-600"> Years Experience </div>{' '}
+                <div className="text-gray-600 dark:text-gray-400">
+                  {' '}
+                  Years Experience{' '}
+                </div>{' '}
               </div>{' '}
               <div className="text-center">
                 <div className="text-3xl font-bold text-primary-600 mb-2">
                   {' '}
                   50 +{' '}
                 </div>{' '}
-                <div className="text-gray-600"> Templates Created </div>{' '}
+                <div className="text-gray-600 dark:text-gray-400">
+                  {' '}
+                  Templates Created{' '}
+                </div>{' '}
               </div>{' '}
               <div className="text-center">
                 <div className="text-3xl font-bold text-primary-600 mb-2">
                   {' '}
                   10 k +{' '}
                 </div>{' '}
-                <div className="text-gray-600"> Happy Customers </div>{' '}
+                <div className="text-gray-600 dark:text-gray-400">
+                  {' '}
+                  Happy Customers{' '}
+                </div>{' '}
               </div>{' '}
               <div className="text-center">
                 <div className="text-3xl font-bold text-primary-600 mb-2">
                   {' '}
                   24 / 7{' '}
                 </div>{' '}
-                <div className="text-gray-600"> Support Available </div>{' '}
+                <div className="text-gray-600 dark:text-gray-400">
+                  {' '}
+                  Support Available{' '}
+                </div>{' '}
               </div>{' '}
             </div>{' '}
           </motion.div>{' '}
         </div>{' '}
       </section>
       {/* Story Section */}{' '}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-gray-900">
         <div className="container-custom">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div
@@ -134,10 +153,10 @@ const About = () => {
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
+              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-6">
                 Our Story{' '}
               </h2>{' '}
-              <p className="text-lg text-gray-600 mb-6">
+              <p className="text-lg text-gray-600 dark:text-gray-400 mb-6">
                 Founded in 2019, Premium Template started as a small team of
                 developers who were frustrated with the lack of quality React
                 templates in the market.{' '}

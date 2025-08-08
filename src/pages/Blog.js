@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Calendar, Clock, User, ArrowRight } from 'lucide-react';
 
@@ -139,8 +140,15 @@ const Blog = () => {
 
   return (
     <div className="pt-16 lg:pt-20">
+      <Helmet>
+        <title>Blog – Articles, Guides, and Insights</title>
+        <meta
+          name="description"
+          content="Insights, tutorials, and the latest trends in web development, design, and technology."
+        />
+      </Helmet>
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -148,10 +156,10 @@ const Blog = () => {
             transition={{ duration: 0.8 }}
             className="text-center max-w-4xl mx-auto"
           >
-            <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 mb-6">
+            <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6">
               Our <span className="block gradient-text">Blog</span>
             </h1>
-            <p className="text-xl text-gray-600 mb-8">
+            <p className="text-xl text-gray-600 dark:text-gray-400 mb-8">
               Insights, tutorials, and the latest trends in web development,
               design, and technology.
             </p>
@@ -159,7 +167,7 @@ const Blog = () => {
         </div>
       </section>
       {/* Blog Posts */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-gray-900">
         <div className="container-custom">
           {/* Category Filter */}
           <motion.div
@@ -197,6 +205,7 @@ const Blog = () => {
               >
                 <div className="relative overflow-hidden">
                   <img
+                    loading="lazy"
                     src={post.image}
                     alt={post.title}
                     className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
@@ -219,10 +228,10 @@ const Blog = () => {
                       <Clock size={16} className="mr-1" /> {post.readTime}
                     </div>
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-primary-600 transition-colors">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-primary-600 transition-colors">
                     {post.title}
                   </h3>
-                  <p className="text-gray-600 mb-4 leading-relaxed">
+                  <p className="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
                     {post.excerpt}
                   </p>
                   <div className="flex items-center text-primary-600 font-medium group-hover:text-primary-700 transition-colors">
@@ -256,7 +265,7 @@ const Blog = () => {
         </div>
       </section>
       {/* Newsletter Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gray-50 dark:bg-gray-800">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -265,10 +274,10 @@ const Blog = () => {
             viewport={{ once: true }}
             className="text-center max-w-2xl mx-auto"
           >
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
               Stay Updated
             </h2>
-            <p className="text-xl text-gray-600 mb-8">
+            <p className="text-xl text-gray-600 dark:text-gray-400 mb-8">
               Get the latest articles and insights delivered to your inbox.
             </p>
             <form
@@ -291,7 +300,7 @@ const Blog = () => {
                 {isSubscribed ? 'Subscribed!' : 'Subscribe'}
               </button>
             </form>
-            <p className="text-sm text-gray-500 mt-4">
+            <p className="text-sm text-gray-500 dark:text-gray-400 mt-4">
               No spam, unsubscribe at any time.
             </p>
           </motion.div>

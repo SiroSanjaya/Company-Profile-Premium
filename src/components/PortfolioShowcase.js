@@ -1,284 +1,282 @@
-import { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 import {
-  Filter,
   ExternalLink,
   Github,
   Eye,
+  Filter,
   Code,
   Palette,
   Smartphone,
-  Zap,
+  Globe,
 } from 'lucide-react';
 
 const PortfolioShowcase = () => {
-  const [selectedCategory, setSelectedCategory] = useState('all');
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
 
-  const categories = [
-    { id: 'all', name: 'All Projects', icon: Filter },
-    { id: 'web', name: 'Web Development', icon: Code },
-    { id: 'design', name: 'UI/UX Design', icon: Palette },
-    { id: 'mobile', name: 'Mobile Apps', icon: Smartphone },
-    { id: 'ecommerce', name: 'E-commerce', icon: Zap },
-  ];
+  const [activeFilter, setActiveFilter] = useState('all');
+  const [selectedProject, setSelectedProject] = useState(null);
 
   const projects = [
     {
       id: 1,
-      title: 'E-commerce Platform',
+      title: 'E-Commerce Platform',
       category: 'web',
       image:
         'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop',
       description:
-        'A modern e-commerce platform with advanced features including payment integration, inventory management, and analytics dashboard.',
+        'Modern e-commerce platform with advanced features and seamless user experience.',
       technologies: ['React', 'Node.js', 'MongoDB', 'Stripe'],
-      features: [
-        'Payment Processing',
-        'Inventory Management',
-        'Analytics Dashboard',
-        'Mobile Responsive',
-      ],
-      client: 'TechStart Inc.',
-      duration: '8 weeks',
-      budget: '$25,000',
       liveUrl: '#',
       githubUrl: '#',
-      results: {
-        conversionRate: '+45%',
-        revenueIncrease: '+120%',
-        userSatisfaction: '4.8/5',
-      },
+      featured: true,
     },
     {
       id: 2,
-      title: 'Healthcare App',
+      title: 'Mobile Banking App',
       category: 'mobile',
       image:
-        'https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=600&h=400&fit=crop',
+        'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&h=400&fit=crop',
       description:
-        'A comprehensive healthcare application for patient management, appointment scheduling, and telemedicine features.',
-      technologies: ['React Native', 'Firebase', 'Twilio', 'Stripe'],
-      features: [
-        'Patient Portal',
-        'Appointment Scheduling',
-        'Video Consultations',
-        'Prescription Management',
-      ],
-      client: 'HealthCare Plus',
-      duration: '12 weeks',
-      budget: '$35,000',
+        'Secure mobile banking application with biometric authentication.',
+      technologies: ['React Native', 'Firebase', 'Redux', 'TypeScript'],
       liveUrl: '#',
       githubUrl: '#',
-      results: {
-        userAdoption: '+200%',
-        appointmentEfficiency: '+60%',
-        patientSatisfaction: '4.9/5',
-      },
+      featured: true,
     },
     {
       id: 3,
-      title: 'Financial Dashboard',
+      title: 'AI-Powered Dashboard',
       category: 'web',
       image:
-        'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
+        'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop',
       description:
-        'Real-time financial dashboard with advanced analytics, portfolio tracking, and investment recommendations.',
-      technologies: ['React', 'D3.js', 'Python', 'PostgreSQL'],
-      features: [
-        'Real-time Data',
-        'Portfolio Tracking',
-        'Investment Analytics',
-        'Risk Assessment',
-      ],
-      client: 'FinanceCorp',
-      duration: '10 weeks',
-      budget: '$30,000',
+        'Intelligent dashboard with real-time analytics and predictive insights.',
+      technologies: ['Vue.js', 'Python', 'TensorFlow', 'D3.js'],
       liveUrl: '#',
       githubUrl: '#',
-      results: {
-        dataAccuracy: '99.9%',
-        userEngagement: '+80%',
-        investmentReturns: '+15%',
-      },
+      featured: false,
     },
     {
       id: 4,
-      title: 'Restaurant Management System',
-      category: 'web',
+      title: 'Design System',
+      category: 'design',
       image:
-        'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=400&fit=crop',
+        'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=400&fit=crop',
       description:
-        'Complete restaurant management solution with order processing, inventory tracking, and customer analytics.',
-      technologies: ['Vue.js', 'Laravel', 'MySQL', 'Socket.io'],
-      features: [
-        'Order Management',
-        'Inventory Tracking',
-        'Customer Analytics',
-        'Kitchen Display',
-      ],
-      client: 'FoodChain Restaurants',
-      duration: '6 weeks',
-      budget: '$20,000',
+        'Comprehensive design system with reusable components and guidelines.',
+      technologies: ['Figma', 'Storybook', 'CSS-in-JS', 'Design Tokens'],
       liveUrl: '#',
       githubUrl: '#',
-      results: {
-        orderEfficiency: '+70%',
-        customerSatisfaction: '+40%',
-        revenueGrowth: '+25%',
-      },
+      featured: false,
     },
     {
       id: 5,
-      title: 'Educational Platform',
-      category: 'web',
+      title: 'IoT Smart Home',
+      category: 'mobile',
       image:
-        'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=400&fit=crop',
-      description:
-        'Interactive learning platform with video courses, progress tracking, and collaborative features.',
-      technologies: ['React', 'Node.js', 'AWS', 'WebRTC'],
-      features: [
-        'Video Courses',
-        'Progress Tracking',
-        'Live Sessions',
-        'Collaborative Learning',
-      ],
-      client: 'EduTech Solutions',
-      duration: '14 weeks',
-      budget: '$40,000',
+        'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop',
+      description: 'Smart home automation system with IoT device management.',
+      technologies: ['Flutter', 'AWS IoT', 'MQTT', 'Dart'],
       liveUrl: '#',
       githubUrl: '#',
-      results: {
-        studentEngagement: '+150%',
-        courseCompletion: '+85%',
-        learningOutcomes: '+60%',
-      },
+      featured: true,
     },
     {
       id: 6,
-      title: 'Travel Booking App',
-      category: 'mobile',
+      title: 'Blockchain Explorer',
+      category: 'web',
       image:
-        'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=600&h=400&fit=crop',
+        'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=600&h=400&fit=crop',
       description:
-        'Comprehensive travel booking application with flight search, hotel booking, and itinerary management.',
-      technologies: ['React Native', 'Express.js', 'MongoDB', 'Amadeus API'],
-      features: [
-        'Flight Search',
-        'Hotel Booking',
-        'Itinerary Management',
-        'Travel Insurance',
-      ],
-      client: 'Wanderlust Travel',
-      duration: '16 weeks',
-      budget: '$45,000',
+        'Real-time blockchain transaction explorer with advanced filtering.',
+      technologies: ['Next.js', 'Web3.js', 'Ethereum', 'GraphQL'],
       liveUrl: '#',
       githubUrl: '#',
-      results: {
-        bookingConversion: '+90%',
-        userRetention: '+75%',
-        customerSatisfaction: '4.7/5',
-      },
+      featured: false,
     },
   ];
 
-  const filteredProjects =
-    selectedCategory === 'all'
-      ? projects
-      : projects.filter(project => project.category === selectedCategory);
+  const filters = [
+    { id: 'all', label: 'All Projects', icon: Filter },
+    { id: 'web', label: 'Web Apps', icon: Globe },
+    { id: 'mobile', label: 'Mobile Apps', icon: Smartphone },
+    { id: 'design', label: 'Design Systems', icon: Palette },
+  ];
+
+  const filteredProjects = useMemo(() => {
+    if (activeFilter === 'all') return projects;
+    return projects.filter(project => project.category === activeFilter);
+  }, [activeFilter]);
+
+  const containerVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
+  };
+
+  const projectVariants = {
+    hidden: { opacity: 0, scale: 0.9 },
+    visible: { opacity: 1, scale: 1 },
+  };
 
   return (
-    <div className="py-20 bg-white">
-      <div className="container-custom">
+    <section className="py-20 bg-gray-50 dark:bg-gray-900">
+      <div className="container mx-auto px-4">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
+          ref={ref}
+          variants={containerVariants}
+          initial="hidden"
+          animate={inView ? 'visible' : 'hidden'}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
-            Our Portfolio
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Explore our successful projects and see how we've helped businesses
-            achieve their digital goals.
-          </p>
+          <motion.h2
+            variants={itemVariants}
+            className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6"
+          >
+            Portfolio Showcase
+          </motion.h2>
+          <motion.p
+            variants={itemVariants}
+            className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
+          >
+            Explore our latest projects and see how we transform ideas into
+            exceptional digital experiences.
+          </motion.p>
         </motion.div>
 
         {/* Filter Buttons */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
+          variants={containerVariants}
+          initial="hidden"
+          animate={inView ? 'visible' : 'hidden'}
           className="flex flex-wrap justify-center gap-4 mb-12"
         >
-          {categories.map(category => (
-            <button
-              key={category.id}
-              onClick={() => setSelectedCategory(category.id)}
-              className={`flex items-center px-6 py-3 rounded-full font-medium transition-all ${
-                selectedCategory === category.id
-                  ? 'bg-primary-600 text-white shadow-lg'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-              }`}
-            >
-              <category.icon size={20} className="mr-2" />
-              {category.name}
-            </button>
-          ))}
+          {filters.map(filter => {
+            const Icon = filter.icon;
+            return (
+              <motion.button
+                key={filter.id}
+                variants={itemVariants}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setActiveFilter(filter.id)}
+                className={`flex items-center px-6 py-3 rounded-full font-medium transition-all ${
+                  activeFilter === filter.id
+                    ? 'bg-blue-600 text-white shadow-lg'
+                    : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-gray-700'
+                }`}
+              >
+                <Icon className="w-4 h-4 mr-2" />
+                {filter.label}
+              </motion.button>
+            );
+          })}
         </motion.div>
 
         {/* Projects Grid */}
-        <motion.div layout className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate={inView ? 'visible' : 'hidden'}
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
           <AnimatePresence mode="wait">
             {filteredProjects.map(project => (
               <motion.div
                 key={project.id}
+                variants={projectVariants}
                 layout
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.8 }}
-                transition={{ duration: 0.5 }}
-                className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer"
-                onClick={() => setSelectedProject(project)}
+                whileHover={{ y: -10 }}
+                className="group bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300"
               >
-                <div className="relative">
+                <div className="relative overflow-hidden">
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-48 object-cover"
+                    className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full p-2">
-                    <Eye size={20} className="text-gray-600" />
+                  {project.featured && (
+                    <div className="absolute top-4 left-4 bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                      Featured
+                    </div>
+                  )}
+                  <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 flex items-center justify-center">
+                    <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex gap-4">
+                      <motion.button
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                        onClick={() => setSelectedProject(project)}
+                        className="bg-white text-gray-900 p-3 rounded-full hover:bg-gray-100 transition-colors"
+                      >
+                        <Eye className="w-5 h-5" />
+                      </motion.button>
+                      <motion.a
+                        href={project.liveUrl}
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                        className="bg-white text-gray-900 p-3 rounded-full hover:bg-gray-100 transition-colors"
+                      >
+                        <ExternalLink className="w-5 h-5" />
+                      </motion.a>
+                      <motion.a
+                        href={project.githubUrl}
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                        className="bg-white text-gray-900 p-3 rounded-full hover:bg-gray-100 transition-colors"
+                      >
+                        <Github className="w-5 h-5" />
+                      </motion.a>
+                    </div>
                   </div>
                 </div>
+
                 <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
                     {project.title}
                   </h3>
-                  <p className="text-gray-600 mb-4 line-clamp-2">
+                  <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-2">
                     {project.description}
                   </p>
+
                   <div className="flex flex-wrap gap-2 mb-4">
-                    {project.technologies.slice(0, 3).map(tech => (
+                    {project.technologies.map(tech => (
                       <span
                         key={tech}
-                        className="px-3 py-1 bg-primary-100 text-primary-700 text-sm rounded-full"
+                        className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-sm rounded-full"
                       >
                         {tech}
                       </span>
                     ))}
-                    {project.technologies.length > 3 && (
-                      <span className="px-3 py-1 bg-gray-100 text-gray-600 text-sm rounded-full">
-                        +{project.technologies.length - 3} more
-                      </span>
-                    )}
                   </div>
-                  <div className="flex items-center justify-between text-sm text-gray-500">
-                    <span>{project.duration}</span>
-                    <span>{project.budget}</span>
+
+                  <div className="flex justify-between items-center">
+                    <span className="text-sm text-gray-500 dark:text-gray-400 capitalize">
+                      {project.category}
+                    </span>
+                    <div className="flex gap-2">
+                      <button
+                        onClick={() => setSelectedProject(project)}
+                        className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 text-sm font-medium"
+                      >
+                        View Details
+                      </button>
+                    </div>
                   </div>
                 </div>
               </motion.div>
@@ -286,21 +284,21 @@ const PortfolioShowcase = () => {
           </AnimatePresence>
         </motion.div>
 
-        {/* Project Detail Modal */}
+        {/* Project Modal */}
         <AnimatePresence>
           {selectedProject && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+              className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4"
               onClick={() => setSelectedProject(null)}
             >
               <motion.div
-                initial={{ opacity: 0, scale: 0.8, y: 50 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.8, y: 50 }}
-                className="bg-white rounded-lg shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.9, opacity: 0 }}
+                className="bg-white dark:bg-gray-800 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto"
                 onClick={e => e.stopPropagation()}
               >
                 <div className="relative">
@@ -311,108 +309,71 @@ const PortfolioShowcase = () => {
                   />
                   <button
                     onClick={() => setSelectedProject(null)}
-                    className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full p-2 hover:bg-white transition-colors"
+                    className="absolute top-4 right-4 bg-white dark:bg-gray-800 p-2 rounded-full shadow-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                   >
-                    <Eye size={20} className="text-gray-600" />
+                    <svg
+                      className="w-6 h-6"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
                   </button>
                 </div>
+
                 <div className="p-8">
-                  <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                    {selectedProject.title}
-                  </h2>
-                  <p className="text-gray-600 mb-6 text-lg">
+                  <div className="flex items-center justify-between mb-6">
+                    <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
+                      {selectedProject.title}
+                    </h2>
+                    {selectedProject.featured && (
+                      <span className="bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-4 py-2 rounded-full text-sm font-medium">
+                        Featured Project
+                      </span>
+                    )}
+                  </div>
+
+                  <p className="text-gray-600 dark:text-gray-300 text-lg mb-6">
                     {selectedProject.description}
                   </p>
 
-                  <div className="grid md:grid-cols-2 gap-8">
-                    <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                        Project Details
-                      </h3>
-                      <div className="space-y-3">
-                        <div className="flex justify-between">
-                          <span className="text-gray-600">Client:</span>
-                          <span className="font-medium">
-                            {selectedProject.client}
-                          </span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span className="text-gray-600">Duration:</span>
-                          <span className="font-medium">
-                            {selectedProject.duration}
-                          </span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span className="text-gray-600">Budget:</span>
-                          <span className="font-medium">
-                            {selectedProject.budget}
-                          </span>
-                        </div>
-                      </div>
-
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4 mt-6">
-                        Technologies
-                      </h3>
-                      <div className="flex flex-wrap gap-2">
-                        {selectedProject.technologies.map(tech => (
-                          <span
-                            key={tech}
-                            className="px-3 py-1 bg-primary-100 text-primary-700 text-sm rounded-full"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                        Key Features
-                      </h3>
-                      <ul className="space-y-2">
-                        {selectedProject.features.map(feature => (
-                          <li
-                            key={feature}
-                            className="flex items-center text-gray-600"
-                          >
-                            <div className="w-2 h-2 bg-primary-600 rounded-full mr-3"></div>
-                            {feature}
-                          </li>
-                        ))}
-                      </ul>
-
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4 mt-6">
-                        Results
-                      </h3>
-                      <div className="grid grid-cols-2 gap-4">
-                        {Object.entries(selectedProject.results).map(
-                          ([key, value]) => (
-                            <div
-                              key={key}
-                              className="text-center p-3 bg-gray-50 rounded-lg"
-                            >
-                              <div className="text-2xl font-bold text-primary-600">
-                                {value}
-                              </div>
-                              <div className="text-sm text-gray-600 capitalize">
-                                {key.replace(/([A-Z])/g, ' $1').trim()}
-                              </div>
-                            </div>
-                          )
-                        )}
-                      </div>
+                  <div className="mb-6">
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+                      Technologies Used
+                    </h3>
+                    <div className="flex flex-wrap gap-2">
+                      {selectedProject.technologies.map(tech => (
+                        <span
+                          key={tech}
+                          className="px-4 py-2 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-lg font-medium"
+                        >
+                          {tech}
+                        </span>
+                      ))}
                     </div>
                   </div>
 
-                  <div className="flex gap-4 mt-8 pt-6 border-t border-gray-200">
-                    <button className="flex items-center px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors">
-                      <ExternalLink size={20} className="mr-2" />
-                      View Live Demo
-                    </button>
-                    <button className="flex items-center px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">
-                      <Github size={20} className="mr-2" />
+                  <div className="flex gap-4">
+                    <a
+                      href={selectedProject.liveUrl}
+                      className="flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                    >
+                      <ExternalLink className="w-4 h-4 mr-2" />
+                      Live Demo
+                    </a>
+                    <a
+                      href={selectedProject.githubUrl}
+                      className="flex items-center px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                    >
+                      <Github className="w-4 h-4 mr-2" />
                       View Code
-                    </button>
+                    </a>
                   </div>
                 </div>
               </motion.div>
@@ -420,7 +381,7 @@ const PortfolioShowcase = () => {
           )}
         </AnimatePresence>
       </div>
-    </div>
+    </section>
   );
 };
 

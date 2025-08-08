@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Helmet } from 'react-helmet-async';
 import {
   Zap,
   Smartphone,
@@ -6,15 +7,10 @@ import {
   Code,
   Shield,
   Globe,
-  BarChart3,
-  Users,
-  Clock,
   CheckCircle,
-  ArrowRight,
   Star,
   Download,
   Eye,
-  Heart,
   FileText,
 } from 'lucide-react';
 
@@ -159,7 +155,14 @@ const Features = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+      <Helmet>
+        <title>Features – Premium React Template</title>
+        <meta
+          name="description"
+          content="Explore features: performance, security, responsive design, customization, and SEO."
+        />
+      </Helmet>
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-20">
         <div className="container mx-auto px-4">
@@ -196,7 +199,7 @@ const Features = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-white dark:bg-gray-800">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
@@ -210,10 +213,12 @@ const Features = () => {
                 <div className="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <stat.icon className="w-8 h-8 text-indigo-600" />
                 </div>
-                <div className="text-3xl font-bold text-gray-900 mb-2">
+                <div className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
                   {stat.value}
                 </div>
-                <div className="text-gray-600">{stat.label}</div>
+                <div className="text-gray-600 dark:text-gray-400">
+                  {stat.label}
+                </div>
               </motion.div>
             ))}
           </div>
@@ -224,10 +229,10 @@ const Features = () => {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
               Core Features
             </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
               Everything you need to build a professional, modern website
             </p>
           </div>
@@ -239,22 +244,24 @@ const Features = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow"
+                className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow"
               >
                 <div
                   className={`${feature.color} w-12 h-12 rounded-lg flex items-center justify-center mb-4`}
                 >
                   <feature.icon className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
                   {feature.title}
                 </h3>
-                <p className="text-gray-600 mb-4">{feature.description}</p>
+                <p className="text-gray-600 dark:text-gray-400 mb-4">
+                  {feature.description}
+                </p>
                 <ul className="space-y-2">
                   {feature.benefits.map((benefit, idx) => (
                     <li
                       key={idx}
-                      className="flex items-center text-sm text-gray-600"
+                      className="flex items-center text-sm text-gray-600 dark:text-gray-400"
                     >
                       <CheckCircle className="w-4 h-4 text-green-500 mr-2 flex-shrink-0" />
                       {benefit}

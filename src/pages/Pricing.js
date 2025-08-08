@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Check, Star, Zap, Crown } from 'lucide-react';
 import PricingCalculator from '../components/PricingCalculator';
@@ -89,8 +90,15 @@ const Pricing = () => {
 
   return (
     <div className="pt-16 lg:pt-20">
+      <Helmet>
+        <title>Pricing – Flexible Plans</title>
+        <meta
+          name="description"
+          content="Simple, transparent pricing with monthly and annual billing. 14-day free trial included."
+        />
+      </Helmet>
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -143,7 +151,7 @@ const Pricing = () => {
         </div>
       </section>
       {/* Pricing Cards */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-gray-900">
         <div className="container-custom">
           <div className="grid lg:grid-cols-3 gap-8">
             {plans.map((plan, index) => (
@@ -163,7 +171,7 @@ const Pricing = () => {
                   </div>
                 )}
                 <div
-                  className={`card p-8 h-full ${plan.popular ? 'border-2 border-primary-500 shadow-2xl' : ''}`}
+                  className={`card p-8 h-full dark:bg-gray-800 ${plan.popular ? 'border-2 border-primary-500 shadow-2xl' : ''}`}
                 >
                   <div className="text-center mb-8">
                     <div
@@ -171,15 +179,19 @@ const Pricing = () => {
                     >
                       <plan.icon size={32} className={plan.color} />
                     </div>
-                    <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
                       {plan.name}
                     </h3>
-                    <p className="text-gray-600 mb-6">{plan.description}</p>
+                    <p className="text-gray-600 dark:text-gray-400 mb-6">
+                      {plan.description}
+                    </p>
                     <div className="mb-6">
                       <span className="text-4xl font-bold text-gray-900">
                         ${plan.price}
                       </span>
-                      <span className="text-gray-600">/month</span>
+                      <span className="text-gray-600 dark:text-gray-400">
+                        /month
+                      </span>
                     </div>
                   </div>
                   <ul className="space-y-4 mb-8">
@@ -189,7 +201,9 @@ const Pricing = () => {
                           size={20}
                           className="text-green-500 mr-3 flex-shrink-0"
                         />
-                        <span className="text-gray-700">{feature}</span>
+                        <span className="text-gray-700 dark:text-gray-300">
+                          {feature}
+                        </span>
                       </li>
                     ))}
                   </ul>

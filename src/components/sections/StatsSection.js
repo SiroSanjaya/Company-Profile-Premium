@@ -34,7 +34,7 @@ const StatsSection = () => {
   ];
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-white dark:bg-gray-900">
       <div className="container-custom">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -62,11 +62,13 @@ const StatsSection = () => {
                 whileInView={{ scale: 1 }}
                 transition={{ duration: 0.5, delay: index * 0.1 + 0.3 }}
                 viewport={{ once: true }}
-                className="text-3xl lg:text-4xl font-bold text-gray-900 mb-2"
+                className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-2"
               >
                 {stat.number}
               </motion.div>
-              <div className="text-gray-600 font-medium">{stat.label}</div>
+              <div className="text-gray-600 dark:text-gray-400 font-medium">
+                {stat.label}
+              </div>
             </motion.div>
           ))}
         </motion.div>

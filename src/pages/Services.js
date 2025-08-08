@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Helmet } from 'react-helmet-async';
 import {
   Code,
   Palette,
@@ -127,9 +128,15 @@ const Services = () => {
 
   return (
     <div className="pt-16 lg:pt-20">
-      {' '}
+      <Helmet>
+        <title>Services – What We Offer</title>
+        <meta
+          name="description"
+          content="Custom development, UI/UX design, mobile optimization, performance, security, and SEO services."
+        />
+      </Helmet>{' '}
       {/* Hero Section */}{' '}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -148,7 +155,7 @@ const Services = () => {
         </div>{' '}
       </section>
       {/* Services Grid */}{' '}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-gray-900">
         <div className="container-custom">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {' '}
@@ -159,18 +166,18 @@ const Services = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="card p-8 group hover:shadow-2xl transition-all duration-300"
+                className="card p-8 group hover:shadow-2xl transition-all duration-300 dark:bg-gray-800"
               >
                 <div
                   className={`inline-flex items-center justify-center w-16 h-16 rounded-xl ${service.bgColor} mb-6 group-hover:scale-110 transition-transform duration-300`}
                 >
                   <service.icon size={28} className={service.color} />{' '}
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
                   {' '}
                   {service.title}{' '}
                 </h3>
-                <p className="text-gray-600 mb-6 leading-relaxed">
+                <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
                   {' '}
                   {service.description}{' '}
                 </p>
@@ -179,7 +186,7 @@ const Services = () => {
                   {service.features.map((feature, featureIndex) => (
                     <li
                       key={featureIndex}
-                      className="flex items-center text-sm text-gray-600"
+                      className="flex items-center text-sm text-gray-600 dark:text-gray-400"
                     >
                       <div className="w-1.5 h-1.5 bg-primary-600 rounded-full mr-3">
                         {' '}
@@ -204,7 +211,7 @@ const Services = () => {
         </div>{' '}
       </section>
       {/* Process Section */}{' '}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gray-50 dark:bg-gray-800">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -213,10 +220,10 @@ const Services = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-6">
               Our Process{' '}
             </h2>{' '}
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
               We follow a proven methodology to deliver exceptional results{' '}
             </p>{' '}
           </motion.div>
@@ -257,11 +264,14 @@ const Services = () => {
                   {' '}
                   {process.step}{' '}
                 </div>{' '}
-                <h3 className="text-lg font-bold text-gray-900 mb-2">
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
                   {' '}
                   {process.title}{' '}
                 </h3>{' '}
-                <p className="text-gray-600"> {process.description} </p>{' '}
+                <p className="text-gray-600 dark:text-gray-400">
+                  {' '}
+                  {process.description}{' '}
+                </p>{' '}
               </motion.div>
             ))}{' '}
           </div>{' '}

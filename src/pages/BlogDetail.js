@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useParams, Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import {
   Calendar,
   Clock,
@@ -20,48 +21,48 @@ const articles = [
     content: `
       <h2>Introduction</h2>
       <p>React.js has evolved significantly over the years, and with the introduction of React 18 and new patterns, it's crucial to stay updated with the latest best practices. In this comprehensive guide, we'll explore the 10 most essential React.js best practices that every developer should know in 2024.</p>
-      
+
       <h2>1. Use Functional Components with Hooks</h2>
       <p>Functional components with hooks are now the standard way to write React components. They're more readable, easier to test, and provide better performance.</p>
       <pre><code>// Good
 const MyComponent = () => {
   const [state, setState] = useState(initialValue);
   const [data, setData] = useState(null);
-  
+
   useEffect(() => {
     // Side effects here
   }, []);
-  
+
   return <div>Content</div>;
 };</code></pre>
-      
+
       <h2>2. Implement Proper Error Boundaries</h2>
       <p>Error boundaries are crucial for handling JavaScript errors anywhere in your component tree. They catch errors in child components and display a fallback UI.</p>
-      
+
       <h2>3. Optimize Performance with useMemo and useCallback</h2>
       <p>Use useMemo for expensive calculations and useCallback for function memoization to prevent unnecessary re-renders.</p>
-      
+
       <h2>4. Follow the Single Responsibility Principle</h2>
       <p>Each component should have a single responsibility. Break down complex components into smaller, more manageable pieces.</p>
-      
+
       <h2>5. Use TypeScript for Better Type Safety</h2>
       <p>TypeScript provides better developer experience with type checking, better IDE support, and fewer runtime errors.</p>
-      
+
       <h2>6. Implement Proper State Management</h2>
       <p>Choose the right state management solution based on your app's complexity. For simple apps, useState and useContext might be sufficient.</p>
-      
+
       <h2>7. Write Comprehensive Tests</h2>
       <p>Testing is crucial for maintaining code quality. Use Jest and React Testing Library for unit and integration tests.</p>
-      
+
       <h2>8. Optimize Bundle Size</h2>
       <p>Use code splitting, lazy loading, and tree shaking to reduce your bundle size and improve loading performance.</p>
-      
+
       <h2>9. Follow Accessibility Guidelines</h2>
       <p>Make your React applications accessible by following WCAG guidelines and using semantic HTML elements.</p>
-      
+
       <h2>10. Keep Dependencies Updated</h2>
       <p>Regularly update your dependencies to get the latest features, bug fixes, and security patches.</p>
-      
+
       <h2>Conclusion</h2>
       <p>Following these best practices will help you write more maintainable, performant, and scalable React applications. Remember that best practices evolve over time, so stay updated with the latest React documentation and community recommendations.</p>
     `,
@@ -81,22 +82,22 @@ const MyComponent = () => {
     content: `
       <h2>Performance Optimization in React</h2>
       <p>Performance is crucial for user experience. In this guide, we'll explore various techniques to optimize your React application performance.</p>
-      
+
       <h2>1. Use React.memo for Component Memoization</h2>
       <p>React.memo is a higher-order component that memoizes your component, preventing unnecessary re-renders when props haven't changed.</p>
-      
+
       <h2>2. Implement Virtual Scrolling for Large Lists</h2>
       <p>For large lists, use virtual scrolling libraries like react-window or react-virtualized to render only visible items.</p>
-      
+
       <h2>3. Optimize Images and Assets</h2>
       <p>Use modern image formats, implement lazy loading, and optimize asset sizes to reduce loading times.</p>
-      
+
       <h2>4. Use Web Workers for Heavy Computations</h2>
       <p>Move heavy computations to web workers to prevent blocking the main thread and improve UI responsiveness.</p>
-      
+
       <h2>5. Implement Code Splitting</h2>
       <p>Use React.lazy and Suspense to split your code into smaller chunks and load them on demand.</p>
-      
+
       <h2>Conclusion</h2>
       <p>Performance optimization is an ongoing process. Monitor your app's performance regularly and implement these techniques based on your specific needs.</p>
     `,
@@ -158,8 +159,12 @@ const BlogDetail = () => {
 
   return (
     <div className="pt-16 lg:pt-20">
+      <Helmet>
+        <title>{`${article.title} – Blog`}</title>
+        <meta name="description" content={article.excerpt} />
+      </Helmet>
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -188,11 +193,13 @@ const BlogDetail = () => {
                 </span>
               </div>
 
-              <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+              <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6">
                 {article.title}
               </h1>
 
-              <p className="text-xl text-gray-600 mb-8">{article.excerpt}</p>
+              <p className="text-xl text-gray-600 dark:text-gray-400 mb-8">
+                {article.excerpt}
+              </p>
 
               {/* Article Meta */}
               <div className="flex flex-wrap items-center space-x-6 text-sm text-gray-500 mb-8">
@@ -227,7 +234,7 @@ const BlogDetail = () => {
       </section>
 
       {/* Article Content */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-gray-900">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto">
             <motion.div
@@ -238,6 +245,7 @@ const BlogDetail = () => {
               {/* Featured Image */}
               <div className="mb-8">
                 <img
+                  loading="lazy"
                   src={article.image}
                   alt={article.title}
                   className="w-full h-64 lg:h-96 object-cover rounded-lg"

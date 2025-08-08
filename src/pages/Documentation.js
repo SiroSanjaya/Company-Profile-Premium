@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import {
   BookOpen,
@@ -26,11 +27,11 @@ const Documentation = () => {
       content: `
         <h2>Quick Start Guide</h2>
         <p>Welcome to our Premium React Template! This guide will help you get started quickly.</p>
-        
+
         <h3>1. Installation</h3>
         <pre><code>npm install
 npm start</code></pre>
-        
+
         <h3>2. Project Structure</h3>
         <pre><code>src/
 ├── components/
@@ -45,10 +46,10 @@ npm start</code></pre>
 │   ├── Contact.js
 │   └── Pricing.js
 └── index.css</code></pre>
-        
+
         <h3>3. Customization</h3>
         <p>Start by customizing the content in each component. The template is built with modularity in mind, making it easy to modify individual sections.</p>
-        
+
         <h3>4. Styling</h3>
         <p>This template uses Tailwind CSS for styling. You can customize colors, fonts, and other design elements in the <code>tailwind.config.js</code> file.</p>
       `,
@@ -60,7 +61,7 @@ npm start</code></pre>
       content: `
         <h2>Component Documentation</h2>
         <p>Learn about the available components and how to use them.</p>
-        
+
         <h3>Navbar Component</h3>
         <p>The navigation bar is responsive and includes mobile menu functionality.</p>
         <pre><code>import Navbar from './components/Navbar';
@@ -73,10 +74,10 @@ function App() {
     </div>
   );
 }</code></pre>
-        
+
         <h3>Footer Component</h3>
         <p>The footer includes social links, contact information, and navigation links.</p>
-        
+
         <h3>Section Components</h3>
         <p>Each section is a separate component for easy customization:</p>
         <ul>
@@ -94,7 +95,7 @@ function App() {
       content: `
         <h2>Customizing the Design</h2>
         <p>This template uses Tailwind CSS for styling. Here's how to customize it.</p>
-        
+
         <h3>Color Scheme</h3>
         <p>Customize colors in <code>tailwind.config.js</code>:</p>
         <pre><code>module.exports = {
@@ -117,14 +118,14 @@ function App() {
     },
   },
 }</code></pre>
-        
+
         <h3>Typography</h3>
         <p>Customize fonts in the same config file:</p>
         <pre><code>fontFamily: {
   sans: ['Inter', 'sans-serif'],
   heading: ['Poppins', 'sans-serif'],
 }</code></pre>
-        
+
         <h3>Spacing & Layout</h3>
         <p>Use Tailwind's utility classes for consistent spacing and responsive design.</p>
       `,
@@ -136,20 +137,20 @@ function App() {
       content: `
         <h2>Performance Optimization</h2>
         <p>Tips for optimizing your application performance.</p>
-        
+
         <h3>Code Splitting</h3>
         <p>This template uses React.lazy for code splitting:</p>
         <pre><code>const Home = lazy(() => import('./pages/Home'));
 const About = lazy(() => import('./pages/About'));</code></pre>
-        
+
         <h3>Image Optimization</h3>
         <p>Use optimized images and implement lazy loading for better performance.</p>
-        
+
         <h3>Bundle Analysis</h3>
         <p>Run bundle analysis to identify large dependencies:</p>
         <pre><code>npm run build
 npx serve -s build</code></pre>
-        
+
         <h3>Caching Strategies</h3>
         <p>Implement proper caching headers for static assets.</p>
       `,
@@ -161,7 +162,7 @@ npx serve -s build</code></pre>
       content: `
         <h2>Deployment Guide</h2>
         <p>Deploy your application to various platforms.</p>
-        
+
         <h3>Netlify</h3>
         <ol>
           <li>Connect your GitHub repository</li>
@@ -169,18 +170,18 @@ npx serve -s build</code></pre>
           <li>Set publish directory: <code>build</code></li>
           <li>Deploy!</li>
         </ol>
-        
+
         <h3>Vercel</h3>
         <ol>
           <li>Import your project</li>
           <li>Vercel will auto-detect React</li>
           <li>Deploy automatically</li>
         </ol>
-        
+
         <h3>GitHub Pages</h3>
         <pre><code>npm install --save-dev gh-pages
 npm run deploy</code></pre>
-        
+
         <h3>Custom Domain</h3>
         <p>Configure your custom domain in your hosting provider's settings.</p>
       `,
@@ -197,8 +198,15 @@ npm run deploy</code></pre>
 
   return (
     <div className="pt-16 lg:pt-20">
+      <Helmet>
+        <title>Documentation – Premium React Template</title>
+        <meta
+          name="description"
+          content="Complete guide to using and customizing the template, including components, styling, performance, and deployment."
+        />
+      </Helmet>
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -206,10 +214,10 @@ npm run deploy</code></pre>
             transition={{ duration: 0.8 }}
             className="text-center max-w-4xl mx-auto"
           >
-            <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 mb-6">
+            <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6">
               Documentation
             </h1>
-            <p className="text-xl text-gray-600 mb-8">
+            <p className="text-xl text-gray-600 dark:text-gray-400 mb-8">
               Complete guide to using and customizing our Premium React Template
             </p>
 
@@ -256,7 +264,7 @@ npm run deploy</code></pre>
       </section>
 
       {/* Documentation Content */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-gray-900">
         <div className="container-custom">
           <div className="grid lg:grid-cols-4 gap-8">
             {/* Sidebar */}
@@ -361,7 +369,7 @@ npm run deploy</code></pre>
       </section>
 
       {/* Additional Resources */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gray-50 dark:bg-gray-800">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -370,10 +378,12 @@ npm run deploy</code></pre>
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
               Additional Resources
             </h2>
-            <p className="text-xl text-gray-600">Get more help and support</p>
+            <p className="text-xl text-gray-600 dark:text-gray-400">
+              Get more help and support
+            </p>
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -382,13 +392,13 @@ npm run deploy</code></pre>
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
               viewport={{ once: true }}
-              className="bg-white rounded-lg p-6 shadow-sm border border-gray-200"
+              className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm border border-gray-200 dark:border-gray-700"
             >
               <FileText size={32} className="text-primary-600 mb-4" />
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
                 API Reference
               </h3>
-              <p className="text-gray-600 mb-4">
+              <p className="text-gray-600 dark:text-gray-400 mb-4">
                 Complete API documentation for all components and utilities.
               </p>
               <button
@@ -407,13 +417,13 @@ npm run deploy</code></pre>
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
-              className="bg-white rounded-lg p-6 shadow-sm border border-gray-200"
+              className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm border border-gray-200 dark:border-gray-700"
             >
               <Code size={32} className="text-primary-600 mb-4" />
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
                 Examples
               </h3>
-              <p className="text-gray-600 mb-4">
+              <p className="text-gray-600 dark:text-gray-400 mb-4">
                 Real-world examples and use cases for different scenarios.
               </p>
               <button
@@ -432,13 +442,13 @@ npm run deploy</code></pre>
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
               viewport={{ once: true }}
-              className="bg-white rounded-lg p-6 shadow-sm border border-gray-200"
+              className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm border border-gray-200 dark:border-gray-700"
             >
               <Github size={32} className="text-primary-600 mb-4" />
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
                 GitHub
               </h3>
-              <p className="text-gray-600 mb-4">
+              <p className="text-gray-600 dark:text-gray-400 mb-4">
                 Source code, issues, and contributions on GitHub.
               </p>
               <a
