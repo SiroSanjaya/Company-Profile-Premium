@@ -1,55 +1,55 @@
-import { motion } from 'framer-motion';
-import { Zap, Shield, Globe, Code, Rocket, ArrowRight } from 'lucide-react';
+import { motion } from "framer-motion";
+import { Zap, Shield, Globe, Code, Rocket, ArrowRight } from "lucide-react";
 
 const FeaturesSection = () => {
   const features = [
     {
       icon: Zap,
-      title: 'Lightning Fast',
+      title: "Lightning Fast",
       description:
-        'Optimized for speed with modern build tools and efficient code splitting.',
-      color: 'text-yellow-600',
-      bgColor: 'bg-yellow-100',
+        "Optimized for speed with modern build tools and efficient code splitting.",
+      color: "text-yellow-600",
+      bgColor: "bg-yellow-100",
     },
     {
       icon: Shield,
-      title: 'Secure by Default',
+      title: "Secure by Default",
       description:
-        'Built with security best practices and regular security updates.',
-      color: 'text-green-600',
-      bgColor: 'bg-green-100',
+        "Built with security best practices and regular security updates.",
+      color: "text-green-600",
+      bgColor: "bg-green-100",
     },
     {
       icon: Globe,
-      title: 'Mobile First',
+      title: "Mobile First",
       description:
-        'Responsive design that works perfectly on all devices and screen sizes.',
-      color: 'text-blue-600',
-      bgColor: 'bg-blue-100',
+        "Responsive design that works perfectly on all devices and screen sizes.",
+      color: "text-blue-600",
+      bgColor: "bg-blue-100",
     },
     {
       icon: Code,
-      title: 'Customizable',
+      title: "Customizable",
       description:
-        'Easy to customize with Tailwind CSS and modular components.',
-      color: 'text-purple-600',
-      bgColor: 'bg-purple-100',
+        "Easy to customize with Tailwind CSS and modular components.",
+      color: "text-purple-600",
+      bgColor: "bg-purple-100",
     },
     {
       icon: Code,
-      title: 'Clean Code',
+      title: "Clean Code",
       description:
-        'Well-structured, maintainable code following React best practices.',
-      color: 'text-indigo-600',
-      bgColor: 'bg-indigo-100',
+        "Well-structured, maintainable code following React best practices.",
+      color: "text-indigo-600",
+      bgColor: "bg-indigo-100",
     },
     {
       icon: Rocket,
-      title: 'SEO Optimized',
+      title: "SEO Optimized",
       description:
-        'Built for search engines with proper meta tags and structure.',
-      color: 'text-red-600',
-      bgColor: 'bg-red-100',
+        "Built for search engines with proper meta tags and structure.",
+      color: "text-red-600",
+      bgColor: "bg-red-100",
     },
   ];
 
@@ -63,13 +63,13 @@ const FeaturesSection = () => {
   // Handle start free trial
   const handleStartFreeTrial = () => {
     alert(
-      'Starting free trial...\n\nThis would redirect to the pricing page or signup form.'
+      "Starting free trial...\n\nThis would redirect to the pricing page or signup form."
     );
   };
 
   // Handle view documentation
   const handleViewDocumentation = () => {
-    window.location.href = '/docs';
+    window.location.href = "/docs";
   };
 
   return (
@@ -84,7 +84,7 @@ const FeaturesSection = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-            Why Choose Our{' '}
+            Why Choose Our{" "}
             <span className="block gradient-text">Premium Template</span>
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">

@@ -1,15 +1,15 @@
-import { motion } from 'framer-motion';
-import { Sun, Moon } from 'lucide-react';
-import { useDarkMode } from '../contexts/DarkModeContext';
+import { motion } from "framer-motion";
+import { Sun, Moon } from "lucide-react";
+import { useDarkMode } from "../contexts/DarkModeContext";
 
-const DarkModeToggle = ({ position = 'bottom-right' }) => {
+const DarkModeToggle = ({ position = "bottom-right" }) => {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
 
   const positionClasses = {
-    'bottom-right': 'bottom-6 right-6',
-    'bottom-left': 'bottom-6 left-6',
-    'top-right': 'top-6 right-6',
-    'top-left': 'top-6 left-6',
+    "bottom-right": "bottom-6 right-6",
+    "bottom-left": "bottom-6 left-6",
+    "top-right": "top-6 right-6",
+    "top-left": "top-6 left-6",
   };
 
   return (

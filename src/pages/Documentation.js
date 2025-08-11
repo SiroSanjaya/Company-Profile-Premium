@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
-import { motion } from 'framer-motion';
+import { useState } from "react";
+import { Helmet } from "react-helmet-async";
+import { motion } from "framer-motion";
 import {
   BookOpen,
   Code,
@@ -13,16 +13,16 @@ import {
   Download,
   Github,
   ExternalLink,
-} from 'lucide-react';
+} from "lucide-react";
 
 const Documentation = () => {
-  const [activeSection, setActiveSection] = useState('getting-started');
-  const [searchQuery, setSearchQuery] = useState('');
+  const [activeSection, setActiveSection] = useState("getting-started");
+  const [searchQuery, setSearchQuery] = useState("");
 
   const sections = [
     {
-      id: 'getting-started',
-      title: 'Getting Started',
+      id: "getting-started",
+      title: "Getting Started",
       icon: BookOpen,
       content: `
         <h2>Quick Start Guide</h2>
@@ -55,8 +55,8 @@ npm start</code></pre>
       `,
     },
     {
-      id: 'components',
-      title: 'Components',
+      id: "components",
+      title: "Components",
       icon: Code,
       content: `
         <h2>Component Documentation</h2>
@@ -89,8 +89,8 @@ function App() {
       `,
     },
     {
-      id: 'styling',
-      title: 'Styling & Theming',
+      id: "styling",
+      title: "Styling & Theming",
       icon: Palette,
       content: `
         <h2>Customizing the Design</h2>
@@ -131,8 +131,8 @@ function App() {
       `,
     },
     {
-      id: 'performance',
-      title: 'Performance',
+      id: "performance",
+      title: "Performance",
       icon: Zap,
       content: `
         <h2>Performance Optimization</h2>
@@ -156,8 +156,8 @@ npx serve -s build</code></pre>
       `,
     },
     {
-      id: 'deployment',
-      title: 'Deployment',
+      id: "deployment",
+      title: "Deployment",
       icon: Settings,
       content: `
         <h2>Deployment Guide</h2>
@@ -243,7 +243,7 @@ npm run deploy</code></pre>
               <button
                 className="btn-primary inline-flex items-center"
                 onClick={() => {
-                  alert('Downloading template...');
+                  alert("Downloading template...");
                 }}
               >
                 <Download size={20} className="mr-2" />
@@ -285,8 +285,8 @@ npm run deploy</code></pre>
                       onClick={() => setActiveSection(section.id)}
                       className={`w-full text-left px-4 py-3 rounded-lg transition-all duration-200 flex items-center ${
                         activeSection === section.id
-                          ? 'bg-primary-100 text-primary-700 border border-primary-200'
-                          : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                          ? "bg-primary-100 text-primary-700 border border-primary-200"
+                          : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
                       }`}
                     >
                       <section.icon size={20} className="mr-3" />
@@ -404,7 +404,7 @@ npm run deploy</code></pre>
               <button
                 className="text-primary-600 hover:text-primary-700 font-medium inline-flex items-center"
                 onClick={() => {
-                  alert('API documentation coming soon...');
+                  alert("API documentation coming soon...");
                 }}
               >
                 View API Docs
@@ -429,7 +429,7 @@ npm run deploy</code></pre>
               <button
                 className="text-primary-600 hover:text-primary-700 font-medium inline-flex items-center"
                 onClick={() => {
-                  alert('Examples coming soon...');
+                  alert("Examples coming soon...");
                 }}
               >
                 Browse Examples

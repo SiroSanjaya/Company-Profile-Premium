@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown, Moon, Sun } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useDarkMode } from '../contexts/DarkModeContext';
+import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { Menu, X, ChevronDown, Moon, Sun } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useDarkMode } from "../contexts/DarkModeContext";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,25 +16,25 @@ const Navbar = () => {
       setIsScrolled(window.scrollY > 10);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navItems = [
-    { name: 'Home', path: '/' },
-    { name: 'About', path: '/about' },
-    { name: 'Services', path: '/services' },
-    { name: 'Features', path: '/features' },
-    { name: 'Pricing', path: '/pricing' },
-    { name: 'Blog', path: '/blog' },
-    { name: 'Contact', path: '/contact' },
+    { name: "Home", path: "/" },
+    { name: "About", path: "/about" },
+    { name: "Services", path: "/services" },
+    { name: "Features", path: "/features" },
+    { name: "Pricing", path: "/pricing" },
+    { name: "Blog", path: "/blog" },
+    { name: "Contact", path: "/contact" },
   ];
 
   const documentationItems = [
-    { name: 'Documentation', path: '/docs' },
-    { name: 'API Reference', path: '/api-reference' },
-    { name: 'Help Center', path: '/help-center' },
-    { name: 'Status', path: '/status' },
+    { name: "Documentation", path: "/docs" },
+    { name: "API Reference", path: "/api-reference" },
+    { name: "Help Center", path: "/help-center" },
+    { name: "Status", path: "/status" },
   ];
 
   const isActive = path => location.pathname === path;
@@ -42,7 +42,7 @@ const Navbar = () => {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300
-        ${isScrolled ? 'bg-white/95 dark:bg-dark-900/95 backdrop-blur-md shadow-lg border-b border-gray-200 dark:border-dark-700' : 'bg-transparent'}
+        ${isScrolled ? "bg-white/95 dark:bg-dark-900/95 backdrop-blur-md shadow-lg border-b border-gray-200 dark:border-dark-700" : "bg-transparent"}
       `}
     >
       <div className="container-custom flex items-center justify-between h-16 lg:h-20">
@@ -64,8 +64,8 @@ const Navbar = () => {
               className={`relative font-medium transition-colors duration-200
                 ${
                   isActive(item.path)
-                    ? 'text-primary-600 dark:text-primary-400'
-                    : 'text-gray-700 dark:text-gray-200 hover:text-primary-600 dark:hover:text-primary-400'
+                    ? "text-primary-600 dark:text-primary-400"
+                    : "text-gray-700 dark:text-gray-200 hover:text-primary-600 dark:hover:text-primary-400"
                 }
               `}
             >
@@ -75,7 +75,7 @@ const Navbar = () => {
                   layoutId="activeTab"
                   className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary-600 dark:bg-primary-400"
                   initial={false}
-                  transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
                 />
               )}
             </Link>
@@ -88,8 +88,8 @@ const Navbar = () => {
               className={`relative font-medium transition-colors duration-200 flex items-center space-x-1
                 ${
                   documentationItems.some(item => isActive(item.path))
-                    ? 'text-primary-600 dark:text-primary-400'
-                    : 'text-gray-700 dark:text-gray-200 hover:text-primary-600 dark:hover:text-primary-400'
+                    ? "text-primary-600 dark:text-primary-400"
+                    : "text-gray-700 dark:text-gray-200 hover:text-primary-600 dark:hover:text-primary-400"
                 }
               `}
             >
@@ -113,8 +113,8 @@ const Navbar = () => {
                       className={`block px-4 py-2 text-sm transition-colors duration-200
                         ${
                           isActive(item.path)
-                            ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-dark-700'
-                            : 'text-gray-700 dark:text-gray-200 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-dark-700'
+                            ? "text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-dark-700"
+                            : "text-gray-700 dark:text-gray-200 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-dark-700"
                         }
                       `}
                     >
@@ -151,7 +151,7 @@ const Navbar = () => {
           {isOpen && (
             <motion.div
               initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
+              animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
               className="lg:hidden border-t border-gray-200 dark:border-dark-700 bg-white dark:bg-dark-900"
@@ -165,8 +165,8 @@ const Navbar = () => {
                     className={`block px-4 py-2 text-lg font-medium transition-colors duration-200
                       ${
                         isActive(item.path)
-                          ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-dark-700'
-                          : 'text-gray-700 dark:text-gray-200 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-dark-700'
+                          ? "text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-dark-700"
+                          : "text-gray-700 dark:text-gray-200 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-dark-700"
                       }
                     `}
                   >
@@ -186,8 +186,8 @@ const Navbar = () => {
                       className={`block px-4 py-2 text-lg font-medium transition-colors duration-200
                         ${
                           isActive(item.path)
-                            ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-dark-700'
-                            : 'text-gray-700 dark:text-gray-200 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-dark-700'
+                            ? "text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-dark-700"
+                            : "text-gray-700 dark:text-gray-200 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-dark-700"
                         }
                       `}
                     >
@@ -209,7 +209,7 @@ const Navbar = () => {
                         className="text-gray-700 dark:text-gray-200 mr-2"
                       />
                     )}
-                    <span>{isDarkMode ? 'Light Mode' : 'Dark Mode'}</span>
+                    <span>{isDarkMode ? "Light Mode" : "Dark Mode"}</span>
                   </button>
                   <Link
                     to="/contact"

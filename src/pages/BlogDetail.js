@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { useParams, Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { useParams, Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import {
   Calendar,
   Clock,
@@ -9,15 +9,15 @@ import {
   ArrowLeft,
   Share2,
   Bookmark,
-} from 'lucide-react';
+} from "lucide-react";
 
 // Mock article data - in real app this would come from API
 const articles = [
   {
     id: 1,
-    title: '10 Essential React.js Best Practices for 2024',
+    title: "10 Essential React.js Best Practices for 2024",
     excerpt:
-      'Learn the most important React.js best practices that will help you write cleaner, more maintainable code and build better applications.',
+      "Learn the most important React.js best practices that will help you write cleaner, more maintainable code and build better applications.",
     content: `
       <h2>Introduction</h2>
       <p>React.js has evolved significantly over the years, and with the introduction of React 18 and new patterns, it's crucial to stay updated with the latest best practices. In this comprehensive guide, we'll explore the 10 most essential React.js best practices that every developer should know in 2024.</p>
@@ -67,18 +67,18 @@ const MyComponent = () => {
       <p>Following these best practices will help you write more maintainable, performant, and scalable React applications. Remember that best practices evolve over time, so stay updated with the latest React documentation and community recommendations.</p>
     `,
     image:
-      'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop',
-    author: 'Sarah Johnson',
-    date: 'March 15, 2024',
-    readTime: '5 min read',
-    category: 'Development',
-    tags: ['React', 'JavaScript', 'Best Practices', '2024'],
+      "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop",
+    author: "Sarah Johnson",
+    date: "March 15, 2024",
+    readTime: "5 min read",
+    category: "Development",
+    tags: ["React", "JavaScript", "Best Practices", "2024"],
   },
   {
     id: 2,
-    title: 'How to Optimize Your React App Performance',
+    title: "How to Optimize Your React App Performance",
     excerpt:
-      'Discover proven techniques to improve your React application performance and provide a better user experience.',
+      "Discover proven techniques to improve your React application performance and provide a better user experience.",
     content: `
       <h2>Performance Optimization in React</h2>
       <p>Performance is crucial for user experience. In this guide, we'll explore various techniques to optimize your React application performance.</p>
@@ -102,12 +102,12 @@ const MyComponent = () => {
       <p>Performance optimization is an ongoing process. Monitor your app's performance regularly and implement these techniques based on your specific needs.</p>
     `,
     image:
-      'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&h=400&fit=crop',
-    author: 'Michael Chen',
-    date: 'March 12, 2024',
-    readTime: '8 min read',
-    category: 'Performance',
-    tags: ['Performance', 'Optimization', 'React'],
+      "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&h=400&fit=crop",
+    author: "Michael Chen",
+    date: "March 12, 2024",
+    readTime: "8 min read",
+    category: "Performance",
+    tags: ["Performance", "Optimization", "React"],
   },
 ];
 

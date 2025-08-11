@@ -1,7 +1,7 @@
-import { useState, useEffect, useRef } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { Play, Star, CheckCircle, Users } from 'lucide-react';
+import { useState, useEffect, useRef } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+import { Play, Star, CheckCircle, Users } from "lucide-react";
 
 const HeroSection = () => {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
@@ -16,8 +16,8 @@ const HeroSection = () => {
       setScrollY(window.scrollY);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   // Intersection Observer for animations
@@ -31,7 +31,7 @@ const HeroSection = () => {
       { threshold: 0.1 }
     );
 
-    const heroSection = document.querySelector('.hero-section');
+    const heroSection = document.querySelector(".hero-section");
     if (heroSection) {
       observer.observe(heroSection);
     }
@@ -49,7 +49,7 @@ const HeroSection = () => {
 
   // Handle get started click
   const handleGetStarted = () => {
-    navigate('/pricing');
+    navigate("/pricing");
   };
 
   return (
@@ -115,7 +115,7 @@ const HeroSection = () => {
               transition={{ duration: 0.8, delay: 0.3 }}
               className="text-4xl lg:text-6xl xl:text-7xl font-bold text-gray-900 dark:text-white mb-6 leading-tight"
             >
-              Transform Your{' '}
+              Transform Your{" "}
               <span className="block gradient-text">Digital Presence</span>
               <span className="block text-gray-700 dark:text-gray-300">
                 With Premium Solutions

@@ -1,35 +1,35 @@
-import { motion } from 'framer-motion';
-import { Users, Globe, Star, Zap } from 'lucide-react';
+import { motion } from "framer-motion";
+import { Users, Globe, Star, Zap } from "lucide-react";
 
 const StatsSection = () => {
   const stats = [
     {
       icon: Users,
-      number: '10,000+',
-      label: 'Happy Customers',
-      color: 'text-blue-600',
-      bgColor: 'bg-blue-100',
+      number: "10,000+",
+      label: "Happy Customers",
+      color: "text-blue-600",
+      bgColor: "bg-blue-100",
     },
     {
       icon: Globe,
-      number: '150+',
-      label: 'Countries Served',
-      color: 'text-green-600',
-      bgColor: 'bg-green-100',
+      number: "150+",
+      label: "Countries Served",
+      color: "text-green-600",
+      bgColor: "bg-green-100",
     },
     {
       icon: Star,
-      number: '4.9/5',
-      label: 'Average Rating',
-      color: 'text-yellow-600',
-      bgColor: 'bg-yellow-100',
+      number: "4.9/5",
+      label: "Average Rating",
+      color: "text-yellow-600",
+      bgColor: "bg-yellow-100",
     },
     {
       icon: Zap,
-      number: '99.9%',
-      label: 'Uptime Guarantee',
-      color: 'text-purple-600',
-      bgColor: 'bg-purple-100',
+      number: "99.9%",
+      label: "Uptime Guarantee",
+      color: "text-purple-600",
+      bgColor: "bg-purple-100",
     },
   ];
 

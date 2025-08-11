@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
-import { motion } from 'framer-motion';
+import { useState } from "react";
+import { Helmet } from "react-helmet-async";
+import { motion } from "framer-motion";
 import {
   HelpCircle,
   Search,
@@ -12,99 +12,99 @@ import {
   ArrowRight,
   ChevronDown,
   ChevronUp,
-} from 'lucide-react';
+} from "lucide-react";
 
 const HelpCenter = () => {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
   const [expandedFaq, setExpandedFaq] = useState(null);
 
   const faqs = [
     {
       id: 1,
-      question: 'How do I get started with the template?',
+      question: "How do I get started with the template?",
       answer:
-        'Getting started is easy! Simply download the template, run npm install to install dependencies, and then run npm start to launch the development server. Check our documentation for detailed setup instructions.',
+        "Getting started is easy! Simply download the template, run npm install to install dependencies, and then run npm start to launch the development server. Check our documentation for detailed setup instructions.",
     },
     {
       id: 2,
-      question: 'Can I customize the colors and styling?',
+      question: "Can I customize the colors and styling?",
       answer:
-        'Absolutely! The template uses Tailwind CSS, making it easy to customize colors, fonts, and other design elements. You can modify the tailwind.config.js file to match your brand colors.',
+        "Absolutely! The template uses Tailwind CSS, making it easy to customize colors, fonts, and other design elements. You can modify the tailwind.config.js file to match your brand colors.",
     },
     {
       id: 3,
-      question: 'Is the template responsive?',
+      question: "Is the template responsive?",
       answer:
-        'Yes, the template is fully responsive and works perfectly on all devices including desktop, tablet, and mobile phones. All components are built with mobile-first design principles.',
+        "Yes, the template is fully responsive and works perfectly on all devices including desktop, tablet, and mobile phones. All components are built with mobile-first design principles.",
     },
     {
       id: 4,
-      question: 'How do I add new pages?',
+      question: "How do I add new pages?",
       answer:
-        'To add new pages, create a new component in the src/pages directory and add a corresponding route in App.js. Follow the existing page structure for consistency.',
+        "To add new pages, create a new component in the src/pages directory and add a corresponding route in App.js. Follow the existing page structure for consistency.",
     },
     {
       id: 5,
-      question: 'Can I use this template for commercial projects?',
+      question: "Can I use this template for commercial projects?",
       answer:
-        'Yes, this template is licensed for commercial use. Please refer to the LICENSE file for complete terms and conditions.',
+        "Yes, this template is licensed for commercial use. Please refer to the LICENSE file for complete terms and conditions.",
     },
     {
       id: 6,
-      question: 'How do I deploy the website?',
+      question: "How do I deploy the website?",
       answer:
-        'You can deploy the website to platforms like Vercel, Netlify, or any hosting service that supports React applications. Run npm run build to create a production build.',
+        "You can deploy the website to platforms like Vercel, Netlify, or any hosting service that supports React applications. Run npm run build to create a production build.",
     },
   ];
 
   const categories = [
     {
-      title: 'Getting Started',
+      title: "Getting Started",
       icon: BookOpen,
-      description: 'Learn the basics and get up and running quickly',
-      color: 'bg-blue-500',
+      description: "Learn the basics and get up and running quickly",
+      color: "bg-blue-500",
     },
     {
-      title: 'Customization',
+      title: "Customization",
       icon: FileText,
-      description: 'How to customize colors, fonts, and layouts',
-      color: 'bg-green-500',
+      description: "How to customize colors, fonts, and layouts",
+      color: "bg-green-500",
     },
     {
-      title: 'Deployment',
+      title: "Deployment",
       icon: ArrowRight,
-      description: 'Deploy your website to production',
-      color: 'bg-purple-500',
+      description: "Deploy your website to production",
+      color: "bg-purple-500",
     },
     {
-      title: 'Troubleshooting',
+      title: "Troubleshooting",
       icon: HelpCircle,
-      description: 'Common issues and their solutions',
-      color: 'bg-red-500',
+      description: "Common issues and their solutions",
+      color: "bg-red-500",
     },
   ];
 
   const contactMethods = [
     {
-      title: 'Email Support',
-      description: 'Get help via email',
+      title: "Email Support",
+      description: "Get help via email",
       icon: Mail,
-      contact: 'support@company.com',
-      response: 'Within 24 hours',
+      contact: "support@company.com",
+      response: "Within 24 hours",
     },
     {
-      title: 'Live Chat',
-      description: 'Chat with our support team',
+      title: "Live Chat",
+      description: "Chat with our support team",
       icon: MessageCircle,
-      contact: 'Available 24/7',
-      response: 'Instant response',
+      contact: "Available 24/7",
+      response: "Instant response",
     },
     {
-      title: 'Phone Support',
-      description: 'Call us directly',
+      title: "Phone Support",
+      description: "Call us directly",
       icon: Phone,
-      contact: '+1 (555) 123-4567',
-      response: 'Mon-Fri 9AM-6PM',
+      contact: "+1 (555) 123-4567",
+      response: "Mon-Fri 9AM-6PM",
     },
   ];
 
@@ -233,7 +233,7 @@ const HelpCenter = () => {
                   {expandedFaq === faq.id && (
                     <motion.div
                       initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: 'auto' }}
+                      animate={{ opacity: 1, height: "auto" }}
                       exit={{ opacity: 0, height: 0 }}
                       className="px-6 pb-4"
                     >

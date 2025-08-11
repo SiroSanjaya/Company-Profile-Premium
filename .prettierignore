@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Build outputs
+build/
+dist/
+
+# Generated files
+*.min.js
+*.min.css
+
+# Config files
+*.config.js
+tailwind.config.js
+postcss.config.js
+
+# Other
+.git/
+.vscode/
+.idea/
+*.log

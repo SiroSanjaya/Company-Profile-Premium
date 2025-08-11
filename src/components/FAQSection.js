@@ -1,6 +1,6 @@
-import React, { useState, useMemo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
+import React, { useState, useMemo } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 import {
   ChevronDown,
   Search,
@@ -9,7 +9,7 @@ import {
   Phone,
   Mail,
   Clock,
-} from 'lucide-react';
+} from "lucide-react";
 
 const FAQSection = () => {
   const [ref, inView] = useInView({
@@ -17,150 +17,150 @@ const FAQSection = () => {
     threshold: 0.1,
   });
 
-  const [searchTerm, setSearchTerm] = useState('');
-  const [activeCategory, setActiveCategory] = useState('all');
+  const [searchTerm, setSearchTerm] = useState("");
+  const [activeCategory, setActiveCategory] = useState("all");
   const [expandedItems, setExpandedItems] = useState(new Set());
 
   const faqData = [
     {
       id: 1,
-      question: 'What makes this template premium?',
+      question: "What makes this template premium?",
       answer:
         "Our premium template includes advanced animations, interactive components, comprehensive documentation, priority support, and regular updates. It's built with modern best practices and optimized for performance.",
-      category: 'general',
-      tags: ['premium', 'features', 'quality'],
+      category: "general",
+      tags: ["premium", "features", "quality"],
     },
     {
       id: 2,
-      question: 'How do I customize the template?',
+      question: "How do I customize the template?",
       answer:
-        'The template is fully customizable through our intuitive configuration system. You can modify colors, fonts, layouts, and components using our built-in theme editor or by editing the source code directly.',
-      category: 'customization',
-      tags: ['customization', 'theming', 'configuration'],
+        "The template is fully customizable through our intuitive configuration system. You can modify colors, fonts, layouts, and components using our built-in theme editor or by editing the source code directly.",
+      category: "customization",
+      tags: ["customization", "theming", "configuration"],
     },
     {
       id: 3,
-      question: 'What browsers are supported?',
+      question: "What browsers are supported?",
       answer:
-        'Our template supports all modern browsers including Chrome, Firefox, Safari, and Edge. We ensure cross-browser compatibility and responsive design for all devices.',
-      category: 'technical',
-      tags: ['browsers', 'compatibility', 'responsive'],
+        "Our template supports all modern browsers including Chrome, Firefox, Safari, and Edge. We ensure cross-browser compatibility and responsive design for all devices.",
+      category: "technical",
+      tags: ["browsers", "compatibility", "responsive"],
     },
     {
       id: 4,
-      question: 'Do you provide documentation?',
+      question: "Do you provide documentation?",
       answer:
-        'Yes! We provide comprehensive documentation including setup guides, component documentation, customization tutorials, and video tutorials to help you get started quickly.',
-      category: 'support',
-      tags: ['documentation', 'guides', 'tutorials'],
+        "Yes! We provide comprehensive documentation including setup guides, component documentation, customization tutorials, and video tutorials to help you get started quickly.",
+      category: "support",
+      tags: ["documentation", "guides", "tutorials"],
     },
     {
       id: 5,
-      question: 'Can I use this for commercial projects?',
+      question: "Can I use this for commercial projects?",
       answer:
-        'Absolutely! Our premium license allows you to use this template for unlimited commercial projects. You can create multiple websites for yourself or your clients.',
-      category: 'licensing',
-      tags: ['commercial', 'license', 'usage'],
+        "Absolutely! Our premium license allows you to use this template for unlimited commercial projects. You can create multiple websites for yourself or your clients.",
+      category: "licensing",
+      tags: ["commercial", "license", "usage"],
     },
     {
       id: 6,
-      question: 'How often do you release updates?',
+      question: "How often do you release updates?",
       answer:
-        'We release regular updates with new features, bug fixes, and performance improvements. Premium users get priority access to all updates and new components.',
-      category: 'updates',
-      tags: ['updates', 'features', 'improvements'],
+        "We release regular updates with new features, bug fixes, and performance improvements. Premium users get priority access to all updates and new components.",
+      category: "updates",
+      tags: ["updates", "features", "improvements"],
     },
     {
       id: 7,
-      question: 'What support options are available?',
+      question: "What support options are available?",
       answer:
-        'Premium users get priority email support, live chat support during business hours, and access to our exclusive community forum. We typically respond within 24 hours.',
-      category: 'support',
-      tags: ['support', 'help', 'assistance'],
+        "Premium users get priority email support, live chat support during business hours, and access to our exclusive community forum. We typically respond within 24 hours.",
+      category: "support",
+      tags: ["support", "help", "assistance"],
     },
     {
       id: 8,
-      question: 'Is the code well-documented?',
+      question: "Is the code well-documented?",
       answer:
-        'Yes! All code is thoroughly documented with inline comments, JSDoc annotations, and clear naming conventions. This makes it easy to understand and modify.',
-      category: 'technical',
-      tags: ['code', 'documentation', 'comments'],
+        "Yes! All code is thoroughly documented with inline comments, JSDoc annotations, and clear naming conventions. This makes it easy to understand and modify.",
+      category: "technical",
+      tags: ["code", "documentation", "comments"],
     },
     {
       id: 9,
-      question: 'Can I integrate with third-party services?',
+      question: "Can I integrate with third-party services?",
       answer:
-        'The template includes built-in integrations for popular services like payment gateways, analytics, and social media. You can also easily add custom integrations.',
-      category: 'integrations',
-      tags: ['integrations', 'services', 'third-party'],
+        "The template includes built-in integrations for popular services like payment gateways, analytics, and social media. You can also easily add custom integrations.",
+      category: "integrations",
+      tags: ["integrations", "services", "third-party"],
     },
     {
       id: 10,
-      question: 'What performance optimizations are included?',
+      question: "What performance optimizations are included?",
       answer:
-        'We include lazy loading, code splitting, image optimization, caching strategies, and other performance best practices to ensure fast loading times.',
-      category: 'technical',
-      tags: ['performance', 'optimization', 'speed'],
+        "We include lazy loading, code splitting, image optimization, caching strategies, and other performance best practices to ensure fast loading times.",
+      category: "technical",
+      tags: ["performance", "optimization", "speed"],
     },
     {
       id: 11,
-      question: 'Do you provide design assets?',
+      question: "Do you provide design assets?",
       answer:
-        'Yes! Premium users get access to all design assets including Figma files, icon sets, color palettes, and typography guidelines.',
-      category: 'design',
-      tags: ['design', 'assets', 'figma'],
+        "Yes! Premium users get access to all design assets including Figma files, icon sets, color palettes, and typography guidelines.",
+      category: "design",
+      tags: ["design", "assets", "figma"],
     },
     {
       id: 12,
-      question: 'Can I resell the template?',
+      question: "Can I resell the template?",
       answer:
-        'Our license allows you to create unlimited projects for yourself or clients, but does not permit reselling the template itself. Please refer to our license terms for details.',
-      category: 'licensing',
-      tags: ['resell', 'license', 'terms'],
+        "Our license allows you to create unlimited projects for yourself or clients, but does not permit reselling the template itself. Please refer to our license terms for details.",
+      category: "licensing",
+      tags: ["resell", "license", "terms"],
     },
   ];
 
   const categories = [
-    { id: 'all', label: 'All Questions', count: faqData.length },
+    { id: "all", label: "All Questions", count: faqData.length },
     {
-      id: 'general',
-      label: 'General',
-      count: faqData.filter(faq => faq.category === 'general').length,
+      id: "general",
+      label: "General",
+      count: faqData.filter(faq => faq.category === "general").length,
     },
     {
-      id: 'technical',
-      label: 'Technical',
-      count: faqData.filter(faq => faq.category === 'technical').length,
+      id: "technical",
+      label: "Technical",
+      count: faqData.filter(faq => faq.category === "technical").length,
     },
     {
-      id: 'support',
-      label: 'Support',
-      count: faqData.filter(faq => faq.category === 'support').length,
+      id: "support",
+      label: "Support",
+      count: faqData.filter(faq => faq.category === "support").length,
     },
     {
-      id: 'customization',
-      label: 'Customization',
-      count: faqData.filter(faq => faq.category === 'customization').length,
+      id: "customization",
+      label: "Customization",
+      count: faqData.filter(faq => faq.category === "customization").length,
     },
     {
-      id: 'licensing',
-      label: 'Licensing',
-      count: faqData.filter(faq => faq.category === 'licensing').length,
+      id: "licensing",
+      label: "Licensing",
+      count: faqData.filter(faq => faq.category === "licensing").length,
     },
     {
-      id: 'updates',
-      label: 'Updates',
-      count: faqData.filter(faq => faq.category === 'updates').length,
+      id: "updates",
+      label: "Updates",
+      count: faqData.filter(faq => faq.category === "updates").length,
     },
     {
-      id: 'integrations',
-      label: 'Integrations',
-      count: faqData.filter(faq => faq.category === 'integrations').length,
+      id: "integrations",
+      label: "Integrations",
+      count: faqData.filter(faq => faq.category === "integrations").length,
     },
     {
-      id: 'design',
-      label: 'Design',
-      count: faqData.filter(faq => faq.category === 'design').length,
+      id: "design",
+      label: "Design",
+      count: faqData.filter(faq => faq.category === "design").length,
     },
   ];
 
@@ -168,7 +168,7 @@ const FAQSection = () => {
     let filtered = faqData;
 
     // Filter by category
-    if (activeCategory !== 'all') {
+    if (activeCategory !== "all") {
       filtered = filtered.filter(faq => faq.category === activeCategory);
     }
 
@@ -222,7 +222,7 @@ const FAQSection = () => {
           ref={ref}
           variants={containerVariants}
           initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
+          animate={inView ? "visible" : "hidden"}
           className="text-center mb-16"
         >
           <motion.div
@@ -250,7 +250,7 @@ const FAQSection = () => {
         <motion.div
           variants={containerVariants}
           initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
+          animate={inView ? "visible" : "hidden"}
           className="max-w-4xl mx-auto mb-12"
         >
           {/* Search Bar */}
@@ -278,8 +278,8 @@ const FAQSection = () => {
                 onClick={() => setActiveCategory(category.id)}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
                   activeCategory === category.id
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
+                    ? "bg-blue-600 text-white"
+                    : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
                 }`}
               >
                 {category.label} ({category.count})
@@ -292,7 +292,7 @@ const FAQSection = () => {
         <motion.div
           variants={containerVariants}
           initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
+          animate={inView ? "visible" : "hidden"}
           className="max-w-4xl mx-auto"
         >
           <AnimatePresence mode="wait">
@@ -354,7 +354,7 @@ const FAQSection = () => {
                       {expandedItems.has(faq.id) && (
                         <motion.div
                           initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: 'auto', opacity: 1 }}
+                          animate={{ height: "auto", opacity: 1 }}
                           exit={{ height: 0, opacity: 0 }}
                           transition={{ duration: 0.3 }}
                           className="overflow-hidden"
@@ -378,7 +378,7 @@ const FAQSection = () => {
         <motion.div
           variants={containerVariants}
           initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
+          animate={inView ? "visible" : "hidden"}
           className="mt-16 text-center"
         >
           <motion.div

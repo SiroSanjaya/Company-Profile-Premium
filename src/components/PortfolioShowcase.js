@@ -1,6 +1,6 @@
-import React, { useState, useMemo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
+import React, { useState, useMemo } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 import {
   ExternalLink,
   Github,
@@ -10,7 +10,7 @@ import {
   Palette,
   Smartphone,
   Globe,
-} from 'lucide-react';
+} from "lucide-react";
 
 const PortfolioShowcase = () => {
   const [ref, inView] = useInView({
@@ -18,98 +18,98 @@ const PortfolioShowcase = () => {
     threshold: 0.1,
   });
 
-  const [activeFilter, setActiveFilter] = useState('all');
+  const [activeFilter, setActiveFilter] = useState("all");
   const [selectedProject, setSelectedProject] = useState(null);
 
   const projects = [
     {
       id: 1,
-      title: 'E-Commerce Platform',
-      category: 'web',
+      title: "E-Commerce Platform",
+      category: "web",
       image:
-        'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop',
+        "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop",
       description:
-        'Modern e-commerce platform with advanced features and seamless user experience.',
-      technologies: ['React', 'Node.js', 'MongoDB', 'Stripe'],
-      liveUrl: '#',
-      githubUrl: '#',
+        "Modern e-commerce platform with advanced features and seamless user experience.",
+      technologies: ["React", "Node.js", "MongoDB", "Stripe"],
+      liveUrl: "#",
+      githubUrl: "#",
       featured: true,
     },
     {
       id: 2,
-      title: 'Mobile Banking App',
-      category: 'mobile',
+      title: "Mobile Banking App",
+      category: "mobile",
       image:
-        'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&h=400&fit=crop',
+        "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&h=400&fit=crop",
       description:
-        'Secure mobile banking application with biometric authentication.',
-      technologies: ['React Native', 'Firebase', 'Redux', 'TypeScript'],
-      liveUrl: '#',
-      githubUrl: '#',
+        "Secure mobile banking application with biometric authentication.",
+      technologies: ["React Native", "Firebase", "Redux", "TypeScript"],
+      liveUrl: "#",
+      githubUrl: "#",
       featured: true,
     },
     {
       id: 3,
-      title: 'AI-Powered Dashboard',
-      category: 'web',
+      title: "AI-Powered Dashboard",
+      category: "web",
       image:
-        'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop',
+        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
       description:
-        'Intelligent dashboard with real-time analytics and predictive insights.',
-      technologies: ['Vue.js', 'Python', 'TensorFlow', 'D3.js'],
-      liveUrl: '#',
-      githubUrl: '#',
+        "Intelligent dashboard with real-time analytics and predictive insights.",
+      technologies: ["Vue.js", "Python", "TensorFlow", "D3.js"],
+      liveUrl: "#",
+      githubUrl: "#",
       featured: false,
     },
     {
       id: 4,
-      title: 'Design System',
-      category: 'design',
+      title: "Design System",
+      category: "design",
       image:
-        'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=400&fit=crop',
+        "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=400&fit=crop",
       description:
-        'Comprehensive design system with reusable components and guidelines.',
-      technologies: ['Figma', 'Storybook', 'CSS-in-JS', 'Design Tokens'],
-      liveUrl: '#',
-      githubUrl: '#',
+        "Comprehensive design system with reusable components and guidelines.",
+      technologies: ["Figma", "Storybook", "CSS-in-JS", "Design Tokens"],
+      liveUrl: "#",
+      githubUrl: "#",
       featured: false,
     },
     {
       id: 5,
-      title: 'IoT Smart Home',
-      category: 'mobile',
+      title: "IoT Smart Home",
+      category: "mobile",
       image:
-        'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop',
-      description: 'Smart home automation system with IoT device management.',
-      technologies: ['Flutter', 'AWS IoT', 'MQTT', 'Dart'],
-      liveUrl: '#',
-      githubUrl: '#',
+        "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop",
+      description: "Smart home automation system with IoT device management.",
+      technologies: ["Flutter", "AWS IoT", "MQTT", "Dart"],
+      liveUrl: "#",
+      githubUrl: "#",
       featured: true,
     },
     {
       id: 6,
-      title: 'Blockchain Explorer',
-      category: 'web',
+      title: "Blockchain Explorer",
+      category: "web",
       image:
-        'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=600&h=400&fit=crop',
+        "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=600&h=400&fit=crop",
       description:
-        'Real-time blockchain transaction explorer with advanced filtering.',
-      technologies: ['Next.js', 'Web3.js', 'Ethereum', 'GraphQL'],
-      liveUrl: '#',
-      githubUrl: '#',
+        "Real-time blockchain transaction explorer with advanced filtering.",
+      technologies: ["Next.js", "Web3.js", "Ethereum", "GraphQL"],
+      liveUrl: "#",
+      githubUrl: "#",
       featured: false,
     },
   ];
 
   const filters = [
-    { id: 'all', label: 'All Projects', icon: Filter },
-    { id: 'web', label: 'Web Apps', icon: Globe },
-    { id: 'mobile', label: 'Mobile Apps', icon: Smartphone },
-    { id: 'design', label: 'Design Systems', icon: Palette },
+    { id: "all", label: "All Projects", icon: Filter },
+    { id: "web", label: "Web Apps", icon: Globe },
+    { id: "mobile", label: "Mobile Apps", icon: Smartphone },
+    { id: "design", label: "Design Systems", icon: Palette },
   ];
 
   const filteredProjects = useMemo(() => {
-    if (activeFilter === 'all') return projects;
+    if (activeFilter === "all") return projects;
     return projects.filter(project => project.category === activeFilter);
   }, [activeFilter]);
 
@@ -142,7 +142,7 @@ const PortfolioShowcase = () => {
           ref={ref}
           variants={containerVariants}
           initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
+          animate={inView ? "visible" : "hidden"}
           className="text-center mb-16"
         >
           <motion.h2
@@ -164,7 +164,7 @@ const PortfolioShowcase = () => {
         <motion.div
           variants={containerVariants}
           initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
+          animate={inView ? "visible" : "hidden"}
           className="flex flex-wrap justify-center gap-4 mb-12"
         >
           {filters.map(filter => {
@@ -178,8 +178,8 @@ const PortfolioShowcase = () => {
                 onClick={() => setActiveFilter(filter.id)}
                 className={`flex items-center px-6 py-3 rounded-full font-medium transition-all ${
                   activeFilter === filter.id
-                    ? 'bg-blue-600 text-white shadow-lg'
-                    : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-gray-700'
+                    ? "bg-blue-600 text-white shadow-lg"
+                    : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-gray-700"
                 }`}
               >
                 <Icon className="w-4 h-4 mr-2" />
@@ -193,7 +193,7 @@ const PortfolioShowcase = () => {
         <motion.div
           variants={containerVariants}
           initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
+          animate={inView ? "visible" : "hidden"}
           className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
           <AnimatePresence mode="wait">

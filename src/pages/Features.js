@@ -1,5 +1,5 @@
-import { motion } from 'framer-motion';
-import { Helmet } from 'react-helmet-async';
+import { motion } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 import {
   Zap,
   Smartphone,
@@ -12,146 +12,146 @@ import {
   Download,
   Eye,
   FileText,
-} from 'lucide-react';
+} from "lucide-react";
 
 const Features = () => {
   const mainFeatures = [
     {
       icon: Zap,
-      title: 'Lightning Fast Performance',
+      title: "Lightning Fast Performance",
       description:
-        'Optimized for speed with modern React practices and efficient rendering',
+        "Optimized for speed with modern React practices and efficient rendering",
       benefits: [
-        'Fast loading times',
-        'Smooth animations',
-        'Optimized bundle size',
+        "Fast loading times",
+        "Smooth animations",
+        "Optimized bundle size",
       ],
-      color: 'bg-yellow-500',
+      color: "bg-yellow-500",
     },
     {
       icon: Smartphone,
-      title: 'Fully Responsive Design',
+      title: "Fully Responsive Design",
       description:
-        'Perfect display on all devices from mobile phones to large desktop screens',
+        "Perfect display on all devices from mobile phones to large desktop screens",
       benefits: [
-        'Mobile-first approach',
-        'Touch-friendly interface',
-        'Cross-device compatibility',
+        "Mobile-first approach",
+        "Touch-friendly interface",
+        "Cross-device compatibility",
       ],
-      color: 'bg-blue-500',
+      color: "bg-blue-500",
     },
     {
       icon: Palette,
-      title: 'Customizable Design',
+      title: "Customizable Design",
       description:
-        'Easy to customize colors, fonts, and layouts to match your brand',
+        "Easy to customize colors, fonts, and layouts to match your brand",
       benefits: [
-        'Tailwind CSS integration',
-        'Modular components',
-        'Flexible theming',
+        "Tailwind CSS integration",
+        "Modular components",
+        "Flexible theming",
       ],
-      color: 'bg-purple-500',
+      color: "bg-purple-500",
     },
     {
       icon: Code,
-      title: 'Clean & Modern Code',
+      title: "Clean & Modern Code",
       description:
-        'Well-structured, maintainable code following React best practices',
+        "Well-structured, maintainable code following React best practices",
       benefits: [
-        'ES6+ syntax',
-        'Component-based architecture',
-        'Easy to extend',
+        "ES6+ syntax",
+        "Component-based architecture",
+        "Easy to extend",
       ],
-      color: 'bg-green-500',
+      color: "bg-green-500",
     },
     {
       icon: Shield,
-      title: 'SEO Optimized',
+      title: "SEO Optimized",
       description:
-        'Built with search engine optimization in mind for better visibility',
-      benefits: ['Semantic HTML', 'Meta tags', 'Fast loading'],
-      color: 'bg-red-500',
+        "Built with search engine optimization in mind for better visibility",
+      benefits: ["Semantic HTML", "Meta tags", "Fast loading"],
+      color: "bg-red-500",
     },
     {
       icon: Globe,
-      title: 'Cross-Browser Compatible',
-      description: 'Works seamlessly across all modern browsers and devices',
+      title: "Cross-Browser Compatible",
+      description: "Works seamlessly across all modern browsers and devices",
       benefits: [
-        'Chrome, Firefox, Safari',
-        'Edge support',
-        'Progressive enhancement',
+        "Chrome, Firefox, Safari",
+        "Edge support",
+        "Progressive enhancement",
       ],
-      color: 'bg-indigo-500',
+      color: "bg-indigo-500",
     },
   ];
 
   const technicalFeatures = [
     {
-      category: 'Frontend Framework',
+      category: "Frontend Framework",
       features: [
-        'React 18 with Hooks',
-        'Functional Components',
-        'Context API for state management',
-        'React Router for navigation',
+        "React 18 with Hooks",
+        "Functional Components",
+        "Context API for state management",
+        "React Router for navigation",
       ],
     },
     {
-      category: 'Styling & UI',
+      category: "Styling & UI",
       features: [
-        'Tailwind CSS framework',
-        'Responsive design system',
-        'Custom animations with Framer Motion',
-        'Modern UI components',
+        "Tailwind CSS framework",
+        "Responsive design system",
+        "Custom animations with Framer Motion",
+        "Modern UI components",
       ],
     },
     {
-      category: 'Development Tools',
+      category: "Development Tools",
       features: [
-        'ESLint for code quality',
-        'Prettier for code formatting',
-        'Hot reload development',
-        'Build optimization',
+        "ESLint for code quality",
+        "Prettier for code formatting",
+        "Hot reload development",
+        "Build optimization",
       ],
     },
     {
-      category: 'Performance',
+      category: "Performance",
       features: [
-        'Code splitting',
-        'Lazy loading',
-        'Optimized images',
-        'Minified production builds',
+        "Code splitting",
+        "Lazy loading",
+        "Optimized images",
+        "Minified production builds",
       ],
     },
   ];
 
   const includedPages = [
     {
-      name: 'Home',
-      description: 'Landing page with hero section and key features',
+      name: "Home",
+      description: "Landing page with hero section and key features",
     },
-    { name: 'About', description: 'Company information and team details' },
+    { name: "About", description: "Company information and team details" },
     {
-      name: 'Services',
-      description: 'Service offerings with detailed descriptions',
+      name: "Services",
+      description: "Service offerings with detailed descriptions",
     },
-    { name: 'Blog', description: 'Blog listing and individual post pages' },
-    { name: 'Contact', description: 'Contact form and company information' },
-    { name: 'Pricing', description: 'Pricing plans and comparison tables' },
+    { name: "Blog", description: "Blog listing and individual post pages" },
+    { name: "Contact", description: "Contact form and company information" },
+    { name: "Pricing", description: "Pricing plans and comparison tables" },
     {
-      name: 'Documentation',
-      description: 'Technical documentation and guides',
+      name: "Documentation",
+      description: "Technical documentation and guides",
     },
-    { name: 'Help Center', description: 'FAQ and support resources' },
-    { name: 'Features', description: 'Detailed feature showcase' },
-    { name: 'API Reference', description: 'API documentation and examples' },
-    { name: 'Status', description: 'System status and uptime information' },
+    { name: "Help Center", description: "FAQ and support resources" },
+    { name: "Features", description: "Detailed feature showcase" },
+    { name: "API Reference", description: "API documentation and examples" },
+    { name: "Status", description: "System status and uptime information" },
   ];
 
   const stats = [
-    { label: 'Components', value: '50+', icon: Code },
-    { label: 'Pages', value: '11', icon: FileText },
-    { label: 'Animations', value: '20+', icon: Zap },
-    { label: 'Icons', value: '100+', icon: Star },
+    { label: "Components", value: "50+", icon: Code },
+    { label: "Pages", value: "11", icon: FileText },
+    { label: "Animations", value: "20+", icon: Zap },
+    { label: "Icons", value: "100+", icon: Star },
   ];
 
   return (

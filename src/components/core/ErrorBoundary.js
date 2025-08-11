@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -12,12 +12,12 @@ class ErrorBoundary extends React.Component {
 
   componentDidCatch(error, info) {
     // eslint-disable-next-line no-console
-    console.error('ErrorBoundary caught an error', error, info);
+    console.error("ErrorBoundary caught an error", error, info);
   }
 
   handleRetry = () => {
     this.setState({ hasError: false });
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       window.location.reload();
     }
   };

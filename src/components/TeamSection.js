@@ -1,6 +1,6 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
+import React from "react";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 import {
   Github,
   Linkedin,
@@ -10,7 +10,7 @@ import {
   Award,
   Users,
   Clock,
-} from 'lucide-react';
+} from "lucide-react";
 
 const TeamSection = () => {
   const [ref, inView] = useInView({
@@ -21,125 +21,125 @@ const TeamSection = () => {
   const teamMembers = [
     {
       id: 1,
-      name: 'Sarah Johnson',
-      role: 'Lead Developer',
+      name: "Sarah Johnson",
+      role: "Lead Developer",
       image:
-        'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=400&fit=crop&crop=face',
-      bio: 'Full-stack developer with 8+ years of experience in React, Node.js, and cloud technologies. Passionate about creating scalable, user-friendly applications.',
-      skills: ['React', 'Node.js', 'TypeScript', 'AWS'],
-      experience: '8+ years',
+        "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=400&fit=crop&crop=face",
+      bio: "Full-stack developer with 8+ years of experience in React, Node.js, and cloud technologies. Passionate about creating scalable, user-friendly applications.",
+      skills: ["React", "Node.js", "TypeScript", "AWS"],
+      experience: "8+ years",
       projects: 50,
       social: {
-        github: '#',
-        linkedin: '#',
-        twitter: '#',
-        website: '#',
-        email: 'sarah@example.com',
+        github: "#",
+        linkedin: "#",
+        twitter: "#",
+        website: "#",
+        email: "sarah@example.com",
       },
       featured: true,
     },
     {
       id: 2,
-      name: 'Michael Chen',
-      role: 'UI/UX Designer',
+      name: "Michael Chen",
+      role: "UI/UX Designer",
       image:
-        'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face',
-      bio: 'Creative designer focused on user experience and interface design. Specializes in creating intuitive, beautiful, and accessible digital experiences.',
-      skills: ['Figma', 'Adobe Creative Suite', 'Prototyping', 'User Research'],
-      experience: '6+ years',
+        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face",
+      bio: "Creative designer focused on user experience and interface design. Specializes in creating intuitive, beautiful, and accessible digital experiences.",
+      skills: ["Figma", "Adobe Creative Suite", "Prototyping", "User Research"],
+      experience: "6+ years",
       projects: 35,
       social: {
-        github: '#',
-        linkedin: '#',
-        twitter: '#',
-        website: '#',
-        email: 'michael@example.com',
+        github: "#",
+        linkedin: "#",
+        twitter: "#",
+        website: "#",
+        email: "michael@example.com",
       },
       featured: false,
     },
     {
       id: 3,
-      name: 'Emily Rodriguez',
-      role: 'Product Manager',
+      name: "Emily Rodriguez",
+      role: "Product Manager",
       image:
-        'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&crop=face',
-      bio: 'Strategic product manager with expertise in agile methodologies and user-centered design. Drives product vision and ensures successful delivery.',
-      skills: ['Agile', 'Product Strategy', 'User Research', 'Analytics'],
-      experience: '7+ years',
+        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&crop=face",
+      bio: "Strategic product manager with expertise in agile methodologies and user-centered design. Drives product vision and ensures successful delivery.",
+      skills: ["Agile", "Product Strategy", "User Research", "Analytics"],
+      experience: "7+ years",
       projects: 25,
       social: {
-        github: '#',
-        linkedin: '#',
-        twitter: '#',
-        website: '#',
-        email: 'emily@example.com',
+        github: "#",
+        linkedin: "#",
+        twitter: "#",
+        website: "#",
+        email: "emily@example.com",
       },
       featured: true,
     },
     {
       id: 4,
-      name: 'David Kim',
-      role: 'DevOps Engineer',
+      name: "David Kim",
+      role: "DevOps Engineer",
       image:
-        'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face',
-      bio: 'DevOps specialist with deep knowledge of cloud infrastructure, CI/CD pipelines, and system architecture. Ensures reliable and scalable deployments.',
-      skills: ['Docker', 'Kubernetes', 'AWS', 'Jenkins'],
-      experience: '5+ years',
+        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
+      bio: "DevOps specialist with deep knowledge of cloud infrastructure, CI/CD pipelines, and system architecture. Ensures reliable and scalable deployments.",
+      skills: ["Docker", "Kubernetes", "AWS", "Jenkins"],
+      experience: "5+ years",
       projects: 40,
       social: {
-        github: '#',
-        linkedin: '#',
-        twitter: '#',
-        website: '#',
-        email: 'david@example.com',
+        github: "#",
+        linkedin: "#",
+        twitter: "#",
+        website: "#",
+        email: "david@example.com",
       },
       featured: false,
     },
     {
       id: 5,
-      name: 'Lisa Thompson',
-      role: 'Frontend Developer',
+      name: "Lisa Thompson",
+      role: "Frontend Developer",
       image:
-        'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=400&fit=crop&crop=face',
-      bio: 'Frontend specialist with expertise in modern JavaScript frameworks and performance optimization. Creates fast, responsive, and accessible web applications.',
-      skills: ['React', 'Vue.js', 'CSS3', 'Performance'],
-      experience: '4+ years',
+        "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=400&fit=crop&crop=face",
+      bio: "Frontend specialist with expertise in modern JavaScript frameworks and performance optimization. Creates fast, responsive, and accessible web applications.",
+      skills: ["React", "Vue.js", "CSS3", "Performance"],
+      experience: "4+ years",
       projects: 30,
       social: {
-        github: '#',
-        linkedin: '#',
-        twitter: '#',
-        website: '#',
-        email: 'lisa@example.com',
+        github: "#",
+        linkedin: "#",
+        twitter: "#",
+        website: "#",
+        email: "lisa@example.com",
       },
       featured: false,
     },
     {
       id: 6,
-      name: 'Alex Morgan',
-      role: 'Backend Developer',
+      name: "Alex Morgan",
+      role: "Backend Developer",
       image:
-        'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&crop=face',
-      bio: 'Backend developer specializing in scalable APIs and database design. Expert in Python, Java, and microservices architecture.',
-      skills: ['Python', 'Java', 'PostgreSQL', 'Microservices'],
-      experience: '6+ years',
+        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&crop=face",
+      bio: "Backend developer specializing in scalable APIs and database design. Expert in Python, Java, and microservices architecture.",
+      skills: ["Python", "Java", "PostgreSQL", "Microservices"],
+      experience: "6+ years",
       projects: 45,
       social: {
-        github: '#',
-        linkedin: '#',
-        twitter: '#',
-        website: '#',
-        email: 'alex@example.com',
+        github: "#",
+        linkedin: "#",
+        twitter: "#",
+        website: "#",
+        email: "alex@example.com",
       },
       featured: true,
     },
   ];
 
   const stats = [
-    { icon: Award, label: 'Awards Won', value: '15+' },
-    { icon: Users, label: 'Happy Clients', value: '200+' },
-    { icon: Clock, label: 'Years Experience', value: '8+' },
-    { icon: Globe, label: 'Countries Served', value: '25+' },
+    { icon: Award, label: "Awards Won", value: "15+" },
+    { icon: Users, label: "Happy Clients", value: "200+" },
+    { icon: Clock, label: "Years Experience", value: "8+" },
+    { icon: Globe, label: "Countries Served", value: "25+" },
   ];
 
   const containerVariants = {
@@ -171,7 +171,7 @@ const TeamSection = () => {
           ref={ref}
           variants={containerVariants}
           initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
+          animate={inView ? "visible" : "hidden"}
           className="text-center mb-16"
         >
           <motion.h2
@@ -194,7 +194,7 @@ const TeamSection = () => {
         <motion.div
           variants={containerVariants}
           initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
+          animate={inView ? "visible" : "hidden"}
           className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16"
         >
           {stats.map((stat, index) => {
@@ -223,7 +223,7 @@ const TeamSection = () => {
         <motion.div
           variants={containerVariants}
           initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
+          animate={inView ? "visible" : "hidden"}
           className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
           {teamMembers.map(member => (
@@ -247,13 +247,13 @@ const TeamSection = () => {
                 <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 flex items-center justify-center">
                   <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex gap-3">
                     {Object.entries(member.social).map(([platform, url]) => {
-                      if (platform === 'email') return null;
+                      if (platform === "email") return null;
                       const Icon =
-                        platform === 'github'
+                        platform === "github"
                           ? Github
-                          : platform === 'linkedin'
+                          : platform === "linkedin"
                             ? Linkedin
-                            : platform === 'twitter'
+                            : platform === "twitter"
                               ? Twitter
                               : Globe;
                       return (
@@ -343,7 +343,7 @@ const TeamSection = () => {
         <motion.div
           variants={containerVariants}
           initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
+          animate={inView ? "visible" : "hidden"}
           className="mt-16 text-center"
         >
           <motion.div

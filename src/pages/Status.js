@@ -1,68 +1,68 @@
-import { motion } from 'framer-motion';
-import { CheckCircle, XCircle, AlertCircle, Clock } from 'lucide-react';
-import { Helmet } from 'react-helmet-async';
+import { motion } from "framer-motion";
+import { CheckCircle, XCircle, AlertCircle, Clock } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 
 const Status = () => {
   const services = [
     {
-      name: 'API Gateway',
-      status: 'operational',
-      uptime: '99.99%',
-      responseTime: '45ms',
-      lastIncident: '2 months ago',
-      description: 'Core API routing and authentication service',
+      name: "API Gateway",
+      status: "operational",
+      uptime: "99.99%",
+      responseTime: "45ms",
+      lastIncident: "2 months ago",
+      description: "Core API routing and authentication service",
     },
     {
-      name: 'Database Cluster',
-      status: 'operational',
-      uptime: '99.95%',
-      responseTime: '12ms',
-      lastIncident: '1 month ago',
-      description: 'Primary data storage and replication',
+      name: "Database Cluster",
+      status: "operational",
+      uptime: "99.95%",
+      responseTime: "12ms",
+      lastIncident: "1 month ago",
+      description: "Primary data storage and replication",
     },
     {
-      name: 'CDN Network',
-      status: 'operational',
-      uptime: '99.98%',
-      responseTime: '8ms',
-      lastIncident: '3 weeks ago',
-      description: 'Global content delivery network',
+      name: "CDN Network",
+      status: "operational",
+      uptime: "99.98%",
+      responseTime: "8ms",
+      lastIncident: "3 weeks ago",
+      description: "Global content delivery network",
     },
     {
-      name: 'Email Service',
-      status: 'degraded',
-      uptime: '98.5%',
-      responseTime: '120ms',
-      lastIncident: '2 hours ago',
-      description: 'Transactional email delivery system',
+      name: "Email Service",
+      status: "degraded",
+      uptime: "98.5%",
+      responseTime: "120ms",
+      lastIncident: "2 hours ago",
+      description: "Transactional email delivery system",
     },
     {
-      name: 'File Storage',
-      status: 'operational',
-      uptime: '99.92%',
-      responseTime: '25ms',
-      lastIncident: '1 week ago',
-      description: 'Cloud file storage and management',
+      name: "File Storage",
+      status: "operational",
+      uptime: "99.92%",
+      responseTime: "25ms",
+      lastIncident: "1 week ago",
+      description: "Cloud file storage and management",
     },
     {
-      name: 'Monitoring System',
-      status: 'operational',
-      uptime: '99.99%',
-      responseTime: '5ms',
-      lastIncident: 'Never',
-      description: 'System monitoring and alerting',
+      name: "Monitoring System",
+      status: "operational",
+      uptime: "99.99%",
+      responseTime: "5ms",
+      lastIncident: "Never",
+      description: "System monitoring and alerting",
     },
   ];
 
   const getStatusIcon = status => {
     switch (status) {
-      case 'operational':
+      case "operational":
         return <CheckCircle className="w-5 h-5 text-green-500" />;
-      case 'degraded':
+      case "degraded":
         return <AlertCircle className="w-5 h-5 text-yellow-500" />;
-      case 'outage':
+      case "outage":
         return <XCircle className="w-5 h-5 text-red-500" />;
-      case 'maintenance':
+      case "maintenance":
         return <Clock className="w-5 h-5 text-blue-500" />;
       default:
         return <AlertCircle className="w-5 h-5 text-gray-500" />;
@@ -71,26 +71,26 @@ const Status = () => {
 
   const getStatusColor = status => {
     switch (status) {
-      case 'operational':
-        return 'bg-green-100 text-green-800 border-green-200';
-      case 'degraded':
-        return 'bg-yellow-100 text-yellow-800 border-yellow-200';
-      case 'outage':
-        return 'bg-red-100 text-red-800 border-red-200';
-      case 'maintenance':
-        return 'bg-blue-100 text-blue-800 border-blue-200';
+      case "operational":
+        return "bg-green-100 text-green-800 border-green-200";
+      case "degraded":
+        return "bg-yellow-100 text-yellow-800 border-yellow-200";
+      case "outage":
+        return "bg-red-100 text-red-800 border-red-200";
+      case "maintenance":
+        return "bg-blue-100 text-blue-800 border-blue-200";
       default:
-        return 'bg-gray-100 text-gray-800 border-gray-200';
+        return "bg-gray-100 text-gray-800 border-gray-200";
     }
   };
 
   const overallStatus = services.every(
-    service => service.status === 'operational'
+    service => service.status === "operational"
   )
-    ? 'operational'
-    : services.some(service => service.status === 'outage')
-      ? 'outage'
-      : 'degraded';
+    ? "operational"
+    : services.some(service => service.status === "outage")
+      ? "outage"
+      : "degraded";
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-12">

@@ -1,12 +1,12 @@
-import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
-import { motion } from 'framer-motion';
-import { Copy, Check, Search } from 'lucide-react';
+import { useState } from "react";
+import { Helmet } from "react-helmet-async";
+import { motion } from "framer-motion";
+import { Copy, Check, Search } from "lucide-react";
 
 const ApiReference = () => {
   const [copiedEndpoint, setCopiedEndpoint] = useState(null);
-  const [activeTab, setActiveTab] = useState('authentication');
-  const [searchQuery, setSearchQuery] = useState('');
+  const [activeTab, setActiveTab] = useState("authentication");
+  const [searchQuery, setSearchQuery] = useState("");
 
   const copyToClipboard = (text, endpoint) => {
     navigator.clipboard.writeText(text);
@@ -16,27 +16,27 @@ const ApiReference = () => {
 
   const apiEndpoints = [
     {
-      method: 'GET',
-      endpoint: '/api/users',
-      description: 'Retrieve all users',
+      method: "GET",
+      endpoint: "/api/users",
+      description: "Retrieve all users",
       parameters: [
         {
-          name: 'page',
-          type: 'integer',
+          name: "page",
+          type: "integer",
           required: false,
-          description: 'Page number for pagination',
+          description: "Page number for pagination",
         },
         {
-          name: 'limit',
-          type: 'integer',
+          name: "limit",
+          type: "integer",
           required: false,
-          description: 'Number of items per page',
+          description: "Number of items per page",
         },
         {
-          name: 'search',
-          type: 'string',
+          name: "search",
+          type: "string",
           required: false,
-          description: 'Search term for filtering users',
+          description: "Search term for filtering users",
         },
       ],
       response: {
@@ -44,10 +44,10 @@ const ApiReference = () => {
         data: [
           {
             id: 1,
-            name: 'John Doe',
-            email: 'john@example.com',
-            role: 'user',
-            createdAt: '2024-01-15T10:30:00Z',
+            name: "John Doe",
+            email: "john@example.com",
+            role: "user",
+            createdAt: "2024-01-15T10:30:00Z",
           },
         ],
         pagination: {
@@ -59,97 +59,97 @@ const ApiReference = () => {
       },
     },
     {
-      method: 'POST',
-      endpoint: '/api/users',
-      description: 'Create a new user',
+      method: "POST",
+      endpoint: "/api/users",
+      description: "Create a new user",
       parameters: [
         {
-          name: 'name',
-          type: 'string',
+          name: "name",
+          type: "string",
           required: true,
-          description: 'User full name',
+          description: "User full name",
         },
         {
-          name: 'email',
-          type: 'string',
+          name: "email",
+          type: "string",
           required: true,
-          description: 'User email address',
+          description: "User email address",
         },
         {
-          name: 'password',
-          type: 'string',
+          name: "password",
+          type: "string",
           required: true,
-          description: 'User password',
+          description: "User password",
         },
         {
-          name: 'role',
-          type: 'string',
+          name: "role",
+          type: "string",
           required: false,
-          description: 'User role (default: user)',
+          description: "User role (default: user)",
         },
       ],
       response: {
         success: true,
         data: {
           id: 123,
-          name: 'Jane Smith',
-          email: 'jane@example.com',
-          role: 'user',
-          createdAt: '2024-01-15T10:30:00Z',
+          name: "Jane Smith",
+          email: "jane@example.com",
+          role: "user",
+          createdAt: "2024-01-15T10:30:00Z",
         },
       },
     },
     {
-      method: 'PUT',
-      endpoint: '/api/users/:id',
-      description: 'Update user information',
+      method: "PUT",
+      endpoint: "/api/users/:id",
+      description: "Update user information",
       parameters: [
-        { name: 'id', type: 'integer', required: true, description: 'User ID' },
+        { name: "id", type: "integer", required: true, description: "User ID" },
         {
-          name: 'name',
-          type: 'string',
+          name: "name",
+          type: "string",
           required: false,
-          description: 'User full name',
+          description: "User full name",
         },
         {
-          name: 'email',
-          type: 'string',
+          name: "email",
+          type: "string",
           required: false,
-          description: 'User email address',
+          description: "User email address",
         },
         {
-          name: 'role',
-          type: 'string',
+          name: "role",
+          type: "string",
           required: false,
-          description: 'User role',
+          description: "User role",
         },
       ],
       response: {
         success: true,
         data: {
           id: 123,
-          name: 'Jane Smith Updated',
-          email: 'jane.updated@example.com',
-          role: 'admin',
-          updatedAt: '2024-01-15T11:30:00Z',
+          name: "Jane Smith Updated",
+          email: "jane.updated@example.com",
+          role: "admin",
+          updatedAt: "2024-01-15T11:30:00Z",
         },
       },
     },
     {
-      method: 'DELETE',
-      endpoint: '/api/users/:id',
-      description: 'Delete a user',
+      method: "DELETE",
+      endpoint: "/api/users/:id",
+      description: "Delete a user",
       parameters: [
         {
-          name: 'id',
-          type: 'integer',
+          name: "id",
+          type: "integer",
           required: true,
-          description: 'User ID to delete',
+          description: "User ID to delete",
         },
       ],
       response: {
         success: true,
-        message: 'User deleted successfully',
+        message: "User deleted successfully",
       },
     },
   ];
@@ -200,37 +200,37 @@ curl_close($ch);
   const errorCodes = [
     {
       code: 400,
-      name: 'Bad Request',
+      name: "Bad Request",
       description:
-        'The request could not be understood or contained invalid parameters',
+        "The request could not be understood or contained invalid parameters",
     },
     {
       code: 401,
-      name: 'Unauthorized',
+      name: "Unauthorized",
       description:
-        'Authentication is required and has failed or has not been provided',
+        "Authentication is required and has failed or has not been provided",
     },
     {
       code: 403,
-      name: 'Forbidden',
+      name: "Forbidden",
       description:
-        'The server understood the request but refuses to authorize it',
+        "The server understood the request but refuses to authorize it",
     },
     {
       code: 404,
-      name: 'Not Found',
-      description: 'The requested resource could not be found',
+      name: "Not Found",
+      description: "The requested resource could not be found",
     },
     {
       code: 429,
-      name: 'Too Many Requests',
+      name: "Too Many Requests",
       description:
-        'The user has sent too many requests in a given amount of time',
+        "The user has sent too many requests in a given amount of time",
     },
     {
       code: 500,
-      name: 'Internal Server Error',
-      description: 'An error occurred on the server',
+      name: "Internal Server Error",
+      description: "An error occurred on the server",
     },
   ];
 
@@ -328,15 +328,15 @@ curl_close($ch);
                   Quick Navigation
                 </h3>
                 <nav className="space-y-2">
-                  {['authentication', 'endpoints', 'examples', 'errors'].map(
+                  {["authentication", "endpoints", "examples", "errors"].map(
                     tab => (
                       <button
                         key={tab}
                         onClick={() => setActiveTab(tab)}
                         className={`w-full text-left px-3 py-2 rounded-md text-sm transition-colors ${
                           activeTab === tab
-                            ? 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300'
-                            : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'
+                            ? "bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300"
+                            : "text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700"
                         }`}
                       >
                         {tab.charAt(0).toUpperCase() + tab.slice(1)}
@@ -350,7 +350,7 @@ curl_close($ch);
             {/* Main Content */}
             <div className="lg:col-span-3">
               {/* Authentication */}
-              {activeTab === 'authentication' && (
+              {activeTab === "authentication" && (
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -372,13 +372,13 @@ curl_close($ch);
                       <button
                         onClick={() =>
                           copyToClipboard(
-                            'Authorization: Bearer YOUR_API_KEY',
-                            'auth'
+                            "Authorization: Bearer YOUR_API_KEY",
+                            "auth"
                           )
                         }
                         className="text-gray-400 hover:text-white"
                       >
-                        {copiedEndpoint === 'auth' ? (
+                        {copiedEndpoint === "auth" ? (
                           <Check className="w-4 h-4" />
                         ) : (
                           <Copy className="w-4 h-4" />
@@ -418,7 +418,7 @@ curl_close($ch);
               )}
 
               {/* Endpoints */}
-              {activeTab === 'endpoints' && (
+              {activeTab === "endpoints" && (
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -433,13 +433,13 @@ curl_close($ch);
                         <div className="flex items-center space-x-3">
                           <span
                             className={`px-3 py-1 rounded-full text-sm font-semibold ${
-                              endpoint.method === 'GET'
-                                ? 'bg-green-100 text-green-800'
-                                : endpoint.method === 'POST'
-                                  ? 'bg-blue-100 text-blue-800'
-                                  : endpoint.method === 'PUT'
-                                    ? 'bg-yellow-100 text-yellow-800'
-                                    : 'bg-red-100 text-red-800'
+                              endpoint.method === "GET"
+                                ? "bg-green-100 text-green-800"
+                                : endpoint.method === "POST"
+                                  ? "bg-blue-100 text-blue-800"
+                                  : endpoint.method === "PUT"
+                                    ? "bg-yellow-100 text-yellow-800"
+                                    : "bg-red-100 text-red-800"
                             }`}
                           >
                             {endpoint.method}
@@ -510,11 +510,11 @@ curl_close($ch);
                                         <span
                                           className={`px-2 py-1 rounded-full text-xs ${
                                             param.required
-                                              ? 'bg-red-100 text-red-800'
-                                              : 'bg-gray-100 text-gray-800'
+                                              ? "bg-red-100 text-red-800"
+                                              : "bg-gray-100 text-gray-800"
                                           }`}
                                         >
-                                          {param.required ? 'Yes' : 'No'}
+                                          {param.required ? "Yes" : "No"}
                                         </span>
                                       </td>
                                       <td className="px-4 py-2 text-sm text-gray-600">
@@ -567,7 +567,7 @@ curl_close($ch);
               )}
 
               {/* Code Examples */}
-              {activeTab === 'examples' && (
+              {activeTab === "examples" && (
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -610,7 +610,7 @@ curl_close($ch);
               )}
 
               {/* Error Codes */}
-              {activeTab === 'errors' && (
+              {activeTab === "errors" && (
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -630,10 +630,10 @@ curl_close($ch);
                           <span
                             className={`px-3 py-1 rounded-full text-sm font-semibold ${
                               error.code >= 500
-                                ? 'bg-red-100 text-red-800'
+                                ? "bg-red-100 text-red-800"
                                 : error.code >= 400
-                                  ? 'bg-yellow-100 text-yellow-800'
-                                  : 'bg-gray-100 text-gray-800'
+                                  ? "bg-yellow-100 text-yellow-800"
+                                  : "bg-gray-100 text-gray-800"
                             }`}
                           >
                             {error.code}

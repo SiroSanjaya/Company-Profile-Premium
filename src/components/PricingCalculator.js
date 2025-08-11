@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Calculator,
   Users,
@@ -7,8 +7,8 @@ import {
   Shield,
   CheckCircle,
   XCircle,
-} from 'lucide-react';
-import { useInView } from 'react-intersection-observer';
+} from "lucide-react";
+import { useInView } from "react-intersection-observer";
 
 const PricingCalculator = () => {
   const [ref, inView] = useInView({
@@ -19,25 +19,25 @@ const PricingCalculator = () => {
   const [formData, setFormData] = useState({
     users: 10,
     features: [],
-    plan: 'basic',
-    billing: 'monthly',
+    plan: "basic",
+    billing: "monthly",
   });
 
   const [totalPrice, setTotalPrice] = useState(0);
 
   const plans = {
-    basic: { price: 29, name: 'Basic' },
-    pro: { price: 79, name: 'Professional' },
-    enterprise: { price: 199, name: 'Enterprise' },
+    basic: { price: 29, name: "Basic" },
+    pro: { price: 79, name: "Professional" },
+    enterprise: { price: 199, name: "Enterprise" },
   };
 
   const features = [
-    { id: 'analytics', name: 'Advanced Analytics', price: 15 },
-    { id: 'api', name: 'API Access', price: 25 },
-    { id: 'support', name: 'Priority Support', price: 20 },
-    { id: 'custom', name: 'Custom Branding', price: 30 },
-    { id: 'integrations', name: 'Third-party Integrations', price: 35 },
-    { id: 'backup', name: 'Automated Backups', price: 10 },
+    { id: "analytics", name: "Advanced Analytics", price: 15 },
+    { id: "api", name: "API Access", price: 25 },
+    { id: "support", name: "Priority Support", price: 20 },
+    { id: "custom", name: "Custom Branding", price: 30 },
+    { id: "integrations", name: "Third-party Integrations", price: 35 },
+    { id: "backup", name: "Automated Backups", price: 10 },
   ];
 
   useEffect(() => {
@@ -54,7 +54,7 @@ const PricingCalculator = () => {
     const userMultiplier = Math.ceil(formData.users / 10);
     let total = (basePrice + featurePrice) * userMultiplier;
 
-    if (formData.billing === 'yearly') {
+    if (formData.billing === "yearly") {
       total = total * 10; // 2 months free
     }
 
@@ -94,7 +94,7 @@ const PricingCalculator = () => {
           ref={ref}
           variants={containerVariants}
           initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
+          animate={inView ? "visible" : "hidden"}
           className="text-center mb-16"
         >
           <motion.h2
@@ -117,7 +117,7 @@ const PricingCalculator = () => {
           <motion.div
             variants={containerVariants}
             initial="hidden"
-            animate={inView ? 'visible' : 'hidden'}
+            animate={inView ? "visible" : "hidden"}
             className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8"
           >
             <div className="flex items-center mb-6">
@@ -143,8 +143,8 @@ const PricingCalculator = () => {
                     }
                     className={`p-4 rounded-lg border-2 transition-all ${
                       formData.plan === key
-                        ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
-                        : 'border-gray-200 dark:border-gray-600 hover:border-blue-300'
+                        ? "border-blue-500 bg-blue-50 dark:bg-blue-900/20"
+                        : "border-gray-200 dark:border-gray-600 hover:border-blue-300"
                     }`}
                   >
                     <div className="text-center">
@@ -192,24 +192,24 @@ const PricingCalculator = () => {
               <div className="flex bg-gray-100 dark:bg-gray-700 rounded-lg p-1">
                 <button
                   onClick={() =>
-                    setFormData(prev => ({ ...prev, billing: 'monthly' }))
+                    setFormData(prev => ({ ...prev, billing: "monthly" }))
                   }
                   className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-all ${
-                    formData.billing === 'monthly'
-                      ? 'bg-white dark:bg-gray-600 text-gray-900 dark:text-white shadow-sm'
-                      : 'text-gray-600 dark:text-gray-400'
+                    formData.billing === "monthly"
+                      ? "bg-white dark:bg-gray-600 text-gray-900 dark:text-white shadow-sm"
+                      : "text-gray-600 dark:text-gray-400"
                   }`}
                 >
                   Monthly
                 </button>
                 <button
                   onClick={() =>
-                    setFormData(prev => ({ ...prev, billing: 'yearly' }))
+                    setFormData(prev => ({ ...prev, billing: "yearly" }))
                   }
                   className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-all ${
-                    formData.billing === 'yearly'
-                      ? 'bg-white dark:bg-gray-600 text-gray-900 dark:text-white shadow-sm'
-                      : 'text-gray-600 dark:text-gray-400'
+                    formData.billing === "yearly"
+                      ? "bg-white dark:bg-gray-600 text-gray-900 dark:text-white shadow-sm"
+                      : "text-gray-600 dark:text-gray-400"
                   }`}
                 >
                   Yearly (Save 20%)
@@ -257,7 +257,7 @@ const PricingCalculator = () => {
           <motion.div
             variants={containerVariants}
             initial="hidden"
-            animate={inView ? 'visible' : 'hidden'}
+            animate={inView ? "visible" : "hidden"}
             className="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-2xl shadow-xl p-8 text-white"
           >
             <div className="text-center">
@@ -271,7 +271,7 @@ const PricingCalculator = () => {
                 variants={itemVariants}
                 className="text-xl mb-8 opacity-90"
               >
-                per {formData.billing === 'yearly' ? 'year' : 'month'}
+                per {formData.billing === "yearly" ? "year" : "month"}
               </motion.div>
 
               <motion.div variants={itemVariants} className="space-y-4 mb-8">
@@ -297,7 +297,7 @@ const PricingCalculator = () => {
                     <span>+${(formData.users - 10) * 2}</span>
                   </div>
                 )}
-                {formData.billing === 'yearly' && (
+                {formData.billing === "yearly" && (
                   <div className="flex items-center justify-between text-green-300">
                     <span>Yearly Discount (20%)</span>
                     <span>-${Math.round(totalPrice * 0.2)}</span>

@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { useForm } from 'react-hook-form';
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { useForm } from "react-hook-form";
 import {
   Mail,
   Phone,
@@ -13,8 +13,8 @@ import {
   MessageSquare,
   Building,
   Globe,
-} from 'lucide-react';
-import toast from 'react-hot-toast';
+} from "lucide-react";
+import toast from "react-hot-toast";
 
 const AdvancedContactForm = () => {
   const [ref, inView] = useInView({
@@ -39,8 +39,8 @@ const AdvancedContactForm = () => {
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 2000));
 
-    console.log('Form data:', data);
-    toast.success('Thank you! Your message has been sent successfully.');
+    console.log("Form data:", data);
+    toast.success("Thank you! Your message has been sent successfully.");
     setSubmitted(true);
     setIsSubmitting(false);
     reset();
@@ -69,21 +69,21 @@ const AdvancedContactForm = () => {
   const contactInfo = [
     {
       icon: Mail,
-      title: 'Email Us',
-      details: 'hello@example.com',
+      title: "Email Us",
+      details: "hello@example.com",
       description: "We'll respond within 24 hours",
     },
     {
       icon: Phone,
-      title: 'Call Us',
-      details: '+1 (555) 123-4567',
-      description: 'Mon-Fri from 8am to 6pm',
+      title: "Call Us",
+      details: "+1 (555) 123-4567",
+      description: "Mon-Fri from 8am to 6pm",
     },
     {
       icon: MapPin,
-      title: 'Visit Us',
-      details: '123 Business Ave, Suite 100',
-      description: 'San Francisco, CA 94105',
+      title: "Visit Us",
+      details: "123 Business Ave, Suite 100",
+      description: "San Francisco, CA 94105",
     },
   ];
 
@@ -94,7 +94,7 @@ const AdvancedContactForm = () => {
           ref={ref}
           variants={containerVariants}
           initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
+          animate={inView ? "visible" : "hidden"}
           className="text-center mb-16"
         >
           <motion.h2
@@ -117,7 +117,7 @@ const AdvancedContactForm = () => {
           <motion.div
             variants={containerVariants}
             initial="hidden"
-            animate={inView ? 'visible' : 'hidden'}
+            animate={inView ? "visible" : "hidden"}
             className="space-y-8"
           >
             <motion.div variants={itemVariants}>
@@ -169,10 +169,10 @@ const AdvancedContactForm = () => {
               </h4>
               <ul className="space-y-3">
                 {[
-                  '24/7 Customer Support',
-                  'Free Consultation',
-                  'Flexible Payment Options',
-                  '100% Satisfaction Guarantee',
+                  "24/7 Customer Support",
+                  "Free Consultation",
+                  "Flexible Payment Options",
+                  "100% Satisfaction Guarantee",
                 ].map((item, index) => (
                   <motion.li
                     key={index}
@@ -193,7 +193,7 @@ const AdvancedContactForm = () => {
           <motion.div
             variants={containerVariants}
             initial="hidden"
-            animate={inView ? 'visible' : 'hidden'}
+            animate={inView ? "visible" : "hidden"}
             className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 border border-gray-200 dark:border-gray-700"
           >
             <AnimatePresence mode="wait">
@@ -231,17 +231,17 @@ const AdvancedContactForm = () => {
                       <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
                       <input
                         type="text"
-                        {...register('name', {
-                          required: 'Name is required',
+                        {...register("name", {
+                          required: "Name is required",
                           minLength: {
                             value: 2,
-                            message: 'Name must be at least 2 characters',
+                            message: "Name must be at least 2 characters",
                           },
                         })}
                         className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
                           errors.name
-                            ? 'border-red-500 bg-red-50 dark:bg-red-900/20'
-                            : 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700'
+                            ? "border-red-500 bg-red-50 dark:bg-red-900/20"
+                            : "border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700"
                         } text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400`}
                         placeholder="Enter your full name"
                       />
@@ -266,17 +266,17 @@ const AdvancedContactForm = () => {
                       <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
                       <input
                         type="email"
-                        {...register('email', {
-                          required: 'Email is required',
+                        {...register("email", {
+                          required: "Email is required",
                           pattern: {
                             value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                            message: 'Please enter a valid email address',
+                            message: "Please enter a valid email address",
                           },
                         })}
                         className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
                           errors.email
-                            ? 'border-red-500 bg-red-50 dark:bg-red-900/20'
-                            : 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700'
+                            ? "border-red-500 bg-red-50 dark:bg-red-900/20"
+                            : "border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700"
                         } text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400`}
                         placeholder="Enter your email address"
                       />
@@ -301,7 +301,7 @@ const AdvancedContactForm = () => {
                       <Building className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
                       <input
                         type="text"
-                        {...register('company')}
+                        {...register("company")}
                         className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         placeholder="Enter your company name"
                       />
@@ -315,7 +315,7 @@ const AdvancedContactForm = () => {
                     <div className="relative">
                       <Globe className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
                       <select
-                        {...register('projectType')}
+                        {...register("projectType")}
                         className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       >
                         <option value="">Select project type</option>
@@ -335,18 +335,18 @@ const AdvancedContactForm = () => {
                     <div className="relative">
                       <MessageSquare className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
                       <textarea
-                        {...register('message', {
-                          required: 'Message is required',
+                        {...register("message", {
+                          required: "Message is required",
                           minLength: {
                             value: 10,
-                            message: 'Message must be at least 10 characters',
+                            message: "Message must be at least 10 characters",
                           },
                         })}
                         rows={4}
                         className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
                           errors.message
-                            ? 'border-red-500 bg-red-50 dark:bg-red-900/20'
-                            : 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700'
+                            ? "border-red-500 bg-red-50 dark:bg-red-900/20"
+                            : "border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700"
                         } text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400`}
                         placeholder="Tell us about your project..."
                       />

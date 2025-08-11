@@ -1,108 +1,108 @@
-import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
-import { motion } from 'framer-motion';
-import { Calendar, Clock, User, ArrowRight } from 'lucide-react';
+import { useState } from "react";
+import { Helmet } from "react-helmet-async";
+import { motion } from "framer-motion";
+import { Calendar, Clock, User, ArrowRight } from "lucide-react";
 
 const Blog = () => {
-  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [selectedCategory, setSelectedCategory] = useState("All");
   const [visiblePosts, setVisiblePosts] = useState(6);
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
   const [isSubscribed, setIsSubscribed] = useState(false);
 
   const blogPosts = [
     {
       id: 1,
-      title: '10 Essential React.js Best Practices for 2024',
+      title: "10 Essential React.js Best Practices for 2024",
       excerpt:
-        'Learn the most important React.js best practices that will help you write cleaner, more maintainable code and build better applications.',
+        "Learn the most important React.js best practices that will help you write cleaner, more maintainable code and build better applications.",
       image:
-        'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop',
-      author: 'Sarah Johnson',
-      date: 'March 15, 2024',
-      readTime: '5 min read',
-      category: 'Development',
-      content: 'Full article content would go here...',
+        "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop",
+      author: "Sarah Johnson",
+      date: "March 15, 2024",
+      readTime: "5 min read",
+      category: "Development",
+      content: "Full article content would go here...",
     },
     {
       id: 2,
-      title: 'How to Optimize Your React App Performance',
+      title: "How to Optimize Your React App Performance",
       excerpt:
-        'Discover proven techniques to improve your React application performance and provide a better user experience.',
+        "Discover proven techniques to improve your React application performance and provide a better user experience.",
       image:
-        'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&h=400&fit=crop',
-      author: 'Michael Chen',
-      date: 'March 12, 2024',
-      readTime: '8 min read',
-      category: 'Performance',
-      content: 'Full article content would go here...',
+        "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&h=400&fit=crop",
+      author: "Michael Chen",
+      date: "March 12, 2024",
+      readTime: "8 min read",
+      category: "Performance",
+      content: "Full article content would go here...",
     },
     {
       id: 3,
-      title: 'Building Responsive Websites with Tailwind CSS',
+      title: "Building Responsive Websites with Tailwind CSS",
       excerpt:
-        'A comprehensive guide to creating beautiful, responsive websites using Tailwind CSS and modern design principles.',
+        "A comprehensive guide to creating beautiful, responsive websites using Tailwind CSS and modern design principles.",
       image:
-        'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop',
-      author: 'Emily Rodriguez',
-      date: 'March 10, 2024',
-      readTime: '6 min read',
-      category: 'Design',
-      content: 'Full article content would go here...',
+        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop",
+      author: "Emily Rodriguez",
+      date: "March 10, 2024",
+      readTime: "6 min read",
+      category: "Design",
+      content: "Full article content would go here...",
     },
     {
       id: 4,
-      title: 'The Future of Web Development: What to Expect',
+      title: "The Future of Web Development: What to Expect",
       excerpt:
-        'Explore the latest trends and technologies that are shaping the future of web development and how to stay ahead.',
+        "Explore the latest trends and technologies that are shaping the future of web development and how to stay ahead.",
       image:
-        'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600&h=400&fit=crop',
-      author: 'David Kim',
-      date: 'March 8, 2024',
-      readTime: '7 min read',
-      category: 'Trends',
-      content: 'Full article content would go here...',
+        "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600&h=400&fit=crop",
+      author: "David Kim",
+      date: "March 8, 2024",
+      readTime: "7 min read",
+      category: "Trends",
+      content: "Full article content would go here...",
     },
     {
       id: 5,
-      title: 'SEO Optimization for React Applications',
+      title: "SEO Optimization for React Applications",
       excerpt:
         "Learn how to optimize your React applications for search engines and improve your site's visibility.",
       image:
-        'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=600&h=400&fit=crop',
-      author: 'Lisa Wang',
-      date: 'March 5, 2024',
-      readTime: '9 min read',
-      category: 'SEO',
-      content: 'Full article content would go here...',
+        "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=600&h=400&fit=crop",
+      author: "Lisa Wang",
+      date: "March 5, 2024",
+      readTime: "9 min read",
+      category: "SEO",
+      content: "Full article content would go here...",
     },
     {
       id: 6,
-      title: 'Advanced CSS Animations for Modern Web Apps',
+      title: "Advanced CSS Animations for Modern Web Apps",
       excerpt:
-        'Master the art of creating smooth, engaging animations that enhance user experience and bring your designs to life.',
+        "Master the art of creating smooth, engaging animations that enhance user experience and bring your designs to life.",
       image:
-        'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&h=400&fit=crop',
-      author: 'Alex Thompson',
-      date: 'March 3, 2024',
-      readTime: '10 min read',
-      category: 'Animation',
-      content: 'Full article content would go here...',
+        "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&h=400&fit=crop",
+      author: "Alex Thompson",
+      date: "March 3, 2024",
+      readTime: "10 min read",
+      category: "Animation",
+      content: "Full article content would go here...",
     },
   ];
 
   const categories = [
-    'All',
-    'Development',
-    'Design',
-    'Performance',
-    'SEO',
-    'Trends',
-    'Animation',
+    "All",
+    "Development",
+    "Design",
+    "Performance",
+    "SEO",
+    "Trends",
+    "Animation",
   ];
 
   // Filter posts by category
   const filteredPosts =
-    selectedCategory === 'All'
+    selectedCategory === "All"
       ? blogPosts
       : blogPosts.filter(post => post.category === selectedCategory);
 
@@ -132,9 +132,9 @@ const Blog = () => {
     if (email) {
       setIsSubscribed(true);
       alert(`Thank you for subscribing with: ${email}`);
-      setEmail('');
+      setEmail("");
     } else {
-      alert('Please enter a valid email address.');
+      alert("Please enter a valid email address.");
     }
   };
 
@@ -183,8 +183,8 @@ const Blog = () => {
                 onClick={() => handleCategoryClick(category)}
                 className={`px-6 py-2 rounded-full font-medium transition-all duration-300 cursor-pointer ${
                   category === selectedCategory
-                    ? 'bg-primary-600 text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-primary-100 hover:text-primary-700'
+                    ? "bg-primary-600 text-white"
+                    : "bg-gray-100 text-gray-700 hover:bg-primary-100 hover:text-primary-700"
                 }`}
               >
                 {category}
@@ -297,7 +297,7 @@ const Blog = () => {
                 className="btn-primary cursor-pointer"
                 disabled={isSubscribed}
               >
-                {isSubscribed ? 'Subscribed!' : 'Subscribe'}
+                {isSubscribed ? "Subscribed!" : "Subscribe"}
               </button>
             </form>
             <p className="text-sm text-gray-500 dark:text-gray-400 mt-4">

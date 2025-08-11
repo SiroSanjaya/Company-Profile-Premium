@@ -1,27 +1,27 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Suspense, lazy } from 'react';
-import { HelmetProvider } from 'react-helmet-async';
-import { Toaster } from 'react-hot-toast';
-import { DarkModeProvider } from './contexts/DarkModeContext';
-import DarkModeToggle from './components/DarkModeToggle';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import ErrorBoundary from './components/core/ErrorBoundary';
-import ScrollToTop from './components/core/ScrollToTop';
-const Home = lazy(() => import('./pages/Home'));
-const About = lazy(() => import('./pages/About'));
-const Services = lazy(() => import('./pages/Services'));
-const Contact = lazy(() => import('./pages/Contact'));
-const Pricing = lazy(() => import('./pages/Pricing'));
-const Blog = lazy(() => import('./pages/Blog'));
-const BlogDetail = lazy(() => import('./pages/BlogDetail'));
-const Documentation = lazy(() => import('./pages/Documentation'));
-const ServiceDetail = lazy(() => import('./pages/ServiceDetail'));
-const HelpCenter = lazy(() => import('./pages/HelpCenter'));
-const Features = lazy(() => import('./pages/Features'));
-const ApiReference = lazy(() => import('./pages/ApiReference'));
-const Status = lazy(() => import('./pages/Status'));
-const NotFound = lazy(() => import('./pages/NotFound'));
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Suspense, lazy } from "react";
+import { HelmetProvider } from "react-helmet-async";
+import { Toaster } from "react-hot-toast";
+import { DarkModeProvider } from "./contexts/DarkModeContext";
+import DarkModeToggle from "./components/DarkModeToggle";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import ErrorBoundary from "./components/core/ErrorBoundary";
+import ScrollToTop from "./components/core/ScrollToTop";
+const Home = lazy(() => import("./pages/Home"));
+const About = lazy(() => import("./pages/About"));
+const Services = lazy(() => import("./pages/Services"));
+const Contact = lazy(() => import("./pages/Contact"));
+const Pricing = lazy(() => import("./pages/Pricing"));
+const Blog = lazy(() => import("./pages/Blog"));
+const BlogDetail = lazy(() => import("./pages/BlogDetail"));
+const Documentation = lazy(() => import("./pages/Documentation"));
+const ServiceDetail = lazy(() => import("./pages/ServiceDetail"));
+const HelpCenter = lazy(() => import("./pages/HelpCenter"));
+const Features = lazy(() => import("./pages/Features"));
+const ApiReference = lazy(() => import("./pages/ApiReference"));
+const Status = lazy(() => import("./pages/Status"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 
 function App() {
   return (
@@ -74,8 +74,8 @@ function App() {
               toastOptions={{
                 duration: 4000,
                 style: {
-                  background: '#363636',
-                  color: '#fff',
+                  background: "#363636",
+                  color: "#fff",
                 },
               }}
             />

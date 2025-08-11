@@ -1,13 +1,13 @@
-import { Helmet } from 'react-helmet-async';
-import HeroSection from '../components/sections/HeroSection';
-import FeaturesSection from '../components/sections/FeaturesSection';
-import TestimonialsSection from '../components/sections/TestimonialsSection';
-import CTASection from '../components/sections/CTASection';
-import StatsSection from '../components/sections/StatsSection';
-import PricingCalculator from '../components/PricingCalculator';
-import PortfolioShowcase from '../components/PortfolioShowcase';
-import FAQSection from '../components/FAQSection';
-import TeamSection from '../components/TeamSection';
+import { Helmet } from "react-helmet-async";
+import HeroSection from "../components/sections/HeroSection";
+import FeaturesSection from "../components/sections/FeaturesSection";
+import TestimonialsSection from "../components/sections/TestimonialsSection";
+import CTASection from "../components/sections/CTASection";
+import StatsSection from "../components/sections/StatsSection";
+import PricingCalculator from "../components/PricingCalculator";
+import PortfolioShowcase from "../components/PortfolioShowcase";
+import FAQSection from "../components/FAQSection";
+import TeamSection from "../components/TeamSection";
 
 const Home = () => {
   return (
