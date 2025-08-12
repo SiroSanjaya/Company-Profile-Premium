@@ -275,13 +275,13 @@ const Features = () => {
       </section>
 
       {/* Technical Features Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
               Technical Specifications
             </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
               Built with modern technologies and best practices
             </p>
           </div>
@@ -293,16 +293,16 @@ const Features = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-gray-50 rounded-lg p-6"
+                className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6"
               >
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
                   {category.category}
                 </h3>
                 <ul className="space-y-3">
                   {category.features.map((feature, idx) => (
                     <li
                       key={idx}
-                      className="flex items-start text-sm text-gray-600"
+                      className="flex items-start text-sm text-gray-600 dark:text-gray-400"
                     >
                       <CheckCircle className="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
                       {feature}
@@ -319,10 +319,10 @@ const Features = () => {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
               Included Pages
             </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
               Complete set of pages to get your website up and running quickly
             </p>
           </div>
@@ -334,17 +334,19 @@ const Features = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.05 }}
-                className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow"
+                className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow"
               >
                 <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-lg font-semibold text-gray-900">
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
                     {page.name}
                   </h3>
-                  <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
-                    <CheckCircle className="w-4 h-4 text-green-600" />
+                  <div className="w-8 h-8 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center">
+                    <CheckCircle className="w-4 h-4 text-green-600 dark:text-green-400" />
                   </div>
                 </div>
-                <p className="text-gray-600 text-sm">{page.description}</p>
+                <p className="text-gray-600 dark:text-gray-400 text-sm">
+                  {page.description}
+                </p>
               </motion.div>
             ))}
           </div>

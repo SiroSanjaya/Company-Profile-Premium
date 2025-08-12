@@ -8,6 +8,9 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ErrorBoundary from "./components/core/ErrorBoundary";
 import ScrollToTop from "./components/core/ScrollToTop";
+import ErrorLoggerUI from "./components/core/ErrorLogger";
+import PerformanceMonitor from "./components/core/PerformanceMonitor";
+import LoadingSpinner from "./components/LoadingSpinner";
 const Home = lazy(() => import("./pages/Home"));
 const About = lazy(() => import("./pages/About"));
 const Services = lazy(() => import("./pages/Services"));
@@ -36,12 +39,7 @@ function App() {
                 <Suspense
                   fallback={
                     <div className="pt-16 lg:pt-20 min-h-[60vh] flex items-center justify-center">
-                      <div className="text-center">
-                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto mb-4"></div>
-                        <p className="text-gray-600 dark:text-gray-300">
-                          Loading...
-                        </p>
-                      </div>
+                      <LoadingSpinner size="lg" text="Loading page..." />
                     </div>
                   }
                 >
@@ -79,6 +77,14 @@ function App() {
                 },
               }}
             />
+
+            {/* Development Tools - Only show in development */}
+            {process.env.NODE_ENV === "development" && (
+              <>
+                <PerformanceMonitor />
+                <ErrorLoggerUI />
+              </>
+            )}
           </div>
         </Router>
       </DarkModeProvider>

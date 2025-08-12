@@ -106,11 +106,11 @@ const Pricing = () => {
             transition={{ duration: 0.8 }}
             className="text-center max-w-4xl mx-auto"
           >
-            <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 mb-6">
+            <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6">
               Simple, Transparent{" "}
               <span className="block gradient-text">Pricing</span>
             </h1>
-            <p className="text-xl text-gray-600 mb-8">
+            <p className="text-xl text-gray-600 dark:text-gray-400 mb-8">
               Choose the perfect plan for your needs. All plans include a 14-day
               free trial.
             </p>
@@ -122,7 +122,7 @@ const Pricing = () => {
               className="flex items-center justify-center space-x-4 mb-8"
             >
               <span
-                className={`text-sm font-medium ${!isAnnual ? "text-gray-900" : "text-gray-500"}`}
+                className={`text-sm font-medium ${!isAnnual ? "text-gray-900 dark:text-white" : "text-gray-500 dark:text-gray-400"}`}
               >
                 Monthly
               </span>
@@ -139,7 +139,7 @@ const Pricing = () => {
                 />
               </button>
               <span
-                className={`text-sm font-medium ${isAnnual ? "text-gray-900" : "text-gray-500"}`}
+                className={`text-sm font-medium ${isAnnual ? "text-gray-900 dark:text-white" : "text-gray-500 dark:text-gray-400"}`}
               >
                 Annual
                 <span className="ml-1 text-primary-600 font-bold">
@@ -186,7 +186,7 @@ const Pricing = () => {
                       {plan.description}
                     </p>
                     <div className="mb-6">
-                      <span className="text-4xl font-bold text-gray-900">
+                      <span className="text-4xl font-bold text-gray-900 dark:text-white">
                         ${plan.price}
                       </span>
                       <span className="text-gray-600 dark:text-gray-400">
@@ -212,7 +212,7 @@ const Pricing = () => {
                     className={`w-full py-3 px-6 rounded-lg font-medium transition-all duration-300 cursor-pointer ${
                       plan.popular
                         ? "bg-gradient-to-r from-primary-600 to-secondary-600 text-white hover:shadow-lg transform hover:scale-105"
-                        : "bg-gray-100 text-gray-900 hover:bg-gray-200"
+                        : "bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-600"
                     }`}
                   >
                     {plan.popular ? "Get Started" : "Choose Plan"}
@@ -224,7 +224,7 @@ const Pricing = () => {
         </div>
       </section>
       {/* FAQ Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gray-50 dark:bg-gray-800">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -233,10 +233,10 @@ const Pricing = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-6">
               Frequently Asked Questions
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
               Everything you need to know about our pricing and plans
             </p>
           </motion.div>
@@ -279,12 +279,12 @@ const Pricing = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-white rounded-lg p-6 shadow-sm"
+                className="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-sm"
               >
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
                   {faq.question}
                 </h3>
-                <p className="text-gray-600">{faq.answer}</p>
+                <p className="text-gray-600 dark:text-gray-400">{faq.answer}</p>
               </motion.div>
             ))}
           </div>

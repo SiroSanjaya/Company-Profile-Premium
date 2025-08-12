@@ -30,7 +30,6 @@ const AdvancedContactForm = () => {
     handleSubmit,
     formState: { errors },
     reset,
-    watch,
   } = useForm();
 
   const onSubmit = async data => {

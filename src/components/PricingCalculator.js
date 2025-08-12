@@ -1,13 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import {
-  Calculator,
-  Users,
-  Zap,
-  Shield,
-  CheckCircle,
-  XCircle,
-} from "lucide-react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
+import { motion } from "framer-motion";
+import { Calculator, CheckCircle, XCircle } from "lucide-react";
 import { useInView } from "react-intersection-observer";
 
 const PricingCalculator = () => {
@@ -25,26 +18,28 @@ const PricingCalculator = () => {
 
   const [totalPrice, setTotalPrice] = useState(0);
 
-  const plans = {
-    basic: { price: 29, name: "Basic" },
-    pro: { price: 79, name: "Professional" },
-    enterprise: { price: 199, name: "Enterprise" },
-  };
+  const plans = useMemo(
+    () => ({
+      basic: { price: 29, name: "Basic" },
+      pro: { price: 79, name: "Professional" },
+      enterprise: { price: 199, name: "Enterprise" },
+    }),
+    []
+  );
 
-  const features = [
-    { id: "analytics", name: "Advanced Analytics", price: 15 },
-    { id: "api", name: "API Access", price: 25 },
-    { id: "support", name: "Priority Support", price: 20 },
-    { id: "custom", name: "Custom Branding", price: 30 },
-    { id: "integrations", name: "Third-party Integrations", price: 35 },
-    { id: "backup", name: "Automated Backups", price: 10 },
-  ];
+  const features = useMemo(
+    () => [
+      { id: "analytics", name: "Advanced Analytics", price: 15 },
+      { id: "api", name: "API Access", price: 25 },
+      { id: "support", name: "Priority Support", price: 20 },
+      { id: "custom", name: "Custom Branding", price: 30 },
+      { id: "integrations", name: "Third-party Integrations", price: 35 },
+      { id: "backup", name: "Automated Backups", price: 10 },
+    ],
+    []
+  );
 
-  useEffect(() => {
-    calculateTotal();
-  }, [formData]);
-
-  const calculateTotal = () => {
+  const calculateTotal = useCallback(() => {
     const basePrice = plans[formData.plan].price;
     const featurePrice = formData.features.reduce((sum, featureId) => {
       const feature = features.find(f => f.id === featureId);
@@ -59,7 +54,11 @@ const PricingCalculator = () => {
     }
 
     setTotalPrice(total);
-  };
+  }, [formData, plans, features]);
+
+  useEffect(() => {
+    calculateTotal();
+  }, [calculateTotal]);
 
   const handleFeatureToggle = featureId => {
     setFormData(prev => ({

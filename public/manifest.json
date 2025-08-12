@@ -1,6 +1,7 @@
 {
   "short_name": "Premium Template",
-  "name": "Premium React.js Template",
+  "name": "Premium React Template",
+  "description": "Modern, responsive React.js template with premium features",
   "icons": [
     {
       "src": "favicon.ico",
@@ -22,5 +23,8 @@
   "display": "standalone",
   "theme_color": "#3b82f6",
   "background_color": "#ffffff",
-  "description": "Premium React.js Template - Modern, Responsive & Customizable"
+  "orientation": "portrait-primary",
+  "categories": ["business", "productivity", "utilities"],
+  "lang": "en",
+  "dir": "ltr"
 }

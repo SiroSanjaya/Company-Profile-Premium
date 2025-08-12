@@ -6,13 +6,10 @@ import {
   Play,
   Star,
   Users,
-  Zap,
-  Shield,
   Globe,
   Code,
   Rocket,
   Award,
-  Clock,
   Target,
   TrendingUp,
 } from "lucide-react";

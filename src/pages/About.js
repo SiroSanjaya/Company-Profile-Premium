@@ -161,12 +161,12 @@ const About = () => {
                 developers who were frustrated with the lack of quality React
                 templates in the market.{" "}
               </p>{" "}
-              <p className="text-lg text-gray-600 mb-6">
+              <p className="text-lg text-gray-600 dark:text-gray-400 mb-6">
                 We set out to create templates that not only look beautiful but
                 also follow best practices, are fully responsive, and are easy
                 to customize for any business need.{" "}
               </p>{" "}
-              <p className="text-lg text-gray-600">
+              <p className="text-lg text-gray-600 dark:text-gray-400">
                 Today, we 're proud to serve thousands of developers and
                 businesses worldwide, helping them create stunning websites that
                 drive results.{" "}
@@ -207,7 +207,7 @@ const About = () => {
         </div>{" "}
       </section>
       {/* Values Section */}{" "}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gray-50 dark:bg-gray-800">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -216,10 +216,10 @@ const About = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-6">
               Our Values{" "}
             </h2>{" "}
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
               The principles that guide everything we do
             </p>{" "}
           </motion.div>
@@ -239,18 +239,21 @@ const About = () => {
                 >
                   <value.icon size={28} className={value.color} />{" "}
                 </div>{" "}
-                <h3 className="text-xl font-bold text-gray-900 mb-4">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
                   {" "}
                   {value.title}{" "}
                 </h3>{" "}
-                <p className="text-gray-600"> {value.description} </p>{" "}
+                <p className="text-gray-600 dark:text-gray-400">
+                  {" "}
+                  {value.description}{" "}
+                </p>{" "}
               </motion.div>
             ))}{" "}
           </div>{" "}
         </div>{" "}
       </section>
       {/* Team Section */}{" "}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-gray-900">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -259,10 +262,10 @@ const About = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-6">
               Meet Our Team{" "}
             </h2>{" "}
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
               The talented people behind our premium templates{" "}
             </p>{" "}
           </motion.div>
@@ -282,7 +285,7 @@ const About = () => {
                   alt={member.name}
                   className="w-32 h-32 rounded-full mx-auto mb-6 object-cover"
                 />
-                <h3 className="text-xl font-bold text-gray-900 mb-2">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
                   {" "}
                   {member.name}{" "}
                 </h3>{" "}
@@ -290,7 +293,10 @@ const About = () => {
                   {" "}
                   {member.role}{" "}
                 </div>{" "}
-                <p className="text-gray-600 text-sm"> {member.bio} </p>{" "}
+                <p className="text-gray-600 dark:text-gray-400 text-sm">
+                  {" "}
+                  {member.bio}{" "}
+                </p>{" "}
               </motion.div>
             ))}{" "}
           </div>{" "}

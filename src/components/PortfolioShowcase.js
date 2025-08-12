@@ -6,7 +6,6 @@ import {
   Github,
   Eye,
   Filter,
-  Code,
   Palette,
   Smartphone,
   Globe,
@@ -21,85 +20,88 @@ const PortfolioShowcase = () => {
   const [activeFilter, setActiveFilter] = useState("all");
   const [selectedProject, setSelectedProject] = useState(null);
 
-  const projects = [
-    {
-      id: 1,
-      title: "E-Commerce Platform",
-      category: "web",
-      image:
-        "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop",
-      description:
-        "Modern e-commerce platform with advanced features and seamless user experience.",
-      technologies: ["React", "Node.js", "MongoDB", "Stripe"],
-      liveUrl: "#",
-      githubUrl: "#",
-      featured: true,
-    },
-    {
-      id: 2,
-      title: "Mobile Banking App",
-      category: "mobile",
-      image:
-        "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&h=400&fit=crop",
-      description:
-        "Secure mobile banking application with biometric authentication.",
-      technologies: ["React Native", "Firebase", "Redux", "TypeScript"],
-      liveUrl: "#",
-      githubUrl: "#",
-      featured: true,
-    },
-    {
-      id: 3,
-      title: "AI-Powered Dashboard",
-      category: "web",
-      image:
-        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
-      description:
-        "Intelligent dashboard with real-time analytics and predictive insights.",
-      technologies: ["Vue.js", "Python", "TensorFlow", "D3.js"],
-      liveUrl: "#",
-      githubUrl: "#",
-      featured: false,
-    },
-    {
-      id: 4,
-      title: "Design System",
-      category: "design",
-      image:
-        "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=400&fit=crop",
-      description:
-        "Comprehensive design system with reusable components and guidelines.",
-      technologies: ["Figma", "Storybook", "CSS-in-JS", "Design Tokens"],
-      liveUrl: "#",
-      githubUrl: "#",
-      featured: false,
-    },
-    {
-      id: 5,
-      title: "IoT Smart Home",
-      category: "mobile",
-      image:
-        "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop",
-      description: "Smart home automation system with IoT device management.",
-      technologies: ["Flutter", "AWS IoT", "MQTT", "Dart"],
-      liveUrl: "#",
-      githubUrl: "#",
-      featured: true,
-    },
-    {
-      id: 6,
-      title: "Blockchain Explorer",
-      category: "web",
-      image:
-        "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=600&h=400&fit=crop",
-      description:
-        "Real-time blockchain transaction explorer with advanced filtering.",
-      technologies: ["Next.js", "Web3.js", "Ethereum", "GraphQL"],
-      liveUrl: "#",
-      githubUrl: "#",
-      featured: false,
-    },
-  ];
+  const projects = useMemo(
+    () => [
+      {
+        id: 1,
+        title: "E-Commerce Platform",
+        category: "web",
+        image:
+          "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop",
+        description:
+          "Modern e-commerce platform with advanced features and seamless user experience.",
+        technologies: ["React", "Node.js", "MongoDB", "Stripe"],
+        liveUrl: "#",
+        githubUrl: "#",
+        featured: true,
+      },
+      {
+        id: 2,
+        title: "Mobile Banking App",
+        category: "mobile",
+        image:
+          "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&h=400&fit=crop",
+        description:
+          "Secure mobile banking application with biometric authentication.",
+        technologies: ["React Native", "Firebase", "Redux", "TypeScript"],
+        liveUrl: "#",
+        githubUrl: "#",
+        featured: true,
+      },
+      {
+        id: 3,
+        title: "AI-Powered Dashboard",
+        category: "web",
+        image:
+          "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
+        description:
+          "Intelligent dashboard with real-time analytics and predictive insights.",
+        technologies: ["Vue.js", "Python", "TensorFlow", "D3.js"],
+        liveUrl: "#",
+        githubUrl: "#",
+        featured: false,
+      },
+      {
+        id: 4,
+        title: "Design System",
+        category: "design",
+        image:
+          "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=400&fit=crop",
+        description:
+          "Comprehensive design system with reusable components and guidelines.",
+        technologies: ["Figma", "Storybook", "CSS-in-JS", "Design Tokens"],
+        liveUrl: "#",
+        githubUrl: "#",
+        featured: false,
+      },
+      {
+        id: 5,
+        title: "IoT Smart Home",
+        category: "mobile",
+        image:
+          "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop",
+        description: "Smart home automation system with IoT device management.",
+        technologies: ["Flutter", "AWS IoT", "MQTT", "Dart"],
+        liveUrl: "#",
+        githubUrl: "#",
+        featured: true,
+      },
+      {
+        id: 6,
+        title: "Blockchain Explorer",
+        category: "web",
+        image:
+          "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=600&h=400&fit=crop",
+        description:
+          "Real-time blockchain transaction explorer with advanced filtering.",
+        technologies: ["Next.js", "Web3.js", "Ethereum", "GraphQL"],
+        liveUrl: "#",
+        githubUrl: "#",
+        featured: false,
+      },
+    ],
+    []
+  );
 
   const filters = [
     { id: "all", label: "All Projects", icon: Filter },
@@ -111,7 +113,7 @@ const PortfolioShowcase = () => {
   const filteredProjects = useMemo(() => {
     if (activeFilter === "all") return projects;
     return projects.filter(project => project.category === activeFilter);
-  }, [activeFilter]);
+  }, [activeFilter, projects]);
 
   const containerVariants = {
     hidden: { opacity: 0, y: 50 },
