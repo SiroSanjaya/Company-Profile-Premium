@@ -14,7 +14,7 @@ RUN npm install
 COPY . .
 
 # Build the React application
-RUN npm run build
+RUN npm install --legacy-peer-deps
 
 # Install serve to run the production build
 RUN npm install -g serve

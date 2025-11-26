@@ -72,8 +72,6 @@
     "quality-check": "npm run test:coverage && npm run check-all && npm run build",
     "prepublishOnly": "npm run quality-check",
     "build:analyze": "npm run build && npx serve -s build",
-    "vercel-build": "npm install --legacy-peer-deps && next build",
-    "postinstall": "npm install --legacy-peer-deps",
     "analyze": "npm run build && npx webpack-bundle-analyzer build/static/js/*.js",
     "lighthouse": "npx lighthouse http://localhost:3000 --output=html --output-path=./lighthouse-report.html",
     "performance": "npm run build && npm run lighthouse"
